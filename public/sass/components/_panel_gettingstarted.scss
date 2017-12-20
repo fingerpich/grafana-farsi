@@ -15,7 +15,7 @@ $path-position: $marker-size-half - ($path-height / 2);
 
 .dashlist-cta-close-btn {
   color: $text-color-weak;
-  float: right;
+  float: left;
   padding: 0;
   margin: 0 2px 0 0;
   background-color: transparent;
@@ -36,6 +36,7 @@ $path-position: $marker-size-half - ($path-height / 2);
   margin: 0 auto;
   padding: 0;
   list-style: none;
+  flex-direction: row-reverse;
 }
 
 // Step container that creates lines between steps
@@ -51,14 +52,14 @@ $path-position: $marker-size-half - ($path-height / 2);
   min-width: $marker-size;
 
   &::after {
-    right: -50%;
+    left: -50%;
     content: "";
     display: block;
     position: absolute;
     z-index: 1;
     top: $path-position;
     bottom: $path-position;
-    right: - $marker-size-half;
+    left: - $marker-size-half;
     width: 100%;
     height: $path-height;
     border-top: 2px solid $progress-color-grey-light;
@@ -68,12 +69,12 @@ $path-position: $marker-size-half - ($path-height / 2);
 
   &:first-child {
     &::after {
-      left: 50%;
+      right: 50%;
     }
   }
   &:last-child {
     &::after {
-      right: 50%;
+      left: 50%;
     }
   }
 

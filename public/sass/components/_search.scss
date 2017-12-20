@@ -10,9 +10,10 @@
 }
 
 .search-container {
-  left: $side-menu-width;
+  right: $side-menu-width;
   top: 0;
-  right: 0;
+  left: 0;
+  direction: rtl;
   bottom: 0;
   z-index: ($zindex-modal-backdrop + 10);
   position: fixed;
@@ -75,7 +76,7 @@
   padding: $spacer*1.5;
   max-width: 340px;
   margin-bottom: $spacer * 1.5;
-  margin-left: $spacer * 1.5;
+  margin-right: $spacer * 1.5;
 }
 
 .search-filter-box__header {
@@ -240,7 +241,7 @@
 
 @include media-breakpoint-down(xs) {
   .search-container {
-    left: 0;
+    right: 0;
   }
 
   .search-dropdown__col_2 {

@@ -1,5 +1,6 @@
 .grafana-app {
   display: flex;
+  flex-direction: row-reverse;
   align-items: stretch;
   position: absolute;
   width: 100%;

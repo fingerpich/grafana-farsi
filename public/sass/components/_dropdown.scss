@@ -18,7 +18,7 @@
   top: -3px;
   width: 250px;
   font-size: $font-size-sm;
-  margin-left: 22px;
+  margin-right: 22px;
   color: $gray-2;
   white-space: normal;
 }
@@ -39,7 +39,7 @@
 // Place the caret
 .dropdown .caret {
   margin-top: 8px;
-  margin-left: 2px;
+  margin-right: 2px;
 }
 
 // The dropdown menu (ul)
@@ -47,17 +47,17 @@
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  right: 0;
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
-  float: left;
+  float: right;
   min-width: 140px;
   margin: 2px 0 0; // override default ul
   list-style: none;
   background-color: $dropdownBackground;
   border: 1px solid #ccc; // Fallback for IE7-8
   border: 1px solid $dropdownBorder;
-  text-align: left;
+  text-align: right;
 
   // Aligns the dropdown menu to right
   &.pull-right {
@@ -86,7 +86,7 @@
 
       i {
         display: inline-block;
-        margin-right: 10px;
+        margin-left: 10px;
         color: $link-color-disabled;
         position: relative;
         top: 3px;
@@ -113,8 +113,9 @@
 
     > li > a {
       display: flex;
+      flex-direction: row-reverse;
       padding: 5px 10px;
-      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
 
       &:hover {
         @include left-brand-border-gradient();
@@ -127,7 +128,7 @@
   &--sidemenu {
     li.sidemenu-org-switcher {
       > a {
-        padding: 8px 10px 8px 15px;
+        padding: 8px 15px 8px 10px;
       }
     }
   }
@@ -204,8 +205,8 @@
 // Right aligned dropdowns
 // ---------------------------
 .pull-right > .dropdown-menu {
-  right: 0;
-  left: auto;
+  left: 0;
+  right: auto;
 }
 
 // Allow for dropdowns to go bottom up (aka, dropup-menu)
@@ -236,9 +237,9 @@
 // Default dropdowns
 .dropdown-submenu > .dropdown-menu {
   top: 0;
-  left: 100%;
+  right: 100%;
   margin-top: 0px;
-  margin-left: -1px;
+  margin-right: -1px;
   @include border-radius(0 6px 6px 6px);
 }
 .dropdown-submenu:hover > .dropdown-menu {
@@ -258,15 +259,15 @@
 .dropdown-submenu > a::after {
   display: block;
   content: " ";
-  float: right;
+  float: left;
   width: 0;
   height: 0;
   border-color: transparent;
   border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: $text-color-weak;
+  border-width: 5px 5px 5px 0;
+  border-right-color: $text-color-weak;
   margin-top: 5px;
-  margin-right: -4px;
+  margin-left: -4px;
 }
 .dropdown-submenu:hover > a::after {
   border-left-color: $dropdownLinkColorHover;
@@ -280,9 +281,9 @@
 
   // Positioning the submenu
   > .dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    @include border-radius(6px 0 6px 6px);
+    right: -100%;
+    margin-right: 10px;
+    @include border-radius(6px 6px 6px 0);
   }
 }
 
@@ -303,7 +304,7 @@
 
 .dropdown-menu-item-shortcut {
   display: block;
-  margin-left: $spacer;
+  margin-right: $spacer;
   color: $text-muted;
   min-width: 47px;
 
@@ -319,12 +320,12 @@
 .dropdown-menu.dropdown-menu--new {
   li a {
     padding: $spacer/2 $spacer;
-    border-left: 2px solid $side-menu-bg;
+    border-right: 2px solid $side-menu-bg;
     background: $side-menu-bg;
 
     i {
       display: inline-block;
-      padding-right: 21px;
+      padding-left: 21px;
     }
 
     &:hover {

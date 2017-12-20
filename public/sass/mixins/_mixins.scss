@@ -375,7 +375,7 @@
 }
 
 @mixin left-brand-border($color: transparent) {
-  border-left: 2px solid $color;
+  border-right: 2px solid $color;
 }
 
 @mixin left-brand-border-gradient() {
@@ -388,9 +388,9 @@
   border-image-slice: 1;
   border-style: solid;
   border-top: 0;
-  border-right: 0;
+  border-left: 0;
   border-bottom: 0;
-  border-left-width: 2px;
+  border-right-width: 2px;
 }
 
 @mixin brand-bottom-border() {

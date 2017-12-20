@@ -1,11 +1,12 @@
 .navbar {
   position: relative;
-  padding-left: 40px;
+  padding-right: 40px;
   z-index: $zindex-navbar-fixed;
   height: $navbarHeight;
-  padding-right: $spacer;
+  padding-left: $spacer;
   display: flex;
   flex-grow: 1;
+  flex-direction: row-reverse;
   border-bottom: 1px solid transparent;
   transition-duration: 350ms;
   transition-timing-function: ease-in-out;
@@ -63,13 +64,14 @@
   margin: 0;
   color: darken($link-color, 5%);
   font-size: $font-size-lg;
-  padding-left: 1rem;
+  direction: rtl;
+  padding-right: 1rem;
   min-height: $navbarHeight;
   line-height: $navbarHeight;
 
   .fa-caret-down {
     font-size: 60%;
-    padding-left: 0.2rem;
+    padding-right: 0.2rem;
   }
 
   &--search {
@@ -82,7 +84,7 @@
     font-size: 19px;
     line-height: 8px;
     opacity: 0.75;
-    margin-right: 8px;
+    margin-left: 8px;
     // icon hidden on smaller screens
     display: none;
   }
