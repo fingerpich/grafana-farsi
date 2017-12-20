@@ -98,6 +98,12 @@ Writing & watching frontend tests (we have two test runners)
   - Start watcher: `npm run karma`
   - Karma+Mocha runs all files that end with the name "_specs.ts".
 
+## why we didn't make grafana_rtl.scss
+
+because it has two theme and overwriting css rules makes it harder
+and also we didn't need it and also when updates comes its better to see the conflicts and 
+resolve them by the new changes.
+
 ## Contribute
 
 If you have any idea for an improvement or found a bug, do not hesitate to open an issue.

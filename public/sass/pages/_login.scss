@@ -208,6 +208,7 @@ select:-webkit-autofill:focus {
 
 .login-signup-box {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: flex-end;
   width: 100%;
@@ -217,7 +218,7 @@ select:-webkit-autofill:focus {
 .login-signup-title {
   justify-self: flex-start;
   flex: 1;
-  text-align: left;
+  text-align: right;
 }
 
 .login-btn {
@@ -267,13 +268,13 @@ select:-webkit-autofill:focus {
 
 @include media-breakpoint-up(sm) {
   .login-content {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
   .login-branding {
     width: 35%;
     padding: 4rem 2rem;
-    border-right: 1px solid $login-border;
+    border-left: 1px solid $login-border;
     justify-content: flex-start;
   }
 
@@ -309,7 +310,7 @@ select:-webkit-autofill:focus {
   }
 
   .login-button-group {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
   .login-button-forgot-password {
