@@ -1,12 +1,12 @@
 .gf-tabs {
   @include clearfix();
-  float: left;
+  float: right;
   position: relative;
   top: 1px;
 }
 
 .gf-tabs-item {
-  float: left;
+  float: right;
   list-style: none;
 }
 
@@ -21,7 +21,7 @@
   color: $text-color;
 
   i {
-    margin-right: 5px;
+    margin-left: 5px;
   }
 
   .gicon {

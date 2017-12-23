@@ -23,6 +23,9 @@
   max-width: 980px;
   @include clearfix();
 }
+.page-container.page-body {
+  direction: rtl;
+}
 
 .scroll-canvas {
   position: absolute;

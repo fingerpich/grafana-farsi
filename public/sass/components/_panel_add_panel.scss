@@ -5,17 +5,18 @@
 .add-panel__header {
   padding: 5px 15px;
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
 
   i {
     font-size: 30px;
-    margin-right: $spacer;
+    margin-left: $spacer;
   }
 }
 
 .add-panel__title {
   font-size: $font-size-md;
-  margin-right: $spacer/2;
+  margin-left: $spacer/2;
 }
 
 .add-panel__sub-title {

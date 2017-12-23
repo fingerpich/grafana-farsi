@@ -39,12 +39,12 @@ $input-border: 1px solid $input-border-color;
     top: 50%;
     margin-top: -9px;
     font-size: $font-size-lg;
-    left: 10px;
+    right: 10px;
     color: $input-color-placeholder;
   }
 
   > input {
-    padding-left: 35px;
+    padding-right: 35px;
 
     &:focus + .gf-form-input-icon {
       color: $text-muted;
@@ -76,7 +76,7 @@ $input-border: 1px solid $input-border-color;
   align-content: flex-start;
 
   .gf-form + .gf-form {
-    margin-right: $gf-form-margin;
+    margin-left: $gf-form-margin;
   }
 }
 
@@ -84,7 +84,7 @@ $input-border: 1px solid $input-border-color;
   padding-top: $spacer * 1.5;
   a,
   button {
-    margin-right: $spacer;
+    margin-left: $spacer;
   }
 }
 
@@ -98,7 +98,7 @@ $input-border: 1px solid $input-border-color;
   display: block;
 
   border: $input-btn-border-width solid $input-label-border-color;
-  border-right: none;
+  border-left: none;
   border-radius: $label-border-radius;
 
   &--grow {
@@ -111,21 +111,21 @@ $input-border: 1px solid $input-border-color;
   }
 
   &:disabled {
-    color: $text-color-weak
+    color: $text-color-weak;
   }
 }
 
 .gf-form-label + .gf-form-label {
-  margin-right: $gf-form-margin;
+  margin-left: $gf-form-margin;
 }
 
 .gf-form-pre {
   display: block;
   flex-grow: 1;
   margin: 0;
-  margin-right: $gf-form-margin;
+  margin-left: $gf-form-margin;
   border: $input-btn-border-width solid transparent;
-  border-left: none;
+  border-right: none;
   @include border-radius($label-border-radius-sm);
 }
 
@@ -150,7 +150,7 @@ $input-border: 1px solid $input-border-color;
   display: block;
   width: 100%;
   padding: $input-padding-y $input-padding-x;
-  margin-right: $gf-form-margin;
+  margin-left: $gf-form-margin;
   font-size: $font-size-md;
   line-height: $input-line-height;
   color: $input-color;
@@ -207,12 +207,12 @@ $input-border: 1px solid $input-border-color;
   }
 
   &--dropdown {
-    padding-right: $input-padding-x*2;
+    padding-left: $input-padding-x*2;
 
     &::after {
       position: absolute;
       top: 36%;
-      right: 11px;
+      left: 11px;
       font-size: 11px;
       background-color: transparent;
       color: $text-color;
@@ -244,14 +244,14 @@ $input-border: 1px solid $input-border-color;
 }
 
 .gf-form-select-wrapper {
-  margin-right: $gf-form-margin;
+  margin-left: $gf-form-margin;
   position: relative;
   background-color: $input-bg;
 
   select.gf-form-input {
     text-indent: 0.01px;
     text-overflow: "";
-    padding-right: $input-padding-x*4;
+    padding-left: $input-padding-x*4;
     -webkit-appearance: none;
     -moz-appearance: menulist-text; // was set to "window" and caused odd display on windos and linux.
     appearance: none;
@@ -270,7 +270,7 @@ $input-border: 1px solid $input-border-color;
   &::after {
     position: absolute;
     top: 36%;
-    right: 11px;
+    left: 11px;
     background-color: transparent;
     color: $text-color;
     font: normal normal normal $font-size-sm/1 FontAwesome;
@@ -281,7 +281,7 @@ $input-border: 1px solid $input-border-color;
 
   &--has-help-icon {
     &::after {
-      right: $input-padding-x*3;
+      left: $input-padding-x*3;
     }
   }
 }
@@ -292,7 +292,7 @@ $input-border: 1px solid $input-border-color;
 
 .gf-form-btn {
   padding: $input-padding-y $input-padding-x;
-  margin-right: $gf-form-margin;
+  margin-left: $gf-form-margin;
   line-height: $input-line-height;
   font-size: $font-size-sm;
 
@@ -304,23 +304,23 @@ $input-border: 1px solid $input-border-color;
   &input[type="number"] {
     font-size: $font-size-base;
     line-height: $input-line-height;
-    margin: -6px -5px 0 5px;
+    margin: -6px 5px 0 -5px;
     padding: $input-padding-y/2 $input-padding-x/2;
   }
 }
 
 .gf-form-dropdown-typeahead {
-  margin-right: $gf-form-margin;
+  margin-left: $gf-form-margin;
   position: relative;
   background-color: $input-bg;
-  padding-right: $input-padding-x;
+  padding-left: $input-padding-x;
   border: $input-border;
   border-radius: $input-border-radius;
 
   &::after {
     position: absolute;
     top: 35%;
-    right: $input-padding-x/2;
+    left: $input-padding-x/2;
     background-color: transparent;
     color: $input-color;
     font: normal normal normal $font-size-sm/1 FontAwesome;
@@ -335,22 +335,22 @@ $input-border: 1px solid $input-border-color;
 
 .gf-form-help-icon {
   flex-grow: 0;
-  padding-left: $spacer;
+  padding-right: $spacer;
   color: $text-color-weak;
 
   &--bold {
     color: $text-color-emphasis;
-    padding-left: 0;
+    padding-right: 0;
   }
 
   &--right-absolute {
     position: absolute;
-    right: $spacer;
+    left: $spacer;
     top: 10px;
   }
 
   &--right-normal {
-    float: right;
+    float: left;
   }
 
   &--header {
@@ -359,12 +359,12 @@ $input-border: 1px solid $input-border-color;
 }
 
 select.gf-form-input ~ .gf-form-help-icon {
-  right: 10px;
+  left: 10px;
 }
 
 .gf-form-icon--right-absolute {
   position: absolute;
-  right: $spacer;
+  left: $spacer;
   top: 10px;
   color: $text-muted;
 }
