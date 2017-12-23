@@ -3,19 +3,19 @@
 <div class="page-container page-body">
   <div class="page-action-bar">
     <label class="gf-form gf-form--grow gf-form--has-input-icon">
-      <input type="text" class="gf-form-input width-20" ng-model="ctrl.searchQuery" ng-change="ctrl.onQueryUpdated()" placeholder="Filter by username or email" />
+      <input type="text" class="gf-form-input width-20" ng-model="ctrl.searchQuery" ng-change="ctrl.onQueryUpdated()" placeholder="فیلتر با نام کاربری یا ایمیل" />
       <i class="gf-form-input-icon fa fa-search"></i>
     </label>
 
     <div class="page-action-bar__spacer"></div>
 
     <button class="btn btn-inverse" ng-show="ctrl.pendingInvites.length" ng-click="ctrl.showInvites = true">
-      Pending Invites ({{ctrl.pendingInvites.length}})
+      دعوت های در صف انتظار({{ctrl.pendingInvites.length}})
     </button>
 
     <a class="btn btn-success" href="org/users/invite" ng-show="ctrl.canInvite">
       <i class="fa fa-plus"></i>
-      <span>Invite</span>
+      <span>دعوت</span>
     </a>
 
     <a class="btn btn-success" ng-href="{{ctrl.externalUserMngLinkUrl}}" target="_blank" ng-if="ctrl.externalUserMngLinkUrl">
@@ -33,13 +33,13 @@
       <thead>
         <tr>
           <th></th>
-          <th>Login</th>
-          <th>Email</th>
+          <th>ورود</th>
+          <th>ایمیل</th>
           <th>
-            Seen
-            <tip>Time since user was seen using Grafana</tip>
+            زمان ورود
+            <tip>زمانی که کاربر وارد شده است</tip>
           </th>
-          <th>Role</th>
+          <th>نقش</th>
           <th style="width: 34px;"></th>
         </tr>
       </thead>
@@ -69,8 +69,8 @@
     <table class="filter-table form-inline">
       <thead>
         <tr>
-          <th>Email</th>
-          <th>Name</th>
+          <th>ایمیل</th>
+          <th>نام</th>
           <th></th>
           <th style="width: 34px;"></th>
         </tr>
@@ -80,7 +80,7 @@
         <td>{{invite.name}}</td>
         <td class="text-right">
           <button class="btn btn-inverse btn-mini" clipboard-button="ctrl.getInviteUrl(invite)" ng-click="ctrl.copyInviteToClipboard($event)">
-            <i class="fa fa-clipboard"></i> Copy Invite
+            <i class="fa fa-clipboard"></i> کپی دعوت
           </button>
           &nbsp;
         </td>

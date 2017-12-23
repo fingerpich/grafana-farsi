@@ -89,30 +89,30 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 
 	if c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR {
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
-			Text: "Create",
+			Text: "ایجاد",
 			Id:   "create",
 			Icon: "fa fa-fw fa-plus",
 			Url:  setting.AppSubUrl + "/dashboard/new",
 			Children: []*dtos.NavLink{
-				{Text: "Dashboard", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/dashboard/new"},
-				{Text: "Folder", SubTitle: "Create a new folder to organize your dashboards", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"},
-				{Text: "Import", SubTitle: "Import dashboard from file or Grafana.com", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"},
+				{Text: "داشبورد", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/dashboard/new"},
+				{Text: "فولدر", SubTitle: "ایجاد یک فولدر برای مرتب سازی داشبورد", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"},
+				{Text: "دریافت", SubTitle: "وارد کردن داشبورد از فایل ذخیره شده", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"},
 			},
 		})
 	}
 
 	dashboardChildNavs := []*dtos.NavLink{
-		{Text: "Home", Url: setting.AppSubUrl + "/", Icon: "gicon gicon-home", HideFromTabs: true},
+		{Text: "خانه", Url: setting.AppSubUrl + "/", Icon: "gicon gicon-home", HideFromTabs: true},
 		{Divider: true, HideFromTabs: true},
-		{Text: "Manage", Id: "manage-dashboards", Url: setting.AppSubUrl + "/dashboards", Icon: "gicon gicon-manage"},
-		{Text: "Playlists", Id: "playlists", Url: setting.AppSubUrl + "/playlists", Icon: "gicon gicon-playlists"},
-		{Text: "Snapshots", Id: "snapshots", Url: setting.AppSubUrl + "/dashboard/snapshots", Icon: "gicon gicon-snapshots"},
+		{Text: "مدیریت", Id: "manage-dashboards", Url: setting.AppSubUrl + "/dashboards", Icon: "gicon gicon-manage"},
+		{Text: "پلی لیست", Id: "playlists", Url: setting.AppSubUrl + "/playlists", Icon: "gicon gicon-playlists"},
+		{Text: "اسنپ شات", Id: "snapshots", Url: setting.AppSubUrl + "/dashboard/snapshots", Icon: "gicon gicon-snapshots"},
 	}
 
 	data.NavTree = append(data.NavTree, &dtos.NavLink{
-		Text:     "Dashboards",
+		Text:     "داشبورد ها",
 		Id:       "dashboards",
-		SubTitle: "Manage dashboards & folders",
+		SubTitle: "مدیریت داشبوردها و فودلدرها",
 		Icon:     "gicon gicon-dashboard",
 		Url:      setting.AppSubUrl + "/",
 		Children: dashboardChildNavs,
@@ -144,13 +144,13 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 
 	if setting.AlertingEnabled && (c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR) {
 		alertChildNavs := []*dtos.NavLink{
-			{Text: "Alert Rules", Id: "alert-list", Url: setting.AppSubUrl + "/alerting/list", Icon: "gicon gicon-alert-rules"},
-			{Text: "Notification channels", Id: "channels", Url: setting.AppSubUrl + "/alerting/notifications", Icon: "gicon gicon-alert-notification-channel"},
+			{Text: "قوانین آلرت", Id: "alert-list", Url: setting.AppSubUrl + "/alerting/list", Icon: "gicon gicon-alert-rules"},
+			{Text: "کانال نوفیکیشن ها", Id: "channels", Url: setting.AppSubUrl + "/alerting/notifications", Icon: "gicon gicon-alert-notification-channel"},
 		}
 
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
-			Text:     "Alerting",
-			SubTitle: "Alert rules & notifications",
+			Text:     "آلرتینگ",
+			SubTitle: "قوانین آلرتینگ و نوتیفیکیشن ها",
 			Id:       "alerting",
 			Icon:     "gicon gicon-alert",
 			Url:      setting.AppSubUrl + "/alerting/list",
@@ -208,51 +208,51 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 	if c.OrgRole == m.ROLE_ADMIN {
 		cfgNode := &dtos.NavLink{
 			Id:       "cfg",
-			Text:     "Configuration",
-			SubTitle: "Organization: " + c.OrgName,
+			Text:     "تنظیمات",
+			SubTitle: "تنظیمات: " + c.OrgName,
 			Icon:     "gicon gicon-cog",
 			Url:      setting.AppSubUrl + "/datasources",
 			Children: []*dtos.NavLink{
 				{
-					Text:        "Data Sources",
+					Text:        "منبع داده",
 					Icon:        "gicon gicon-datasources",
-					Description: "Add and configure data sources",
+					Description: "اضافه کردن و تنظیم منبع داده",
 					Id:          "datasources",
 					Url:         setting.AppSubUrl + "/datasources",
 				},
 				{
-					Text:        "Users",
+					Text:        "کاربران",
 					Id:          "users",
-					Description: "Manage org members",
+					Description: "مدیریت کاربران",
 					Icon:        "gicon gicon-user",
 					Url:         setting.AppSubUrl + "/org/users",
 				},
 				{
-					Text:        "Teams",
+					Text:        "تیم ها",
 					Id:          "teams",
-					Description: "Manage org groups",
+					Description: "مدیریت گروه ها",
 					Icon:        "gicon gicon-team",
 					Url:         setting.AppSubUrl + "/org/teams",
 				},
 				{
-					Text:        "Plugins",
+					Text:        "پلاگین ها",
 					Id:          "plugins",
-					Description: "View and configure plugins",
+					Description: "نمایش و تنظیمات پلاگین ها",
 					Icon:        "gicon gicon-plugins",
 					Url:         setting.AppSubUrl + "/plugins",
 				},
 				{
-					Text:        "Preferences",
+					Text:        "اولویت ها",
 					Id:          "org-settings",
-					Description: "Organization preferences",
+					Description: "تنظیم اولویت ها",
 					Icon:        "gicon gicon-preferences",
 					Url:         setting.AppSubUrl + "/org",
 				},
 
 				{
-					Text:        "API Keys",
+					Text:        "کلید های API",
 					Id:          "apikeys",
-					Description: "Create & manage API keys",
+					Description: "ایجاد و مدیریت کلیدهای ای پی آی",
 					Icon:        "gicon gicon-apikeys",
 					Url:         setting.AppSubUrl + "/org/apikeys",
 				},
@@ -264,18 +264,18 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 				Divider: true, HideFromTabs: true,
 			})
 			cfgNode.Children = append(cfgNode.Children, &dtos.NavLink{
-				Text:         "Server Admin",
+				Text:         "مدیر سرور",
 				HideFromTabs: true,
-				SubTitle:     "Manage all users & orgs",
+				SubTitle:     "مدیریت تمام کاربران و بخش ها",
 				Id:           "admin",
 				Icon:         "gicon gicon-shield",
 				Url:          setting.AppSubUrl + "/admin/users",
 				Children: []*dtos.NavLink{
-					{Text: "Users", Id: "global-users", Url: setting.AppSubUrl + "/admin/users", Icon: "gicon gicon-user"},
-					{Text: "Orgs", Id: "global-orgs", Url: setting.AppSubUrl + "/admin/orgs", Icon: "gicon gicon-org"},
-					{Text: "Settings", Id: "server-settings", Url: setting.AppSubUrl + "/admin/settings", Icon: "gicon gicon-preferences"},
-					{Text: "Stats", Id: "server-stats", Url: setting.AppSubUrl + "/admin/stats", Icon: "fa fa-fw fa-bar-chart"},
-					{Text: "Style Guide", Id: "styleguide", Url: setting.AppSubUrl + "/styleguide", Icon: "fa fa-fw fa-eyedropper"},
+					{Text: "کاربران", Id: "global-users", Url: setting.AppSubUrl + "/admin/users", Icon: "gicon gicon-user"},
+					{Text: "بخش ها", Id: "global-orgs", Url: setting.AppSubUrl + "/admin/orgs", Icon: "gicon gicon-org"},
+					{Text: "تنظیمات", Id: "server-settings", Url: setting.AppSubUrl + "/admin/settings", Icon: "gicon gicon-preferences"},
+					{Text: "وضعیت", Id: "server-stats", Url: setting.AppSubUrl + "/admin/stats", Icon: "fa fa-fw fa-bar-chart"},
+					{Text: "استایل راهنما", Id: "styleguide", Url: setting.AppSubUrl + "/styleguide", Icon: "fa fa-fw fa-eyedropper"},
 				},
 			})
 		}
@@ -290,9 +290,9 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 		Icon:         "gicon gicon-question",
 		HideFromMenu: true,
 		Children: []*dtos.NavLink{
-			{Text: "Keyboard shortcuts", Url: "/shortcuts", Icon: "fa fa-fw fa-keyboard-o", Target: "_self"},
-			{Text: "Community site", Url: "http://community.grafana.com", Icon: "fa fa-fw fa-comment", Target: "_blank"},
-			{Text: "Documentation", Url: "http://docs.grafana.org", Icon: "fa fa-fw fa-file", Target: "_blank"},
+			{Text: "میانبرهای صفحه کلید", Url: "/shortcuts", Icon: "fa fa-fw fa-keyboard-o", Target: "_self"},
+			{Text: "سایت کاربران", Url: "http://community.grafana.com", Icon: "fa fa-fw fa-comment", Target: "_blank"},
+			{Text: "مستندات", Url: "http://docs.grafana.org", Icon: "fa fa-fw fa-file", Target: "_blank"},
 		},
 	})
 
@@ -310,12 +310,12 @@ func Index(c *middleware.Context) {
 
 func NotFoundHandler(c *middleware.Context) {
 	if c.IsApiRequest() {
-		c.JsonApiErr(404, "Not found", nil)
+		c.JsonApiErr(404, "صفحه مورد نظر یافت نشد.", nil)
 		return
 	}
 
 	if data, err := setIndexViewData(c); err != nil {
-		c.Handle(500, "Failed to get settings", err)
+		c.Handle(500, "تنظیمات مورد نظر با دریافت نشد.", err)
 		return
 	} else {
 		c.HTML(404, "index", data)

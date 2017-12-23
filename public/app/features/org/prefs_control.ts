@@ -10,14 +10,14 @@ export class PrefsControlCtrl {
   mode: string;
 
   timezones: any = [
-    { value: "", text: "Default" },
-    { value: "browser", text: "Local browser time" },
+    { value: "", text: "پیش فرض" },
+    { value: "browser", text: "زمان بروزر شما" },
     { value: "utc", text: "UTC" }
   ];
   themes: any = [
-    { value: "", text: "Default" },
-    { value: "dark", text: "Dark" },
-    { value: "light", text: "Light" }
+    { value: "", text: "پیش فرض" },
+    { value: "dark", text: "تاریک" },
+    { value: "light", text: "روشن" }
   ];
 
   /** @ngInject **/
@@ -49,10 +49,10 @@ export class PrefsControlCtrl {
 
 var template = `
 <form name="ctrl.prefsForm" class="section gf-form-group">
-  <h3 class="page-heading">Preferences</h3>
+  <h3 class="page-heading">اولویت ها</h3>
 
   <div class="gf-form">
-    <span class="gf-form-label width-11">UI Theme</span>
+    <span class="gf-form-label width-11">UI تم</span>
     <div class="gf-form-select-wrapper max-width-20">
       <select class="gf-form-input" ng-model="ctrl.prefs.theme" ng-options="f.value as f.text for f in ctrl.themes"></select>
     </div>
@@ -60,9 +60,9 @@ var template = `
 
   <div class="gf-form">
     <span class="gf-form-label width-11">
-      Home Dashboard
+      داشبورد صفحه اول
       <info-popover mode="right-normal">
-        Not finding dashboard you want? Star it first, then it should appear in this select box.
+        داشبورد مورد نظر پیدا نشد؟ ابتدا داشبورد مورد نظر را ستاره کنید و سپس در این بخش ظاهر میگردد
       </info-popover>
     </span>
     <dashboard-selector class="gf-form-select-wrapper max-width-20" model="ctrl.prefs.homeDashboardId">
@@ -70,14 +70,14 @@ var template = `
   </div>
 
   <div class="gf-form">
-    <label class="gf-form-label width-11">Timezone</label>
+    <label class="gf-form-label width-11">موقعیت زمانی</label>
     <div class="gf-form-select-wrapper max-width-20">
       <select class="gf-form-input" ng-model="ctrl.prefs.timezone" ng-options="f.value as f.text for f in ctrl.timezones"></select>
     </div>
   </div>
 
   <div class="gf-form-button-row">
-    <button type="submit" class="btn btn-success" ng-click="ctrl.updatePrefs()">Save</button>
+    <button type="submit" class="btn btn-success" ng-click="ctrl.updatePrefs()">ذخیره</button>
   </div>
 </form>
 `;

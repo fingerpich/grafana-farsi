@@ -4,14 +4,14 @@
   <div class="page-action-bar">
 		<div class="gf-form gf-form--grow">
 			<label class="gf-form--has-input-icon">
-				<input type="text" class="gf-form-input width-20" ng-model="ctrl.searchQuery" ng-change="ctrl.onQueryUpdated()" placeholder="Filter by name or type" />
+				<input type="text" class="gf-form-input width-20" ng-model="ctrl.searchQuery" ng-change="ctrl.onQueryUpdated()" placeholder="فیلتر با نام یا نوع" />
 				<i class="gf-form-input-icon fa fa-search"></i>
 			</label>
 			<layout-selector />
 		</div>
 		<div class="page-action-bar__spacer"></div>
 		<a class="btn btn-success" href="https://grafana.com/plugins?utm_source=grafana_plugin_list" target="_blank">
-			Find more plugins on Grafana.com
+			پلاگین های بیشتر
 		</a>
 	</div>
 
@@ -26,7 +26,7 @@
 							{{plugin.type}}
 						</div>
 						<div class="card-item-notice" ng-show="plugin.hasUpdate">
-							<span bs-tooltip="plugin.latestVersion">Update available!</span>
+							<span bs-tooltip="plugin.latestVersion">قابلیت به روزرسانی!</span>
 						</div>
 					</div>
 					<div class="card-item-body">
