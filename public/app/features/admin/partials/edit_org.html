@@ -1,11 +1,11 @@
 <page-header model="navModel"></page-header>
 
 <div class="page-container page-body">
-	<h2 class="page-sub-heading">Edit Organization</h2>
+	<h2 class="page-sub-heading">تغییر سازمان</h2>
 
 	<form name="orgDetailsForm" class="gf-form-group">
 		<div class="gf-form">
-			<span class="gf-form-label width-10">Name</span>
+			<span class="gf-form-label width-10">نام</span>
 			<input type="text" required ng-model="org.name" class="gf-form-input max-width-14" >
 		</div>
 
@@ -14,13 +14,13 @@
 		</div>
 	</form>
 
-	<h3 class="page-heading">Organization Users</h3>
+	<h3 class="page-heading">کاربران سازمان</h3>
 
 	<table class="filter-table">
 		<tr>
-			<th>Username</th>
-			<th>Email</th>
-			<th>Role</th>
+			<th>نام کاربری</th>
+			<th>ایمیل</th>
+			<th>نقش</th>
 			<th></th>
 		</tr>
 		<tr ng-repeat="orgUser in orgUsers">

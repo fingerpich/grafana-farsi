@@ -3,13 +3,13 @@
 <div class="page-container page-body">
 	<div class="page-action-bar">
     <label class="gf-form gf-form--grow gf-form--has-input-icon">
-      <input type="text" class="gf-form-input max-width-30" placeholder="Find user by name/login/email" tabindex="1" give-focus="true" ng-model="ctrl.query" ng-model-options="{ debounce: 500 }" spellcheck='false' ng-change="ctrl.getUsers()" />
+      <input type="text" class="gf-form-input max-width-30" placeholder="پیدا کردن کاربر با نام یا ایمیل" tabindex="1" give-focus="true" ng-model="ctrl.query" ng-model-options="{ debounce: 500 }" spellcheck='false' ng-change="ctrl.getUsers()" />
       <i class="gf-form-input-icon fa fa-search"></i>
     </label>
     <div class="page-action-bar__spacer"></div>
     <a class="btn btn-success" href="admin/users/create">
       <i class="fa fa-plus"></i>
-      Add new user
+      افزودن کاربر جدید
     </a>
   </div>
 
@@ -18,11 +18,11 @@
       <thead>
         <tr>
           <th></th>
-          <th>Login</th>
-          <th>Email</th>
+          <th>ورود</th>
+          <th>ایمیل</th>
           <th>
-            Seen
-            <tip>Time since user was seen using Grafana</tip>
+   آخرین زمان فعالیت
+            <tip>آخرین زمانی که کاربر در این سیستم فعالیت داشته</tip>
           </th>
           <th></th>
           <th style="width: 1%"></th>
@@ -52,7 +52,7 @@
           </td>
           <td class="link-td">
             <a href="admin/users/edit/{{user.id}}">
-              <i class="fa fa-shield" ng-show="user.isAdmin" bs-tooltip="'Grafana Admin'"></i>
+              <i class="fa fa-shield" ng-show="user.isAdmin" bs-tooltip="'مدیر سیستم'"></i>
             </a>
           </td>
           <td class="text-right">
