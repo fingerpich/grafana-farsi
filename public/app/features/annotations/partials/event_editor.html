@@ -5,8 +5,8 @@
 		</div>
 
 		<div class="graph-annotation__title">
-			<span ng-if="!ctrl.event.id">Add Annotation</span>
-			<span ng-if="ctrl.event.id">Edit Annotation</span>
+			<span ng-if="!ctrl.event.id">افزودن یادداشت</span>
+			<span ng-if="ctrl.event.id">تغییر یادداشت</span>
 		</div>
 
     <div class="graph-annotation__time">{{ctrl.timeFormated}}</div>
@@ -15,7 +15,7 @@
 	<form name="ctrl.form" class="graph-annotation__body text-center">
 		<div style="display: inline-block">
 			<div class="gf-form gf-form--v-stretch">
-				<span class="gf-form-label width-7">Description</span>
+				<span class="gf-form-label width-7">توضیحات</span>
 				<textarea class="gf-form-input width-20" rows="2" ng-model="ctrl.event.text"  placeholder="Description"></textarea>
 			</div>
 
@@ -26,9 +26,9 @@
 			</div>
 
 			<div class="gf-form-button-row">
-				<button type="submit" class="btn btn-success" ng-click="ctrl.save()">Save</button>
-				<button ng-if="ctrl.event.id" type="submit" class="btn btn-danger" ng-click="ctrl.delete()">Delete</button>
-				<a class="btn-text" ng-click="ctrl.close();">Cancel</a>
+				<button type="submit" class="btn btn-success" ng-click="ctrl.save()">ذخیره</button>
+				<button ng-if="ctrl.event.id" type="submit" class="btn btn-danger" ng-click="ctrl.delete()">حذف</button>
+				<a class="btn-text" ng-click="ctrl.close();">بیخیال</a>
 			</div>
 		</div>
 	</form>

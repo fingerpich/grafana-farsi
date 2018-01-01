@@ -2,18 +2,18 @@
 	<aside class="edit-sidemenu-aside">
 		<ul class="edit-sidemenu">
 			<li ng-class="{active: ctrl.subTabIndex === 0}">
-				<a ng-click="ctrl.changeTabIndex(0)">Alert Config</a>
+				<a ng-click="ctrl.changeTabIndex(0)">تنظیم هشدار</a>
 			</li>
 			<li ng-class="{active: ctrl.subTabIndex === 1}">
 				<a ng-click="ctrl.changeTabIndex(1)">
-					Notifications <span class="muted">({{ctrl.alertNotifications.length}})</span>
+					اعلان ها<span class="muted">({{ctrl.alertNotifications.length}})</span>
 				</a>
 			</li>
 			<li ng-class="{active: ctrl.subTabIndex === 2}">
-				<a ng-click="ctrl.changeTabIndex(2)">State history</a>
+				<a ng-click="ctrl.changeTabIndex(2)">پیشینه وضعیت</a>
 			</li>
       			<li>
-				<a ng-click="ctrl.delete()">Delete</a>
+				<a ng-click="ctrl.delete()">حذف</a>
 			</li>
 		</ul>
 	</aside>
@@ -25,26 +25,26 @@
 			</div>
 
 			<div class="gf-form-group">
-				<h5 class="section-heading">Alert Config</h5>
+				<h5 class="section-heading">تنظیم هشدار</h5>
 				<div class="gf-form">
 					<span class="gf-form-label width-6">Name</span>
 					<input type="text" class="gf-form-input width-20" ng-model="ctrl.alert.name">
-					<span class="gf-form-label">Evaluate every</span>
+					<span class="gf-form-label">ارزیایی هر</span>
 					<input class="gf-form-input max-width-5" type="text" ng-model="ctrl.alert.frequency"></input>
 				</div>
 			</div>
 
 			<div class="gf-form-group">
-				<h5 class="section-heading">Conditions</h5>
+				<h5 class="section-heading">شرایط</h5>
 				<div class="gf-form-inline" ng-repeat="conditionModel in ctrl.conditionModels">
 					<div class="gf-form">
 						<metric-segment-model css-class="query-keyword width-5" ng-if="$index" property="conditionModel.operator.type" options="ctrl.evalOperators" custom="false"></metric-segment-model>
-						<span class="gf-form-label query-keyword width-5" ng-if="$index===0">WHEN</span>
+						<span class="gf-form-label query-keyword width-5" ng-if="$index===0">وقتی که</span>
 					</div>
           			<div class="gf-form">
 						<query-part-editor class="gf-form-label query-part width-9" part="conditionModel.reducerPart" handle-event="ctrl.handleReducerPartEvent(conditionModel, $event)">
 						</query-part-editor>
-            			<span class="gf-form-label query-keyword">OF</span>
+            			<span class="gf-form-label query-keyword">از</span>
 					</div>
 					<div class="gf-form">
 						<query-part-editor class="gf-form-label query-part" part="conditionModel.queryPart" handle-event="ctrl.handleQueryPartEvent(conditionModel, $event)">
@@ -53,7 +53,7 @@
 					<div class="gf-form">
 						<metric-segment-model property="conditionModel.evaluator.type" options="ctrl.evalFunctions" custom="false" css-class="query-keyword" on-change="ctrl.evaluatorTypeChanged(conditionModel.evaluator)"></metric-segment-model>
 						<input class="gf-form-input max-width-9" type="number" step="any" ng-hide="conditionModel.evaluator.params.length === 0" ng-model="conditionModel.evaluator.params[0]" ng-change="ctrl.evaluatorParamsChanged()"></input>
-            			<label class="gf-form-label query-keyword" ng-show="conditionModel.evaluator.params.length === 2">TO</label>
+            			<label class="gf-form-label query-keyword" ng-show="conditionModel.evaluator.params.length === 2">تا</label>
             			<input class="gf-form-input max-width-9" type="number" step="any" ng-if="conditionModel.evaluator.params.length === 2" ng-model="conditionModel.evaluator.params[1]" ng-change="ctrl.evaluatorParamsChanged()"></input>
 					</div>
 					<div class="gf-form">
@@ -81,8 +81,8 @@
 
 			<div class="gf-form-group">
 				<div class="gf-form">
-          			<span class="gf-form-label width-18">If no data or all values are null</span>
-          			<span class="gf-form-label query-keyword">SET STATE TO</span>
+          			<span class="gf-form-label width-18">اگر داده ای وجود نداشت</span>
+          			<span class="gf-form-label query-keyword">وضعیت می شود:</span>
 					<div class="gf-form-select-wrapper">
 						<select class="gf-form-input" ng-model="ctrl.alert.noDataState" ng-options="f.value as f.text for f in ctrl.noDataModes">
 						</select>
@@ -90,8 +90,8 @@
 				</div>
 
 				<div class="gf-form">
-          			<span class="gf-form-label width-18">If execution error or timeout</span>
-          			<span class="gf-form-label query-keyword">SET STATE TO</span>
+          			<span class="gf-form-label width-18">اگر خطایی رخ دهد</span>
+          			<span class="gf-form-label query-keyword">وضعیت می‌شود:</span>
 					<div class="gf-form-select-wrapper">
 						<select class="gf-form-input" ng-model="ctrl.alert.executionErrorState" ng-options="f.value as f.text for f in ctrl.executionErrorModes">
 						</select>
@@ -106,7 +106,7 @@
 			</div>
 
 			<div class="gf-form-group" ng-if="ctrl.testing">
-				Evaluating rule <i class="fa fa-spinner fa-spin"></i>
+				قانون ارزیابی <i class="fa fa-spinner fa-spin"></i>
 			</div>
 
 			<div class="gf-form-group" ng-if="ctrl.testResult">
@@ -115,10 +115,10 @@
 		</div>
 
 		<div class="gf-form-group" ng-if="ctrl.subTabIndex === 1">
-			<h5 class="section-heading">Notifications</h5>
+			<h5 class="section-heading">اعلان ها</h5>
 			<div class="gf-form-inline">
 				<div class="gf-form max-width-30">
-					<span class="gf-form-label width-8">Send to</span>
+					<span class="gf-form-label width-8">ارسال به</span>
 					<span class="gf-form-label" ng-repeat="nc in ctrl.alertNotifications" ng-style="{'background-color': nc.bgColor }">
 						<i class="{{nc.iconClass}}"></i>&nbsp;{{nc.name}}&nbsp;
 						<i class="fa fa-remove pointer muted" ng-click="ctrl.removeNotification($index)" ng-if="nc.isDefault === false"></i>
@@ -127,20 +127,20 @@
 				</div>
 			</div>
 			<div class="gf-form gf-form--v-stretch">
-				<span class="gf-form-label width-8">Message</span>
+				<span class="gf-form-label width-8">پیام</span>
 				<textarea class="gf-form-input" rows="10" ng-model="ctrl.alert.message"  placeholder="Notification message details..."></textarea>
 			</div>
 		</div>
 
 		<div class="gf-form-group" style="max-width: 720px;" ng-if="ctrl.subTabIndex === 2">
-			<button class="btn btn-mini btn-danger pull-right" ng-click="ctrl.clearHistory()"><i class="fa fa-trash"></i>&nbsp;Clear history</button>
+			<button class="btn btn-mini btn-danger pull-right" ng-click="ctrl.clearHistory()"><i class="fa fa-trash"></i>پاک کردن پیشینه</button>
       		<h5 class="section-heading" style="whitespace: nowrap">
-				State history <span class="muted small">(last 50 state changes)</span>
+				پیشینه وضعیت<span class="muted small">(50 تغییر وضعیت اخیر)</span>
 			</h5>
 
 			<div ng-show="ctrl.alertHistory.length === 0">
 				<br>
-				<i>No state changes recorded</i>
+				<i>هیچ تغییر وضعیتی ثبت نشده است</i>
 			</div>
 
 			<section class="card-section card-list-layout-list">
@@ -172,7 +172,7 @@
 	<div class="gf-form-button-row">
 		<button class="btn btn-inverse" ng-click="ctrl.enable()">
 			<i class="icon-gf icon-gf-alert"></i>
-			Create Alert
+			ایجاد هشدار
 		</button>
 	</div>
 </div>

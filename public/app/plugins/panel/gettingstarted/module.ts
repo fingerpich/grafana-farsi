@@ -24,7 +24,7 @@ class GettingStartedPanelCtrl extends PanelCtrl {
     this.steps = [];
 
     this.steps.push({
-      title: "Install Grafana",
+      title: "نصب گرافانا",
       icon: "icon-gf icon-gf-check",
       href: "http://docs.grafana.org/",
       target: "_blank",
@@ -33,8 +33,8 @@ class GettingStartedPanelCtrl extends PanelCtrl {
     });
 
     this.steps.push({
-      title: "Create your first data source",
-      cta: "Add data source",
+      title: "ایجاد اولین منبع داده",
+      cta: "ایجاد منبع داده",
       icon: "icon-gf icon-gf-datasources",
       href: "datasources/new?gettingstarted",
       check: () => {
@@ -47,7 +47,7 @@ class GettingStartedPanelCtrl extends PanelCtrl {
     });
 
     this.steps.push({
-      title: "Create your first dashboard",
+      title: "ایجاد اولین داشبورد",
       cta: "New dashboard",
       icon: "icon-gf icon-gf-dashboard",
       href: "dashboard/new?gettingstarted",
@@ -59,7 +59,7 @@ class GettingStartedPanelCtrl extends PanelCtrl {
     });
 
     this.steps.push({
-      title: "Invite your team",
+      title: "دعوت هم گروهی ها",
       cta: "Add Users",
       icon: "icon-gf icon-gf-users",
       href: "org/users?gettingstarted",
@@ -71,7 +71,7 @@ class GettingStartedPanelCtrl extends PanelCtrl {
     });
 
     this.steps.push({
-      title: "Install apps & plugins",
+      title: "نصب ابزار ها و پلاگین ها",
       cta: "Explore plugin repository",
       icon: "icon-gf icon-gf-apps",
       href: "https://grafana.com/plugins?utm_source=grafana_getting_started",

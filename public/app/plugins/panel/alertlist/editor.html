@@ -1,18 +1,18 @@
 <div>
   <div class="section gf-form-group">
-    <h5 class="section-heading">Options</h5>
+    <h5 class="section-heading">گزینه‌ها</h5>
     <div class="gf-form">
-      <span class="gf-form-label width-8">Show</span>
+      <span class="gf-form-label width-8">نمایش</span>
       <div class="gf-form-select-wrapper max-width-15">
         <select class="gf-form-input" ng-model="ctrl.panel.show" ng-options="f.value as f.text for f in ctrl.showOptions" ng-change="ctrl.onRefresh()"></select>
       </div>
     </div>
     <div class="gf-form">
-      <span class="gf-form-label width-8">Max items</span>
+      <span class="gf-form-label width-8">بیشترین موارد</span>
       <input type="text" class="gf-form-input max-width-15" ng-model="ctrl.panel.limit" ng-change="ctrl.onRefresh()" />
     </div>
     <div class="gf-form" ng-show="ctrl.panel.show === 'current'">
-      <span class="gf-form-label width-8">Sort order</span>
+      <span class="gf-form-label width-8">مرتب سازی</span>
       <div class="gf-form-select-wrapper max-width-15">
         <select class="gf-form-input" ng-model="ctrl.panel.sortOrder" ng-options="f.value as f.text for f in ctrl.sortOrderOptions" ng-change="ctrl.onRefresh()"></select>
       </div>

@@ -1,22 +1,22 @@
 
 <div ng-controller="AnnotationsEditorCtrl">
 	<h3 class="dashboard-settings__header">
-		<a ng-click="ctrl.backToList()">Annotations</a>
-		<span ng-show="ctrl.mode === 'new'">&gt; New</span>
-		<span ng-show="ctrl.mode === 'edit'">&gt; Edit</span>
+		<a ng-click="ctrl.backToList()">یادداشت</a>
+		<span ng-show="ctrl.mode === 'new'">&gt; جدید</span>
+		<span ng-show="ctrl.mode === 'edit'">&gt; تغییر</span>
 	</h3>
 
 	<div ng-if="ctrl.mode === 'list'">
 		<div class="page-action-bar" ng-if="ctrl.annotations.length > 1">
 			<div class="page-action-bar__spacer"></div>
-			<a type="button" class="btn btn-success" ng-click="ctrl.setupNew();"><i class="fa fa-plus" ></i> New</a>
+			<a type="button" class="btn btn-success" ng-click="ctrl.setupNew();"><i class="fa fa-plus" ></i> جدید</a>
 		</div>
 
 		<table class="filter-table filter-table--hover">
 			<thead>
 				<tr>
-					<th>Query name</th>
-					<th>Data source</th>
+					<th>نام کویری</th>
+					<th>منبع داده</th>
 					<th colspan="3"></th>
 				</tr>
 			</thead>
@@ -47,14 +47,15 @@
 		<!-- empty list cta, there is always one built in query -->
 		<div ng-if="ctrl.annotations.length === 1" class="p-t-2">
 			<div class="empty-list-cta">
-				<div class="empty-list-cta__title">There are no custom annotation queries added yet</div>
+				<div class="empty-list-cta__title">تاکنون هیچ یادداشتی با کویری سفارشی ایجاد نشده است.</div>
 				<a ng-click="ctrl.setupNew()" class="empty-list-cta__button btn btn-xlarge btn-success">
 					<i class="gicon gicon-add-annotation"></i>
-					Add Annotation Query
+					افزودن کویری یادداشت
 				</a>
 				<div class="grafana-info-box">
-					<h5>What are Annotations?</h5>
+					<h5>یادداشت چیست؟</h5>
 					<p>
+            یادداشت ها به منظور یکی کردن رخداد های موجود در داده ها
 					Annotations provide a way to integrate event data into your graphs. They are visualized as vertical lines and icons
 					on all graph panels. When you hover over an annotation icon you can get event text &amp; tags for the event. You can add annotation events
 					directly from grafana by holding CTRL or CMD + click on graph (or drag region). These will be stored in Grafana's annotation database.

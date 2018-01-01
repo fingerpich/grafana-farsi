@@ -4,7 +4,7 @@
 
   <div class="page-action-bar">
     <div class="gf-form">
-      <label class="gf-form-label">Filter by state</label>
+      <label class="gf-form-label">بر اساس وضعیت</label>
       <div class="gf-form-select-wrapper width-13">
         <select class="gf-form-input" ng-model="ctrl.filters.state" ng-options="f.value as f.text for f in ctrl.stateFilters" ng-change="ctrl.filtersChanged()">
         </select>
@@ -16,7 +16,7 @@
 
     <a class="btn btn-secondary" ng-click="ctrl.openHowTo()">
       <i class="fa fa-info-circle"></i>
-      How to add an alert
+      نحوه افزودن یک هشدار
     </a>
   </div>
 
@@ -46,8 +46,8 @@
               <div class="card-item-sub-name">
                 <span class="alert-list-item-state {{alert.stateModel.stateClass}}">
                   <i class="{{alert.stateModel.iconClass}}"></i>
-                  {{alert.stateModel.text}} <span class="small muted" ng-show="alert.no_data">(due to no data)</span>
-                </span> for {{alert.newStateDateAgo}}
+                  {{alert.stateModel.text}} <span class="small muted" ng-show="alert.no_data">(داده ای موجود نیست)</span>
+                </span> برای {{alert.newStateDateAgo}}
               </div>
               <div class="small muted" ng-show="alert.executionError !== ''">
                 Error: "{{alert.executionError}}"

@@ -8,7 +8,7 @@
       <dash-upload on-upload="ctrl.onUpload(dash)"></dash-upload>
     </form>
 
-    <h5 class="section-heading">Grafana.com Dashboard</h5>
+    <h5 class="section-heading">داشبورد سیستم</h5>
 
     <div class="gf-form-group">
       <div class="gf-form gf-form--grow">
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <h5 class="section-heading">Or paste JSON</h5>
+    <h5 class="section-heading">یا جیسان را وارد کنید</h5>
 
     <div class="gf-form-group">
       <div class="gf-form">
@@ -30,7 +30,7 @@
       </div>
       <button type="button" class="btn btn-secondary" ng-click="ctrl.loadJsonText()">
         <i class="fa fa-paste"></i>
-        Load
+        دریافت
       </button>
       <span ng-if="ctrl.parseError" class="text-error p-l-1">
         <i class="fa fa-warning"></i>
@@ -42,28 +42,28 @@
   <div ng-if="ctrl.step === 2">
     <div class="gf-form-group" ng-if="ctrl.dash.gnetId">
       <h3 class="section-heading">
-        Importing Dashboard from
+        دریافت داشبورد از
         <a href="https://grafana.com/dashboards/{{ctrl.dash.gnetId}}" class="external-link" target="_blank">Grafana.com</a>
       </h3>
 
       <div class="gf-form">
-        <label class="gf-form-label width-15">Published by</label>
+        <label class="gf-form-label width-15">منتشر شده توسط</label>
         <label class="gf-form-label width-15">{{ctrl.gnetInfo.orgName}}</label>
       </div>
       <div class="gf-form">
-        <label class="gf-form-label width-15">Updated on</label>
+        <label class="gf-form-label width-15">بروزرسانی شده در تاریخ</label>
         <label class="gf-form-label width-15">{{ctrl.gnetInfo.updatedAt | date : 'yyyy-MM-dd HH:mm:ss'}}</label>
       </div>
     </div>
 
     <h3 class="section-heading">
-      Options
+      گزینه‌ها
     </h3>
 
     <div class="gf-form-group">
       <div class="gf-form-inline">
         <div class="gf-form gf-form--grow">
-          <label class="gf-form-label width-15">Name</label>
+          <label class="gf-form-label width-15">نام</label>
           <input type="text" class="gf-form-input" ng-model="ctrl.dash.title" give-focus="true" ng-change="ctrl.titleChanged()" ng-class="{'validation-error': ctrl.nameExists || !ctrl.dash.title}">
           <label class="gf-form-label text-success" ng-if="ctrl.titleTouched && !ctrl.hasNameValidationError">
             <i class="fa fa-check"></i>
@@ -105,12 +105,12 @@
 
     <div class="gf-form-button-row">
       <button type="button" class="btn btn-success width-12" ng-click="ctrl.saveDashboard()" ng-hide="ctrl.nameExists" ng-disabled="!ctrl.inputsValid">
-        <i class="fa fa-save"></i> Import
+        <i class="fa fa-save"></i> وارد کردن
       </button>
       <button type="button" class="btn btn-danger width-12" ng-click="ctrl.saveDashboard()" ng-show="ctrl.nameExists" ng-disabled="!ctrl.inputsValid">
-        <i class="fa fa-save"></i> Import (Overwrite)
+        <i class="fa fa-save"></i> وارد کردن (بازنویسی)
       </button>
-      <a class="btn btn-link" ng-click="ctrl.back()">Cancel</a>
+      <a class="btn btn-link" ng-click="ctrl.back()">بیخیال</a>
     </div>
 
   </div>

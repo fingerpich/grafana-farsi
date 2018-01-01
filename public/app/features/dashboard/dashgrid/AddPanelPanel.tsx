@@ -1,10 +1,10 @@
-import React from 'react';
-import _ from 'lodash';
+import React from "react";
+import _ from "lodash";
 
-import config from 'app/core/config';
-import {PanelModel} from '../panel_model';
-import {PanelContainer} from './PanelContainer';
-import ScrollBar from 'app/core/components/ScrollBar/ScrollBar';
+import config from "app/core/config";
+import { PanelModel } from "../panel_model";
+import { PanelContainer } from "./PanelContainer";
+import ScrollBar from "app/core/components/ScrollBar/ScrollBar";
 
 export interface AddPanelPanelProps {
   panel: PanelModel;
@@ -16,13 +16,16 @@ export interface AddPanelPanelState {
   panelPlugins: any[];
 }
 
-export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelPanelState> {
+export class AddPanelPanel extends React.Component<
+  AddPanelPanelProps,
+  AddPanelPanelState
+> {
   constructor(props) {
     super(props);
 
     this.state = {
       panelPlugins: this.getPanelPlugins(),
-      filter: '',
+      filter: ""
     };
 
     this.onPanelSelected = this.onPanelSelected.bind(this);
@@ -30,31 +33,36 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
 
   getPanelPlugins() {
     let panels = _.chain(config.panels)
-      .filter({hideFromList: false})
+      .filter({ hideFromList: false })
       .map(item => item)
       .value();
 
     // add special row type
-    panels.push({id: 'row', name: 'Row', sort: 8, info: {logos: {small: 'public/img/icn-row.svg'}}});
+    panels.push({
+      id: "row",
+      name: "سطر",
+      sort: 8,
+      info: { logos: { small: "public/img/icn-row.svg" } }
+    });
 
     // add sort by sort property
-    return _.sortBy(panels, 'sort');
+    return _.sortBy(panels, "sort");
   }
 
   onPanelSelected(panelPluginInfo) {
     const panelContainer = this.props.getPanelContainer();
     const dashboard = panelContainer.getDashboard();
-    const {gridPos} = this.props.panel;
+    const { gridPos } = this.props.panel;
 
     var newPanel: any = {
       type: panelPluginInfo.id,
-      title: 'Panel Title',
-      gridPos: {x: gridPos.x, y: gridPos.y, w: gridPos.w, h: gridPos.h}
+      title: "عنوان پنل",
+      gridPos: { x: gridPos.x, y: gridPos.y, w: gridPos.w, h: gridPos.h }
     };
 
-    if (panelPluginInfo.id === 'row') {
-      newPanel.title = 'Row title';
-      newPanel.gridPos = {x: 0, y: 0};
+    if (panelPluginInfo.id === "row") {
+      newPanel.title = "عنوان سطر";
+      newPanel.gridPos = { x: 0, y: 0 };
     }
 
     dashboard.addPanel(newPanel);
@@ -63,7 +71,12 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
 
   renderPanelItem(panel) {
     return (
-      <div key={panel.id} className="add-panel__item" onClick={() => this.onPanelSelected(panel)} title={panel.name}>
+      <div
+        key={panel.id}
+        className="add-panel__item"
+        onClick={() => this.onPanelSelected(panel)}
+        title={panel.name}
+      >
         <img className="add-panel__item-img" src={panel.info.logos.small} />
         <div className="add-panel__item-name">{panel.name}</div>
       </div>
@@ -75,7 +88,7 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
       <div className="panel-container">
         <div className="add-panel">
           <div className="add-panel__header">
-            <i className="gicon gicon-add-panel"></i>
+            <i className="gicon gicon-add-panel" />
             <span className="add-panel__title">New Panel</span>
             <span className="add-panel__sub-title">Select a visualization</span>
           </div>
@@ -87,4 +100,3 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
     );
   }
 }
-

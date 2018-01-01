@@ -12,14 +12,14 @@ class AlertListPanel extends PanelCtrl {
   static scrollable = true;
 
   showOptions = [
-    { text: "Current state", value: "current" },
-    { text: "Recent state changes", value: "changes" }
+    { text: "وضعیت کنونی", value: "current" },
+    { text: "تغییر وضعیت‌های اخیر", value: "changes" }
   ];
 
   sortOrderOptions = [
-    { text: "Alphabetical (asc)", value: 1 },
-    { text: "Alphabetical (desc)", value: 2 },
-    { text: "Importance", value: 3 }
+    { text: "بر اساس الفبا (asc)", value: 1 },
+    { text: "براساس الفبا (desc)", value: 2 },
+    { text: "بر اساس اهمیت", value: 3 }
   ];
 
   stateFilter: any = {};
@@ -110,7 +110,9 @@ class AlertListPanel extends PanelCtrl {
         return al;
       });
       this.noAlertsMessage =
-        this.alertHistory.length === 0 ? "No alerts in current time range" : "";
+        this.alertHistory.length === 0
+          ? "هشداری در این بازه زمانی وجود ندارد"
+          : "";
     });
   }
 

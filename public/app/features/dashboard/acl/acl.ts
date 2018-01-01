@@ -7,15 +7,15 @@ export class AclCtrl {
   dashboard: any;
   items: DashboardAcl[];
   permissionOptions = [
-    { value: 1, text: "View" },
-    { value: 2, text: "Edit" },
-    { value: 4, text: "Admin" }
+    { value: 1, text: "بیننده" },
+    { value: 2, text: "ویراش" },
+    { value: 4, text: "مدیر" }
   ];
   aclTypes = [
-    { value: "Group", text: "Team" },
-    { value: "User", text: "User" },
-    { value: "Viewer", text: "Everyone With Viewer Role" },
-    { value: "Editor", text: "Everyone With Editor Role" }
+    { value: "Group", text: "گروه" },
+    { value: "User", text: "کاربر" },
+    { value: "Viewer", text: "بیننده ها" },
+    { value: "Editor", text: "کسانی که مجوز ویرایش دارند" }
   ];
 
   dismiss: () => void;
@@ -23,7 +23,7 @@ export class AclCtrl {
   canUpdate: boolean;
   error: string;
 
-  readonly duplicateError = "This permission exists already.";
+  readonly duplicateError = "این مجوز هم اکنون وجود دارد.";
 
   /** @ngInject */
   constructor(private backendSrv, dashboardSrv, private $sce, private $scope) {
@@ -72,11 +72,11 @@ export class AclCtrl {
     } else if (item.role) {
       item.icon = "fa fa-fw fa-street-view";
       item.nameHtml = this.$sce.trustAsHtml(
-        `Everyone with <span class="query-keyword">${item.role}</span> Role`
+        `همه افراد در نقش <span class="query-keyword">${item.role}</span>`
       );
       item.sortName = item.role;
       item.sortRank = 30;
-      if (item.role === "Viewer") {
+      if (item.role === "بیننده") {
         item.sortRank += 1;
       }
     }

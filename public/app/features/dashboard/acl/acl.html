@@ -2,7 +2,7 @@
   <div class="modal-header">
     <h2 class="modal-header-title">
       <i class="fa fa-lock"></i>
-      <span class="p-l-1">Permissions</span>
+      <span class="p-l-1">مجوزها</span>
     </h2>
 
     <a class="modal-header-close" ng-click="ctrl.dismiss();">
@@ -18,9 +18,9 @@
           <span ng-bind-html="acl.nameHtml"></span>
         </td>
         <td>
-          <em class="muted no-wrap" ng-show="acl.inherited">Inherited from folder</em>
+          <em class="muted no-wrap" ng-show="acl.inherited">گرفته شده از فولدر</em>
         </td>
-        <td class="query-keyword">Can</td>
+        <td class="query-keyword">می‌تواند</td>
         <td>
           <div class="gf-form-select-wrapper">
             <select class="gf-form-input gf-size-auto" ng-model="acl.permission" ng-options="p.value as p.text for p in ctrl.permissionOptions" ng-change="ctrl.permissionChanged(acl)" ng-disabled="acl.inherited"></select>
@@ -34,14 +34,14 @@
       </tr>
       <tr ng-show="ctrl.aclItems.length === 0">
         <td colspan="4">
-          <em>No permissions. Will only be accessible by admins.</em>
+          <em>تنها توسط مدیر قابل دسترسی است.</em>
         </td>
       </tr>
     </table>
 
     <div class="gf-form-inline">
       <form name="addPermission" class="gf-form-group">
-        <h6 class="muted">Add Permission For</h6>
+        <h6 class="muted">افزودن مجوز برای</h6>
         <div class="gf-form-inline">
           <div class="gf-form">
             <div class="gf-form-select-wrapper">
@@ -68,7 +68,7 @@
       <button type="button" class="btn btn-danger" ng-disabled="!ctrl.canUpdate" ng-click="ctrl.update()">
         Update Permissions
       </button>
-      <a class="btn-text" ng-click="ctrl.dismiss();">Close</a>
+      <a class="btn-text" ng-click="ctrl.dismiss();">بستن</a>
     </div>
   </div>
 </div>

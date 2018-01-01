@@ -2,31 +2,31 @@
 
 <div class="page-container page-body" ng-form="playlistEditForm">
 
-  <h3 class="page-sub-heading" ng-hide="ctrl.isNew">Edit Playlist</h3>
-  <h3 class="page-sub-heading" ng-show="ctrl.isNew">New Playlist</h3>
+  <h3 class="page-sub-heading" ng-hide="ctrl.isNew">ویرایش پلی لیست</h3>
+  <h3 class="page-sub-heading" ng-show="ctrl.isNew">پلی لیست جدید</h3>
 
 	<p class="playlist-description">A playlist rotates through a pre-selected list of Dashboards. A Playlist can be a great way to build situational awareness, or just show off your metrics to your team or visitors.</p>
 
 	<div class="gf-form-group">
 		<div class="gf-form">
-			<span class="gf-form-label width-7">Name</span>
+			<span class="gf-form-label width-7">نام</span>
 			<input type="text" required ng-model="ctrl.playlist.name" class="gf-form-input max-width-21">
 		</div>
 		<div class="gf-form">
-			<span class="gf-form-label width-7">Interval</span>
+			<span class="gf-form-label width-7">فاصله زمانی</span>
 			<input type="text" required ng-model="ctrl.playlist.interval" placeholder="5m" class="gf-form-input max-width-21">
 		</div>
 	</div>
 
 	<div class="gf-form-group">
-		<h3 class="page-headering">Dashboards</h3>
+		<h3 class="page-headering">داشبوردها</h3>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="playlist-search-containerwrapper">
 				<div class="max-width-32">
-					<h5 class="page-headering playlist-column-header">Available</h5>
+					<h5 class="page-headering playlist-column-header">در دسترس</h5>
 					<div style="">
 						<playlist-search class="playlist-search-container" search-started="ctrl.searchStarted(promise)"></playlist-search>
 					</div>
@@ -44,7 +44,7 @@
 						<td class="add-dashboard">
 							<button class="btn btn-inverse btn-mini pull-right" ng-click="ctrl.addPlaylistItem(playlistItem)">
 								<i class="fa fa-plus"></i>
-								Add to playlist
+								افزودن به پلی لیست
 							</button>
 						</td>
 					</tr>
@@ -62,7 +62,7 @@
 						<td class="add-dashboard">
 							<button class="btn btn-inverse btn-mini pull-right" ng-click="ctrl.addTagPlaylistItem(tag)">
 								<i class="fa fa-plus"></i>
-								Add to playlist
+                افزودن به پلی لیست
 							</button>
 						</td>
 					</tr>
@@ -71,7 +71,7 @@
 		</div>
 
 		<div class="col-lg-6">
-			<h5 class="page headering playlist-column-header">Selected</h5>
+			<h5 class="page headering playlist-column-header">انتخاب شده</h5>
 			<table class="filter-table playlist-available-list">
 				<tr ng-repeat="playlistItem in ctrl.playlistItems">
 					<td ng-if="playlistItem.type === 'dashboard_by_id'">
@@ -105,10 +105,10 @@
 	<div class="gf-form-button-row">
 		<a class="btn btn-success " ng-show="ctrl.isNew"
 			ng-disabled="ctrl.playlistEditForm.$invalid || ctrl.isPlaylistEmpty()"
-			ng-click="ctrl.savePlaylist(ctrl.playlist, ctrl.playlistItems)">Create new playlist</a>
+			ng-click="ctrl.savePlaylist(ctrl.playlist, ctrl.playlistItems)">ایجاد پلی لیست جدید</a>
 		<a class="btn btn-success" ng-show="!ctrl.isNew()"
 			ng-disabled="ctrl.playlistEditForm.$invalid || ctrl.isPlaylistEmpty()"
-			ng-click="ctrl.savePlaylist(ctrl.playlist, ctrl.playlistItems)">Save</a>
+			ng-click="ctrl.savePlaylist(ctrl.playlist, ctrl.playlistItems)">ذخیره</a>
 		<a class="btn-text" ng-click="ctrl.backToList()">Cancel</a>
 	</div>
 </div>

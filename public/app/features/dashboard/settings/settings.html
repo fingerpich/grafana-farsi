@@ -12,34 +12,34 @@
 	<div class="dashboard-settings__aside-actions">
 		<button class="btn btn-inverse" ng-click="ctrl.openSaveAsModal()" ng-show="ctrl.canSaveAs">
 			<i class="fa fa-copy"></i>
-			Save As...
+      ذخیره به صورت ...
 		</button>
 
 		<button class="btn btn-danger" ng-click="ctrl.deleteDashboard()" ng-show="ctrl.canDelete">
 			<i class="fa fa-trash"></i>
-			Delete
+حذف
 		</button>
 	</div>
 </aside>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === 'settings'">
 	<h3 class="dashboard-settings__header">
-		General
+عمومی
 	</h3>
 
 	<div class="gf-form-group">
 		<div class="gf-form">
-			<label class="gf-form-label width-7">Name</label>
+			<label class="gf-form-label width-7">نام</label>
 			<input type="text" class="gf-form-input width-30" ng-model='ctrl.dashboard.title'></input>
 		</div>
 		<div class="gf-form">
-			<label class="gf-form-label width-7">Description</label>
+			<label class="gf-form-label width-7">توضیحات</label>
 			<input type="text" class="gf-form-input width-30" ng-model='ctrl.dashboard.description'></input>
 		</div>
 		<div class="gf-form">
 			<label class="gf-form-label width-7">
 				Tags
-				<info-popover mode="right-normal">Press enter to add a tag</info-popover>
+				<info-popover mode="right-normal">برای ایجاد تگ enter بزنید.</info-popover>
 			</label>
 			<bootstrap-tagsinput ng-model="ctrl.dashboard.tags" tagclass="label label-tag" placeholder="add tags">
 			</bootstrap-tagsinput>
@@ -57,7 +57,7 @@
 
 	<gf-time-picker-settings dashboard="ctrl.dashboard"></gf-time-picker-settings>
 
-	<h5 class="section-heading">Panel Options</h5>
+	<h5 class="section-heading">گزینه های پنل</h5>
 	<div class="gf-form">
 		<label class="gf-form-label width-11">
 			Graph Tooltip
