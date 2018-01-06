@@ -1,6 +1,4 @@
-///<reference path="../../headers/common.d.ts" />
-
-import _ from "lodash";
+import _ from 'lodash';
 
 export class DashboardRowCtrl {
   static template = `
@@ -40,7 +38,7 @@ export class DashboardRowCtrl {
       for (let child of this.panel.hiddenPanels) {
         this.dashboard.panels.splice(panelIndex + 1, 0, child);
         child.y = this.panel.y + 1;
-        console.log("restoring child", child);
+        console.log('restoring child', child);
       }
 
       this.panel.hiddenPanels = [];
@@ -55,7 +53,7 @@ export class DashboardRowCtrl {
       let panel = this.dashboard.panels[i];
 
       if (panel === this.panel) {
-        console.log("found row");
+        console.log('found row');
         foundRow = true;
         continue;
       }
@@ -64,12 +62,12 @@ export class DashboardRowCtrl {
         continue;
       }
 
-      if (panel.type === "row") {
+      if (panel.type === 'row') {
         break;
       }
 
       this.panel.hiddenPanels.push(panel);
-      console.log("hiding child", panel.id);
+      console.log('hiding child', panel.id);
     }
 
     for (let hiddenPanel of this.panel.hiddenPanels) {
@@ -93,10 +91,10 @@ export class DashboardRowCtrl {
   }
 
   link(scope, elem) {
-    elem.addClass("dashboard-row");
+    elem.addClass('dashboard-row');
 
-    scope.$watch("ctrl.panel.collapse", () => {
-      elem.toggleClass("dashboard-row--collapse", this.panel.collapse === true);
+    scope.$watch('ctrl.panel.collapse', () => {
+      elem.toggleClass('dashboard-row--collapse', this.panel.collapse === true);
     });
   }
 }

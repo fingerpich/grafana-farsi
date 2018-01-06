@@ -1,13 +1,13 @@
-import kbn from "app/core/utils/kbn";
-import { getFlotTickDecimals } from "app/core/utils/ticks";
-import _ from "lodash";
+import kbn from 'app/core/utils/kbn';
+import { getFlotTickDecimals } from 'app/core/utils/ticks';
+import _ from 'lodash';
 
 function matchSeriesOverride(aliasOrRegex, seriesAlias) {
   if (!aliasOrRegex) {
     return false;
   }
 
-  if (aliasOrRegex[0] === "/") {
+  if (aliasOrRegex[0] === '/') {
     var regex = kbn.stringToJsRegex(aliasOrRegex);
     return seriesAlias.match(regex) != null;
   }
@@ -28,9 +28,10 @@ export function updateLegendValues(data: TimeSeries[], panel) {
   for (let i = 0; i < data.length; i++) {
     let series = data[i];
     let yaxes = panel.yaxes;
-    let axis = yaxes[series.yaxis - 1];
+    const seriesYAxis = series.yaxis || 1;
+    let axis = yaxes[seriesYAxis - 1];
     let { tickDecimals, scaledDecimals } = getFlotTickDecimals(data, axis);
-    let formater = kbn.valueFormats[panel.yaxes[series.yaxis - 1].format];
+    let formater = kbn.valueFormats[panel.yaxes[seriesYAxis - 1].format];
 
     // decimal override
     if (_.isNumber(panel.decimals)) {
@@ -108,7 +109,7 @@ export default class TimeSeries {
   applySeriesOverrides(overrides) {
     this.lines = {};
     this.dashes = {
-      dashLength: []
+      dashLength: [],
     };
     this.points = {};
     this.bars = {};
@@ -199,8 +200,8 @@ export default class TimeSeries {
     this.allIsNull = true;
     this.allIsZero = true;
 
-    var ignoreNulls = fillStyle === "connected";
-    var nullAsZero = fillStyle === "null as zero";
+    var ignoreNulls = fillStyle === 'connected';
+    var nullAsZero = fillStyle === 'null as zero';
     var currentTime;
     var currentValue;
     var nonNulls = 0;

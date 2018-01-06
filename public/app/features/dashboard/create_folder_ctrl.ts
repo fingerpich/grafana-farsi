@@ -1,7 +1,7 @@
-import appEvents from "app/core/app_events";
+import appEvents from 'app/core/app_events';
 
 export class CreateFolderCtrl {
-  title = "";
+  title = '';
   navModel: any;
   titleTouched = false;
   hasValidationError: boolean;
@@ -20,9 +20,7 @@ export class CreateFolderCtrl {
     return this.backendSrv.createDashboardFolder(this.title).then(result => {
       appEvents.emit('alert-success', ['Folder Created', 'OK']);
 
-      var folderUrl = `/dashboards/folder/${result.dashboard.id}/${
-        result.meta.slug
-      }`;
+      var folderUrl = `dashboards/folder/${result.dashboard.id}/${result.meta.slug}`;
       this.$location.url(folderUrl);
     });
   }
@@ -30,7 +28,8 @@ export class CreateFolderCtrl {
   titleChanged() {
     this.titleTouched = true;
 
-    this.validationSrv.validateNewDashboardOrFolderName(this.title)
+    this.validationSrv
+      .validateNewDashboardOrFolderName(this.title)
       .then(() => {
         this.hasValidationError = false;
       })

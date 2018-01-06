@@ -1,6 +1,4 @@
-///<reference path="../../../headers/common.d.ts" />
-
-import _ from "lodash";
+import _ from 'lodash';
 
 // This is auto generated from the unicode tables.
 // The tables are at:
@@ -897,7 +895,7 @@ var unicodeLetterTable = [
   178205,
   178205,
   194560,
-  195101
+  195101,
 ];
 
 var identifierStartTable = [];
@@ -960,7 +958,7 @@ Lexer.prototype = {
         this.skip();
       }
 
-      if (this.peek() === "") {
+      if (this.peek() === '') {
         // EOL
         return null;
       }
@@ -971,11 +969,7 @@ Lexer.prototype = {
       return match;
     }
 
-    match =
-      this.scanPunctuator() ||
-      this.scanNumericLiteral() ||
-      this.scanIdentifier() ||
-      this.scanTemplateSequence();
+    match = this.scanPunctuator() || this.scanNumericLiteral() || this.scanIdentifier() || this.scanTemplateSequence();
 
     if (match) {
       this.skip(match.value.length);
@@ -987,19 +981,19 @@ Lexer.prototype = {
   },
 
   scanTemplateSequence: function() {
-    if (this.peek() === "[" && this.peek(1) === "[") {
+    if (this.peek() === '[' && this.peek(1) === '[') {
       return {
-        type: "templateStart",
-        value: "[[",
-        pos: this.char
+        type: 'templateStart',
+        value: '[[',
+        pos: this.char,
       };
     }
 
-    if (this.peek() === "]" && this.peek(1) === "]") {
+    if (this.peek() === ']' && this.peek(1) === ']') {
       return {
-        type: "templateEnd",
-        value: "[[",
-        pos: this.char
+        type: 'templateEnd',
+        value: '[[',
+        pos: this.char,
       };
     }
 
@@ -1013,7 +1007,7 @@ Lexer.prototype = {
    * (true/false) and NullLiteral (null).
    */
   scanIdentifier: function() {
-    var id = "";
+    var id = '';
     var index = 0;
     var type, char;
 
@@ -1047,7 +1041,7 @@ Lexer.prototype = {
       /*jshint validthis:true */
       index += 1;
 
-      if (this.peek(index) !== "u") {
+      if (this.peek(index) !== 'u') {
         return null;
       }
 
@@ -1057,17 +1051,12 @@ Lexer.prototype = {
       var ch4 = this.peek(index + 4);
       var code;
 
-      if (
-        isHexDigit(ch1) &&
-        isHexDigit(ch2) &&
-        isHexDigit(ch3) &&
-        isHexDigit(ch4)
-      ) {
+      if (isHexDigit(ch1) && isHexDigit(ch2) && isHexDigit(ch3) && isHexDigit(ch4)) {
         code = parseInt(ch1 + ch2 + ch3 + ch4, 16);
 
         if (isUnicodeLetter(code)) {
           index += 5;
-          return "\\u" + ch1 + ch2 + ch3 + ch4;
+          return '\\u' + ch1 + ch2 + ch3 + ch4;
         }
 
         return null;
@@ -1081,7 +1070,7 @@ Lexer.prototype = {
       var chr = this.peek(index);
       var code = chr.charCodeAt(0);
 
-      if (chr === "*") {
+      if (chr === '*') {
         index += 1;
         return chr;
       }
@@ -1150,22 +1139,22 @@ Lexer.prototype = {
     }
 
     switch (id) {
-      case "true": {
-        type = "bool";
+      case 'true': {
+        type = 'bool';
         break;
       }
-      case "false": {
-        type = "bool";
+      case 'false': {
+        type = 'bool';
         break;
       }
       default:
-        type = "identifier";
+        type = 'identifier';
     }
 
     return {
       type: type,
       value: id,
-      pos: this.char
+      pos: this.char,
     };
   },
 
@@ -1180,7 +1169,7 @@ Lexer.prototype = {
    */
   scanNumericLiteral: function(): any {
     var index = 0;
-    var value = "";
+    var value = '';
     var length = this.input.length;
     var char = this.peek(index);
     var bad;
@@ -1198,35 +1187,29 @@ Lexer.prototype = {
     }
 
     function isIdentifierStart(ch) {
-      return (
-        ch === "$" ||
-        ch === "_" ||
-        ch === "\\" ||
-        (ch >= "a" && ch <= "z") ||
-        (ch >= "A" && ch <= "Z")
-      );
+      return ch === '$' || ch === '_' || ch === '\\' || (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
     }
 
     // handle negative num literals
-    if (char === "-") {
+    if (char === '-') {
       value += char;
       index += 1;
       char = this.peek(index);
     }
 
     // Numbers must start either with a decimal digit or a point.
-    if (char !== "." && !isDecimalDigit(char)) {
+    if (char !== '.' && !isDecimalDigit(char)) {
       return null;
     }
 
-    if (char !== ".") {
+    if (char !== '.') {
       value += this.peek(index);
       index += 1;
       char = this.peek(index);
 
-      if (value === "0") {
+      if (value === '0') {
         // Base-16 numbers.
-        if (char === "x" || char === "X") {
+        if (char === 'x' || char === 'X') {
           index += 1;
           value += char;
 
@@ -1242,10 +1225,10 @@ Lexer.prototype = {
           if (value.length <= 2) {
             // 0x
             return {
-              type: "number",
+              type: 'number',
               value: value,
               isMalformed: true,
-              pos: this.char
+              pos: this.char,
             };
           }
 
@@ -1257,11 +1240,11 @@ Lexer.prototype = {
           }
 
           return {
-            type: "number",
+            type: 'number',
             value: value,
             base: 16,
             isMalformed: false,
-            pos: this.char
+            pos: this.char,
           };
         }
 
@@ -1299,10 +1282,10 @@ Lexer.prototype = {
           }
 
           return {
-            type: "number",
+            type: 'number',
             value: value,
             base: 8,
-            isMalformed: bad
+            isMalformed: bad,
           };
         }
 
@@ -1327,7 +1310,7 @@ Lexer.prototype = {
 
     // Decimal digits.
 
-    if (char === ".") {
+    if (char === '.') {
       value += char;
       index += 1;
 
@@ -1343,12 +1326,12 @@ Lexer.prototype = {
 
     // Exponent part.
 
-    if (char === "e" || char === "E") {
+    if (char === 'e' || char === 'E') {
       value += char;
       index += 1;
       char = this.peek(index);
 
-      if (char === "+" || char === "-") {
+      if (char === '+' || char === '-') {
         value += this.peek(index);
         index += 1;
       }
@@ -1379,22 +1362,22 @@ Lexer.prototype = {
     }
 
     return {
-      type: "number",
+      type: 'number',
       value: value,
       base: 10,
       pos: this.char,
-      isMalformed: !isFinite(+value)
+      isMalformed: !isFinite(+value),
     };
   },
 
   isPunctuator: function(ch1) {
     switch (ch1) {
-      case ".":
-      case "(":
-      case ")":
-      case ",":
-      case "{":
-      case "}":
+      case '.':
+      case '(':
+      case ')':
+      case ',':
+      case '{':
+      case '}':
         return true;
     }
 
@@ -1408,7 +1391,7 @@ Lexer.prototype = {
       return {
         type: ch1,
         value: ch1,
-        pos: this.char
+        pos: this.char,
       };
     }
 
@@ -1435,19 +1418,19 @@ Lexer.prototype = {
       return null;
     }
 
-    var value = "";
+    var value = '';
 
     this.skip();
 
     while (this.peek() !== quote) {
-      if (this.peek() === "") {
+      if (this.peek() === '') {
         // End Of Line
         return {
-          type: "string",
+          type: 'string',
           value: value,
           isUnclosed: true,
           quote: quote,
-          pos: this.char
+          pos: this.char,
         };
       }
 
@@ -1461,11 +1444,11 @@ Lexer.prototype = {
 
     this.skip();
     return {
-      type: "string",
+      type: 'string',
       value: value,
       isUnclosed: false,
       quote: quote,
-      pos: this.char
+      pos: this.char,
     };
-  }
+  },
 };
