@@ -20,19 +20,19 @@
 }
 
 .tabbed-view-title {
-  float: left;
+  float: right;
   padding-top: 0.5rem;
-  margin: 0 $spacer*3 0 $spacer*1;
+  margin: 0 $spacer*1 0 $spacer*3;
 }
 
 .tabbed-view-panel-title {
-  float: left;
+  float: right;
   padding-top: 9px;
-  margin: 0 2rem 0 0;
+  margin: 0 0 0 2rem;
 }
 
 .tabbed-view-close-btn {
-  float: right;
+  float: left;
   padding: 0;
   margin: 0;
   background-color: transparent;
@@ -49,7 +49,7 @@
 
 .tabbed-view-body {
   padding: $spacer*2 $spacer;
-
+  direction: rtl;
   &--small {
     min-height: 0px;
     padding-bottom: 0px;
