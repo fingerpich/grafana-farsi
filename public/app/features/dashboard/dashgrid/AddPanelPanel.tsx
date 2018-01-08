@@ -1,10 +1,12 @@
-import React from "react";
-import _ from "lodash";
+import React from 'react';
+import _ from 'lodash';
 
-import config from "app/core/config";
-import { PanelModel } from "../panel_model";
-import { PanelContainer } from "./PanelContainer";
-import ScrollBar from "app/core/components/ScrollBar/ScrollBar";
+import config from 'app/core/config';
+import { PanelModel } from '../panel_model';
+import { PanelContainer } from './PanelContainer';
+import ScrollBar from 'app/core/components/ScrollBar/ScrollBar';
+import store from 'app/core/store';
+import { LS_PANEL_COPY_KEY } from 'app/core/constants';
 
 export interface AddPanelPanelProps {
   panel: PanelModel;
@@ -16,19 +18,14 @@ export interface AddPanelPanelState {
   panelPlugins: any[];
 }
 
-export class AddPanelPanel extends React.Component<
-  AddPanelPanelProps,
-  AddPanelPanelState
-> {
+export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelPanelState> {
   constructor(props) {
     super(props);
 
     this.state = {
       panelPlugins: this.getPanelPlugins(),
-      filter: ""
+      filter: '',
     };
-
-    this.onPanelSelected = this.onPanelSelected.bind(this);
   }
 
   getPanelPlugins() {
@@ -38,45 +35,58 @@ export class AddPanelPanel extends React.Component<
       .value();
 
     // add special row type
-    panels.push({
-      id: "row",
-      name: "سطر",
-      sort: 8,
-      info: { logos: { small: "public/img/icn-row.svg" } }
-    });
+    panels.push({ id: 'row', name: 'سطر', sort: 8, info: { logos: { small: 'public/img/icn-row.svg' } } });
+
+    let copiedPanelJson = store.get(LS_PANEL_COPY_KEY);
+    if (copiedPanelJson) {
+      let copiedPanel = JSON.parse(copiedPanelJson);
+      let pluginInfo = _.find(panels, { id: copiedPanel.type });
+      if (pluginInfo) {
+        let pluginCopy = _.cloneDeep(pluginInfo);
+        pluginCopy.name = copiedPanel.title;
+        pluginCopy.sort = -1;
+        pluginCopy.defaults = copiedPanel;
+        panels.push(pluginCopy);
+      }
+    }
 
     // add sort by sort property
-    return _.sortBy(panels, "sort");
+    return _.sortBy(panels, 'sort');
   }
 
-  onPanelSelected(panelPluginInfo) {
+  onAddPanel = panelPluginInfo => {
     const panelContainer = this.props.getPanelContainer();
     const dashboard = panelContainer.getDashboard();
     const { gridPos } = this.props.panel;
 
     var newPanel: any = {
       type: panelPluginInfo.id,
-      title: "عنوان پنل",
-      gridPos: { x: gridPos.x, y: gridPos.y, w: gridPos.w, h: gridPos.h }
+      title: 'عنوان پنل',
+      gridPos: { x: gridPos.x, y: gridPos.y, w: gridPos.w, h: gridPos.h },
     };
 
-    if (panelPluginInfo.id === "row") {
-      newPanel.title = "عنوان سطر";
+    if (panelPluginInfo.id === 'row') {
+      newPanel.title = 'عنوان سطر';
       newPanel.gridPos = { x: 0, y: 0 };
+    }
+
+    // apply panel template / defaults
+    if (panelPluginInfo.defaults) {
+      _.defaults(newPanel, panelPluginInfo.defaults);
+      newPanel.gridPos.w = panelPluginInfo.defaults.gridPos.w;
+      newPanel.gridPos.h = panelPluginInfo.defaults.gridPos.h;
+      newPanel.title = panelPluginInfo.defaults.title;
+      store.delete(LS_PANEL_COPY_KEY);
     }
 
     dashboard.addPanel(newPanel);
     dashboard.removePanel(this.props.panel);
-  }
+  };
 
-  renderPanelItem(panel) {
+  renderPanelItem(panel, index) {
+    console.log('render panel', index);
     return (
-      <div
-        key={panel.id}
-        className="add-panel__item"
-        onClick={() => this.onPanelSelected(panel)}
-        title={panel.name}
-      >
+      <div key={index} className="add-panel__item" onClick={() => this.onAddPanel(panel)} title={panel.name}>
         <img className="add-panel__item-img" src={panel.info.logos.small} />
         <div className="add-panel__item-name">{panel.name}</div>
       </div>
