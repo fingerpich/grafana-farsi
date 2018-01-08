@@ -18,12 +18,13 @@ func init() {
 		Description: "Sends notifications using Grafana server configured SMTP settings",
 		Factory:     NewEmailNotifier,
 		OptionsTemplate: `
-      <h3 class="page-heading">Email addresses</h3>
+      <h3 class="page-heading">آدرس‌ های ایمیل</h3>
       <div class="gf-form">
          <textarea rows="7" class="gf-form-input width-25" required ng-model="ctrl.model.settings.addresses"></textarea>
       </div>
       <div class="gf-form">
       <span>You can enter multiple email addresses using a ";" separator</span>
+      <span>شما میتوانید با ; چندین آدرس ایمیل را از هم جدا کنید</span>
       </div>
     `,
 	})

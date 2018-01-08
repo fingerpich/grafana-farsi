@@ -66,8 +66,8 @@ class TablePanelCtrl extends MetricsPanelCtrl {
   }
 
   onInitEditMode() {
-    this.addEditorTab('Options', tablePanelEditor, 2);
-    this.addEditorTab('Column Styles', columnOptionsTab, 3);
+    this.addEditorTab('گزینه ها', tablePanelEditor, 2);
+    this.addEditorTab('نحوه نمایش ستون ها', columnOptionsTab, 3);
   }
 
   onInitPanelActions(actions) {

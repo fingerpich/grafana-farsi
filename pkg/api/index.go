@@ -95,7 +95,7 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 			Url:  setting.AppSubUrl + "/dashboard/new",
 			Children: []*dtos.NavLink{
 				{Text: "داشبورد", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/dashboard/new"},
-				{Text: "فولدر", SubTitle: "ایجاد یک فولدر برای مرتب سازی داشبورد", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"},
+				{Text: "پوشه", SubTitle: "ایجاد یک پوشه برای مرتب سازی داشبورد", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"},
 				{Text: "دریافت", SubTitle: "وارد کردن داشبورد از فایل ذخیره شده", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"},
 			},
 		})

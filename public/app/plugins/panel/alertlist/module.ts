@@ -132,7 +132,7 @@ class AlertListPanel extends PanelCtrl {
   }
 
   onInitEditMode() {
-    this.addEditorTab('Options', 'public/app/plugins/panel/alertlist/editor.html');
+    this.addEditorTab('گزینه ها', 'public/app/plugins/panel/alertlist/editor.html');
   }
 }
 
