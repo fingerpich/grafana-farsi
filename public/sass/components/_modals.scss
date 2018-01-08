@@ -45,9 +45,9 @@
 
 .modal-header-title {
   font-size: $font-size-h3;
-  float: left;
+  float: right;
   padding-top: $spacer * 0.75;
-  margin: 0 $spacer*3 0 $spacer*1.5;
+  margin: 0 $spacer*1.5 0 $spacer*3;
 
   .gicon {
     position: relative;
@@ -56,12 +56,13 @@
 }
 
 .modal-header-close {
-  float: right;
+  float: left;
   padding: 9px $spacer;
 }
 
 // Body (where all modal content resides)
 .modal-body {
+  direction: rtl;
   position: relative;
 }
 
