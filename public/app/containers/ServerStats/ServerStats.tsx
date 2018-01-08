@@ -23,8 +23,8 @@ export class ServerStats extends React.Component<IContainerProps, any> {
           <table className="filter-table form-inline">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Value</th>
+                <th>نام</th>
+                <th>مقدار</th>
               </tr>
             </thead>
             <tbody>{serverStats.stats.map(StatItem)}</tbody>

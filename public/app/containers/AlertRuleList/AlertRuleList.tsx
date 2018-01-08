@@ -53,7 +53,7 @@ export class AlertRuleList extends React.Component<IContainerProps, any> {
         <div className="page-container page-body">
           <div className="page-action-bar">
             <div className="gf-form">
-              <label className="gf-form-label">Filter by state</label>
+              <label className="gf-form-label">بر اساس وضعیت</label>
 
               <div className="gf-form-select-wrapper width-13">
                 <select className="gf-form-input" onChange={this.onStateFilterChanged} value={alertList.stateFilter}>
@@ -65,7 +65,7 @@ export class AlertRuleList extends React.Component<IContainerProps, any> {
             <div className="page-action-bar__spacer" />
 
             <a className="btn btn-secondary" onClick={this.onOpenHowTo}>
-              <i className="fa fa-info-circle" /> How to add an alert
+              <i className="fa fa-info-circle" /> چگونه یک هشدار اضافه کنیم
             </a>
           </div>
 

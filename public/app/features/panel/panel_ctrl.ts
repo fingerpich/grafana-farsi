@@ -138,7 +138,7 @@ export class PanelCtrl {
   getMenu() {
     let menu = [];
     menu.push({
-      text: 'View',
+      text: 'نمایش',
       click: 'ctrl.viewPanel();',
       icon: 'fa fa-fw fa-eye',
       shortcut: 'v',
@@ -146,7 +146,7 @@ export class PanelCtrl {
 
     if (this.dashboard.meta.canEdit) {
       menu.push({
-        text: 'Edit',
+        text: 'ویرایش',
         click: 'ctrl.editPanel();',
         role: 'Editor',
         icon: 'fa fa-fw fa-edit',
@@ -155,7 +155,7 @@ export class PanelCtrl {
     }
 
     menu.push({
-      text: 'Share',
+      text: 'اشتراک گذاری',
       click: 'ctrl.sharePanel();',
       icon: 'fa fa-fw fa-share',
       shortcut: 'p s',
@@ -163,7 +163,7 @@ export class PanelCtrl {
 
     let extendedMenu = this.getExtendedMenu();
     menu.push({
-      text: 'More ...',
+      text: 'بیشتر ...',
       click: '',
       icon: 'fa fa-fw fa-cube',
       submenu: extendedMenu,
@@ -172,7 +172,7 @@ export class PanelCtrl {
     if (this.dashboard.meta.canEdit) {
       menu.push({ divider: true, role: 'Editor' });
       menu.push({
-        text: 'Remove',
+        text: 'حذف',
         click: 'ctrl.removePanel();',
         role: 'Editor',
         icon: 'fa fa-fw fa-trash',
@@ -187,20 +187,20 @@ export class PanelCtrl {
     let menu = [];
     if (!this.fullscreen && this.dashboard.meta.canEdit) {
       menu.push({
-        text: 'Duplicate',
+        text: 'کپی',
         click: 'ctrl.duplicate()',
         role: 'Editor',
       });
 
       menu.push({
-        text: 'Add to Panel List',
+        text: 'افزودن به لیست پنل',
         click: 'ctrl.addToPanelList()',
         role: 'Editor',
       });
     }
 
     menu.push({
-      text: 'Panel JSON',
+      text: 'پنل json',
       click: 'ctrl.editPanelJson(); dismiss();',
     });
 
@@ -248,16 +248,17 @@ export class PanelCtrl {
 
       if (this.panel.alert) {
         text2 = 'Panel includes an alert rule, removing panel will also remove alert rule';
-        confirmText = 'YES';
+        text2 = 'این پنل شامل هشدارهایی می‌باشد و با حذف این پنل هشدارهای آن نیز حذف میگردند';
+        confirmText = 'تایید';
       }
 
       appEvents.emit('confirm-modal', {
-        title: 'Remove Panel',
-        text: 'Are you sure you want to remove this panel?',
+        title: 'پنل حذف',
+        text: 'آیا از حذف این پنل اطمینان دارید؟',
         text2: text2,
         icon: 'fa-trash',
         confirmText: confirmText,
-        yesText: 'Remove',
+        yesText: 'حذف',
         onConfirm: () => {
           this.removePanel(false);
         },

@@ -99,8 +99,8 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
         <div className="add-panel">
           <div className="add-panel__header">
             <i className="gicon gicon-add-panel" />
-            <span className="add-panel__title">New Panel</span>
-            <span className="add-panel__sub-title">Select a visualization</span>
+            <span className="add-panel__title">پنل جدید</span>
+            <span className="add-panel__sub-title">یکی از گزینه های زیر را انتخاب کنید</span>
           </div>
           <ScrollBar className="add-panel__items">
             {this.state.panelPlugins.map(this.renderPanelItem.bind(this))}
