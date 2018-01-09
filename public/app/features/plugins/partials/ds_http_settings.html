@@ -5,7 +5,7 @@
   <div class="gf-form-group">
     <div class="gf-form-inline">
       <div class="gf-form max-width-30">
-        <span class="gf-form-label width-7">URL</span>
+        <span class="gf-form-label width-7">آدرس URL</span>
         <input class="gf-form-input" type="text"
               ng-model='current.url' placeholder="{{suggestUrl}}"
               bs-typeahead="getSuggestUrls"  min-length="0"
@@ -49,17 +49,17 @@
     </div>
     <div class="gf-form-inline">
       <gf-form-switch class="gf-form" ng-if="current.access=='proxy'" label="TLS Client Auth" label-class="width-8" checked="current.jsonData.tlsAuth" switch-class="max-width-6"></gf-form-switch>
-      <gf-form-switch class="gf-form" ng-if="current.access=='proxy'" label="With CA Cert" tooltip="Needed for verifing self-signed TLS Certs" checked="current.jsonData.tlsAuthWithCACert" label-class="width-11" switch-class="max-width-6"></gf-form-switch>
+      <gf-form-switch class="gf-form" ng-if="current.access=='proxy'" label="با CA Cert" tooltip="Needed for verifing self-signed TLS Certs" checked="current.jsonData.tlsAuthWithCACert" label-class="width-11" switch-class="max-width-6"></gf-form-switch>
     </div>
   </div>
 
   <div class="gf-form-inline">
-    <gf-form-switch class="gf-form" ng-if="current.access=='proxy'" label="Skip TLS Verification (Insecure)" label-class="width-16" checked="current.jsonData.tlsSkipVerify" switch-class="max-width-6"></gf-form-switch>
+    <gf-form-switch class="gf-form" ng-if="current.access=='proxy'" label="بیخیال تایید TLS (نا امن)" label-class="width-16" checked="current.jsonData.tlsSkipVerify" switch-class="max-width-6"></gf-form-switch>
   </div>
 </div>
 
 <div class="gf-form-group" ng-if="current.basicAuth">
-  <h6>Basic Auth Details</h6>
+  <h6>جزئیات احراز هویت معمولی</h6>
   <div class="gf-form" ng-if="current.basicAuth">
     <span class="gf-form-label width-7">
       User
@@ -78,7 +78,7 @@
 <div class="gf-form-group" ng-if="(current.jsonData.tlsAuth || current.jsonData.tlsAuthWithCACert) && current.access=='proxy'">
   <div class="gf-form">
     <h6>TLS Auth Details</h6>
-    <info-popover mode="header">TLS Certs are encrypted and stored in the Grafana database.</info-popover>
+    <info-popover mode="header">تاییدیه TLS هش شده و در دیتابیس گرافانا ذخیره میگردد.</info-popover>
   </div>
   <div ng-if="current.jsonData.tlsAuthWithCACert">
     <div class="gf-form-inline">
@@ -125,15 +125,15 @@
   </div>
 </div>
 
-<h3 class="page-heading" ng-if="current.access=='proxy'">Advanced HTTP Settings</h3>
+<h3 class="page-heading" ng-if="current.access=='proxy'">تنظیمات پیشرفته HTTP</h3>
 <div class="gf-form-group" ng-if="current.access=='proxy'">
   <div class="gf-form-inline">
     <div class="gf-form">
-      <span class="gf-form-label width-10">Whitelisted Cookies</span>
+      <span class="gf-form-label width-10">Cookie های معتبر</span>
       <bootstrap-tagsinput ng-model="current.jsonData.keepCookies" tagclass="label label-tag" placeholder="Add Name">
       </bootstrap-tagsinput>
       <info-popover mode="right-absolute">
-        Grafana Proxy deletes forwarded cookies by default. Specify cookies by name that should be forwarded to the data source.
+        پراکسی گرافانا به طور پیش فرض cookie های ارسال شده را حذف می‌کند. نام cookie های مورد نظر را برای ارسال وارد نمایید.
       </info-popover>
     </div>
   </div>
