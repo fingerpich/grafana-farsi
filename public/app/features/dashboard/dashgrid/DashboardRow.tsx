@@ -51,8 +51,8 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
   delete() {
     appEvents.emit('confirm-modal', {
       title: 'حذف سطر',
-      text: 'از حذف این سطر اطمینان دارید؟',
-      altActionText: 'Delete row only',
+      text: 'از حذف این سطر و زیر مجموعه آن اطمینان دارید؟',
+      altActionText: 'تنها حذف سطر',
       icon: 'fa-trash',
       onConfirm: () => {
         const panelContainer = this.props.getPanelContainer();
