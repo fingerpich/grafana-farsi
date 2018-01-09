@@ -3,14 +3,14 @@
 <div class="page-container page-body">
 	<div class="page-action-bar">
     <label class="gf-form gf-form--grow gf-form--has-input-icon">
-      <input type="text" class="gf-form-input max-width-20" placeholder="Find Team by name" tabindex="1" ng-model="ctrl.query" ng-model-options="{ debounce: 500 }" spellcheck='false' ng-change="ctrl.get()" />
+      <input type="text" class="gf-form-input max-width-20" placeholder="تیم ها براساس نام" tabindex="1" ng-model="ctrl.query" ng-model-options="{ debounce: 500 }" spellcheck='false' ng-change="ctrl.get()" />
       <i class="gf-form-input-icon fa fa-search"></i>
     </label>
     <div class="page-action-bar__spacer"></div>
 
     <a class="btn btn-success" href="/org/teams/new">
       <i class="fa fa-plus"></i>
-			Add Team
+			افزودن تیم
     </a>
   </div>
 
@@ -19,9 +19,9 @@
       <thead>
         <tr>
           <th></th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Members</th>
+          <th>نام</th>
+          <th>ایمیل</th>
+          <th>کاربران</th>
           <th style="width: 1%"></th>
         </tr>
       </thead>
@@ -63,6 +63,6 @@
   </div>
 
   <em class="muted" ng-hide="ctrl.teams.length > 0">
-    No Teams found.
+    هیچ تیمی یافت نشد
   </em>
 </div>

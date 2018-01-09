@@ -7,11 +7,11 @@
     <div class="page-action-bar__spacer"></div>
     <a class="btn btn-success" ng-href="{{ctrl.createDashboardUrl()}}">
       <i class="fa fa-plus"></i>
-      Dashboard
+      داشبورد
     </a>
     <a class="btn btn-success" href="dashboards/folder/new" ng-if="!ctrl.folderId">
       <i class="fa fa-plus"></i>
-      Folder
+      پوشه
     </a>
   </div>
 
@@ -19,7 +19,7 @@
     <div class="gf-form-inline">
       <div class="gf-form" ng-show="ctrl.query.tag.length > 0">
         <label class="gf-form-label width-4">
-          Tags
+          تگ ها
         </label>
         <div class="gf-form-input gf-form-input--plaintext" ng-show="ctrl.query.tag.length > 0">
           <span ng-repeat="tagName in ctrl.query.tag">
@@ -32,14 +32,14 @@
       <div class="gf-form" ng-show="ctrl.query.starred">
         <label class="gf-form-label">
           <a class="pointer" ng-click="ctrl.removeStarred()">
-            <i class="fa fa-fw fa-check"></i> Starred
+            <i class="fa fa-fw fa-check"></i> ستاره شده
           </a>
         </label>
       </div>
       <div class="gf-form">
         <label class="gf-form-label">
           <a class="pointer" ng-click="ctrl.clearFilters()" bs-tooltip="'Clear current search query and filters'">
-            <i class="fa fa-remove"></i>&nbsp;Clear
+            <i class="fa fa-remove"></i>&nbsp;خالی کردن
           </a>
         </label>
       </div>
@@ -48,7 +48,7 @@
 
   <div class="search-results" ng-show="ctrl.hasFilters && ctrl.sections.length === 0">
     <em class="muted">
-      No dashboards matching your query were found.
+      هیچ داشبورد مشابهی یافت نشد.
     </em>
   </div>
 
@@ -83,13 +83,13 @@
             ng-click="ctrl.moveTo()"
             bs-tooltip="ctrl.canMove ? '' : 'Select a dashboard to move (cannot move folders)'"
             data-placement="bottom">
-          <i class="fa fa-exchange"></i>&nbsp;&nbsp;Move
+          <i class="fa fa-exchange"></i>&nbsp;&nbsp;جابجایی
           </button>
           <button type="button"
             class="btn gf-form-button btn-danger"
             ng-click="ctrl.delete()"
             ng-disabled="!ctrl.canDelete">
-            <i class="fa fa-trash"></i>&nbsp;&nbsp;Delete
+            <i class="fa fa-trash"></i>&nbsp;&nbsp;حذف
           </button>
         </div>
       </div>
@@ -106,11 +106,11 @@
 
 <div ng-if="ctrl.folderId && !ctrl.hasFilters && ctrl.sections.length === 0">
   <empty-list-cta model="{
-    title: 'This folder doesn\'t have any dashboards yet',
+    title: 'این پوشه هیچ داشبوردی ندارد',
     buttonIcon: 'gicon gicon-dashboard-new',
     buttonLink: 'dashboard/new?folderId={{ctrl.folderId}}',
-    buttonTitle: 'Create Dashboard',
-    proTip: 'Add dashboards into your folder at ->',
+    buttonTitle: 'ایجاد داشبورد',
+    proTip: 'افزودن داشبورد به پوشه',
     proTipLink: 'dashboards',
     proTipLinkTitle: 'Manage dashboards',
     proTipTarget: ''
