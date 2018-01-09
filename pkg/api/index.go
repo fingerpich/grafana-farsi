@@ -127,15 +127,15 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 			Url:          setting.AppSubUrl + "/profile",
 			HideFromMenu: true,
 			Children: []*dtos.NavLink{
-				{Text: "Preferences", Id: "profile-settings", Url: setting.AppSubUrl + "/profile", Icon: "gicon gicon-preferences"},
-				{Text: "Change Password", Id: "change-password", Url: setting.AppSubUrl + "/profile/password", Icon: "fa fa-fw fa-lock", HideFromMenu: true},
+				{Text: "ترجیحات", Id: "profile-settings", Url: setting.AppSubUrl + "/profile", Icon: "gicon gicon-preferences"},
+				{Text: "تغییر رمز عبور", Id: "change-password", Url: setting.AppSubUrl + "/profile/password", Icon: "fa fa-fw fa-lock", HideFromMenu: true},
 			},
 		}
 
 		if !setting.DisableSignoutMenu {
 			// add sign out first
 			profileNode.Children = append(profileNode.Children, &dtos.NavLink{
-				Text: "Sign out", Id: "sign-out", Url: setting.AppSubUrl + "/logout", Icon: "fa fa-fw fa-sign-out", Target: "_self",
+				Text: "خروج", Id: "sign-out", Url: setting.AppSubUrl + "/logout", Icon: "fa fa-fw fa-sign-out", Target: "_self",
 			})
 		}
 
@@ -196,7 +196,7 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 
 			if len(appLink.Children) > 0 && c.OrgRole == m.ROLE_ADMIN {
 				appLink.Children = append(appLink.Children, &dtos.NavLink{Divider: true})
-				appLink.Children = append(appLink.Children, &dtos.NavLink{Text: "Plugin Config", Icon: "gicon gicon-cog", Url: setting.AppSubUrl + "/plugins/" + plugin.Id + "/edit"})
+				appLink.Children = append(appLink.Children, &dtos.NavLink{Text: "تنظیمات پلاگین", Icon: "gicon gicon-cog", Url: setting.AppSubUrl + "/plugins/" + plugin.Id + "/edit"})
 			}
 
 			if len(appLink.Children) > 0 {
@@ -284,7 +284,7 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 	}
 
 	data.NavTree = append(data.NavTree, &dtos.NavLink{
-		Text:         "Help",
+		Text:         "کمک",
 		Id:           "help",
 		Url:          "#",
 		Icon:         "gicon gicon-question",
