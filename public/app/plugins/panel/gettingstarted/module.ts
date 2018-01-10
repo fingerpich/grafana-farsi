@@ -26,7 +26,7 @@ class GettingStartedPanelCtrl extends PanelCtrl {
 
     this.steps.push({
       title: 'ایجاد اولین منبع داده',
-      cta: 'Add data source',
+      cta: 'افزودن منبع داده',
       icon: 'icon-gf icon-gf-datasources',
       href: 'datasources/new?gettingstarted',
       check: () => {
