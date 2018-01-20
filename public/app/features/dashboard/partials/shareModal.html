@@ -32,8 +32,7 @@
 		</div>
 		<div class="share-modal-content">
 			<p class="share-modal-info-text">
-				The html code below can be pasted and included in another web page. Unless anonymous access
-				is enabled the user viewing that page need to be signed into grafana for the graph to load.
+        کد ‌html پایین می‌تواند در صفحات وب دیگر گنجانده شود. زمانی که گزینه anonymous access فعال باشد کاربران نیاز است تا در گرفانا ورود کنند تا اطلاعات را دریافت کنند.
 			</p>
 
 			<div ng-include src="'shareLinkOptions.html'"></div>
@@ -54,15 +53,15 @@
 <script type="text/ng-template" id="shareLinkOptions.html">
 	<div class="gf-form-group">
 		<gf-form-switch class="gf-form"
-			label="Current time range" label-class="width-12" switch-class="max-width-6"
+			label="بازه زمانی کنونی" label-class="width-12" switch-class="max-width-6"
 			checked="options.forCurrent" on-change="buildUrl()">
 		</gf-form-switch>
 		<gf-form-switch class="gf-form"
-			label="Template variables" label-class="width-12" switch-class="max-width-6"
+			label="متغیرهای template" label-class="width-12" switch-class="max-width-6"
 			checked="options.includeTemplateVars" on-change="buildUrl()">
 		</gf-form-switch>
 		<div class="gf-form">
-			<span class="gf-form-label width-12">Theme</span>
+			<span class="gf-form-label width-12">تم</span>
 			<div class="gf-form-select-wrapper width-10">
 				<select class="gf-form-input" ng-model="options.theme" ng-options="f as f for f in ['current', 'dark', 'light']" ng-change="buildUrl()"></select>
 			</div>
@@ -77,7 +76,7 @@
 		</div>
 		<div class="share-modal-content">
 			<p class="share-modal-info-text">
-				Create a direct link to this dashboard or panel, customized with the options below.
+        ایجاد لینک مستقیم به این داشبورد یا پنل
 			</p>
 			<div ng-include src="'shareLinkOptions.html'"></div>
 			<div>
@@ -87,13 +86,13 @@
 							<input type="text" data-share-panel-url class="gf-form-input" ng-model="shareUrl"></input>
 						</div>
 						<div class="gf-form">
-							<button class="btn btn-inverse" clipboard-button="getShareUrl()"><i class="fa fa-clipboard"></i> Copy</button>
+							<button class="btn btn-inverse" clipboard-button="getShareUrl()"><i class="fa fa-clipboard"></i> کپی</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="gf-form" ng-show="modeSharePanel">
-				<a href="{{imageUrl}}" target="_blank"><i class="fa fa-camera"></i> Direct link rendered image</a>
+				<a href="{{imageUrl}}" target="_blank"><i class="fa fa-camera"></i> لینک مستقیم عکس</a>
 			</div>
 		</div>
 </script>
@@ -108,20 +107,17 @@
       <div class="share-modal-content">
         <div ng-if="step === 1">
           <p class="share-modal-info-text">
-            A snapshot is an instant way to share an interactive dashboard publicly.
-            When created, we <strong>strip sensitive data</strong> like queries (metric, template and annotation) and panel links,
-            leaving only the visible metric data and series names embedded into your dashboard.
+            یک اسنپ شات یک یکی از راه های به اشتراک گذاری داشبورد است.
+            وقتی یک اسنپ شات ایجاد می‌شود اطلاعات حساس مانند کوئری ها و لینک های پنل کنار گذاشته میشود و فقط معیار ها و نام های سری ها به آن انتقال میابند
           </p>
           <p class="share-modal-info-text">
-            Keep in mind, your <strong>snapshot can be viewed by anyone</strong> that has the link and can reach the URL.
-            Share wisely.
+            در نظر داشته باشید که اسنپ شات برای همه کسانی که لینک آن را داشته باشند قابل نمایش میباشد.
           </p>
         </div>
 
 				<div class="share-modal-header" ng-if="step === 3">
 					<p class="share-modal-info-text">
-						The snapshot has now been deleted. If it you have already accessed it once, It might take up to an hour before it is removed from
-						browser caches or CDN caches.
+            اسنپ شات حذف شده است. اگر به آن دسترسی داشته اید به دلیل کش بودن آن در CDN یا Browser شما می‌باشد.
 					</p>
 				</div>
 
@@ -151,13 +147,14 @@
 
 				<div ng-if="step === 1">
 					<p class="share-modal-info-text">
+            اگر جمع آوری داده های داشبورد به درازا می انجامد ‌timeout برای آن تنظیم نمایید.
 						You may need to configure the timeout value if it takes a long time to collect your dashboard's metrics.
 					</p>
 				</div>
 
 				<div class="gf-form-group share-modal-options">
 					<div class="gf-form" ng-if="step === 1">
-						<span class="gf-form-label width-12">Timeout (seconds)</span>
+						<span class="gf-form-label width-12">Timeout ثانیه</span>
 						<input type="number" ng-model="snapshot.timeoutSeconds" class="gf-form-input max-width-15" >
 					</div>
 				</div>
@@ -165,17 +162,17 @@
 				<div ng-if="step === 1" class="gf-form-button-row">
 					<button class="btn gf-form-btn width-10 btn-success" ng-click="createSnapshot()" ng-disabled="loading">
 						<i class="fa fa-save"></i>
-						Local Snapshot
+            اسنپ شات محلی
 					</button>
 					<button class="btn gf-form-btn width-16 btn-secondary" ng-if="externalEnabled" ng-click="createSnapshot(true)" ng-disabled="loading">
 						<i class="fa fa-cloud-upload"></i>
 						{{sharingButtonText}}
 					</button>
-					<a class="btn btn-link" ng-click="dismiss()">Cancel</a>
+					<a class="btn btn-link" ng-click="dismiss()">بی‌خیال</a>
 				</div>
 
 				<div class="pull-right" ng-if="step === 2" style="padding: 5px">
-					Did you make a mistake? <a class="pointer" ng-click="deleteSnapshot()" target="_blank">delete snapshot.</a>
+					آیا اشتباه کرده اید؟<a class="pointer" ng-click="deleteSnapshot()" target="_blank">حذف اسنپ شات.</a>
 				</div>
 			</div>
 		</div>

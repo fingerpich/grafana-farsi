@@ -38,7 +38,7 @@
 		</div>
 		<div class="gf-form">
 			<label class="gf-form-label width-7">
-				Tags
+				تگ ها
 				<info-popover mode="right-normal">برای ایجاد تگ enter بزنید.</info-popover>
 			</label>
 			<bootstrap-tagsinput ng-model="ctrl.dashboard.tags" tagclass="label label-tag" placeholder="add tags">
@@ -86,7 +86,7 @@
 </div>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === 'view_json'" >
-	<h3 class="dashboard-settings__header">View JSON</h3>
+	<h3 class="dashboard-settings__header">نمایش JSON</h3>
 
 	<div class="gf-form">
 		<code-editor content="ctrl.json" data-mode="json" data-max-lines=30 ></code-editor>
@@ -94,18 +94,18 @@
 </div>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === '404'">
-  <h3 class="dashboard-settings__header">Settings view not found</h3>
+  <h3 class="dashboard-settings__header">تنظیمات یافت نشد</h3>
 
   <div>
-    <h5>The settings page could not be found or you do not have permission to access it</h5>
+    <h5>صفحه تنظیمات قابل مشاهده نیست یا شما به آن دسترسی ندارید</h5>
   </div>
 </div>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === 'make_editable'">
-  <h3 class="dashboard-settings__header">Make Editable</h3>
+  <h3 class="dashboard-settings__header">قابل تغییر نمودن</h3>
 
   <button class="btn btn-success" ng-click="ctrl.makeEditable()">
-    Make Editable
+    افزودن قابلیت تغییر
   </button>
 </div>
 

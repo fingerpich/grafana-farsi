@@ -10,43 +10,40 @@ export class HelpCtrl {
     this.tabIndex = 0;
     this.shortcuts = {
       Global: [
-        { keys: ['g', 'h'], description: 'Go to Home Dashboard' },
-        { keys: ['g', 'p'], description: 'Go to Profile' },
-        { keys: ['s', 'o'], description: 'Open search' },
+        { keys: ['g', 'h'], description: 'برو به داشبورد خانه' },
+        { keys: ['g', 'p'], description: 'برو به پروفایل' },
+        { keys: ['s', 'o'], description: 'بازکردن پنل جستجو' },
         { keys: ['s', 's'], description: 'Open search with starred filter' },
         { keys: ['s', 't'], description: 'Open search in tags view' },
-        { keys: ['esc'], description: 'Exit edit/setting views' },
+        { keys: ['esc'], description: 'خروج از حالت تغییر' },
       ],
       Dashboard: [
-        { keys: ['mod+s'], description: 'Save dashboard' },
-        { keys: ['mod+h'], description: 'Hide row controls' },
-        { keys: ['d', 'r'], description: 'Refresh all panels' },
-        { keys: ['d', 's'], description: 'Dashboard settings' },
+        { keys: ['mod+s'], description: 'ذخیره داشبورد' },
+        { keys: ['mod+h'], description: 'پنهان نمودن کنترل های سطری' },
+        { keys: ['d', 'r'], description: 'Refresh تمام پنل ها' },
+        { keys: ['d', 's'], description: 'تنظیمات داشبورد' },
         { keys: ['d', 'v'], description: 'Toggle in-active / view mode' },
         { keys: ['d', 'k'], description: 'Toggle kiosk mode (hides top nav)' },
-        { keys: ['d', 'E'], description: 'Expand all rows' },
-        { keys: ['d', 'C'], description: 'Collapse all rows' },
+        { keys: ['d', 'E'], description: 'باز کردن تمام سطرها' },
+        { keys: ['d', 'C'], description: 'بستن تمام سطرها' },
         { keys: ['mod+o'], description: 'Toggle shared graph crosshair' },
       ],
       'Focused Panel': [
         { keys: ['e'], description: 'Toggle panel edit view' },
         { keys: ['v'], description: 'Toggle panel fullscreen view' },
         { keys: ['p', 's'], description: 'Open Panel Share Modal' },
-        { keys: ['p', 'r'], description: 'Remove Panel' },
+        { keys: ['p', 'r'], description: 'حذف پنل' },
       ],
-      'Focused Row': [
-        { keys: ['r', 'c'], description: 'Collapse Row' },
-        { keys: ['r', 'r'], description: 'Remove Row' },
-      ],
+      'Focused Row': [{ keys: ['r', 'c'], description: 'بستن سطر' }, { keys: ['r', 'r'], description: 'حذف سطر' }],
       'Time Range': [
-        { keys: ['t', 'z'], description: 'Zoom out time range' },
+        { keys: ['t', 'z'], description: 'باز کردن بازه زمانی' },
         {
           keys: ['t', '<i class="fa fa-long-arrow-left"></i>'],
-          description: 'Move time range back',
+          description: 'حرکت دادن بازه زمانی به عقب',
         },
         {
           keys: ['t', '<i class="fa fa-long-arrow-right"></i>'],
-          description: 'Move time range forward',
+          description: 'حرکت دادن بازه زمانی به جلو',
         },
       ],
     };
