@@ -33,7 +33,7 @@
   border-top: 4px solid $text-color-weak;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
-  content: "";
+  content: '';
 }
 
 // Place the caret
@@ -51,7 +51,7 @@
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
   float: right;
-  min-width: 140px;
+  min-width: 184px;
   margin: 2px 0 0; // override default ul
   list-style: none;
   background-color: $dropdownBackground;
@@ -219,7 +219,7 @@
   .caret {
     border-top: 0;
     border-bottom: 4px solid $black;
-    content: "";
+    content: '';
   }
   // Different positioning for bottom up menu
   .dropdown-menu {
@@ -258,7 +258,7 @@
 // Caret to indicate there is a submenu
 .dropdown-submenu > a::after {
   display: block;
-  content: " ";
+  content: ' ';
   float: left;
   width: 0;
   height: 0;
@@ -313,7 +313,7 @@
     width: 2rem;
     display: inline-block;
     text-align: center;
-    content: "\f11c";
+    content: '\f11c';
   }
 }
 
