@@ -15,21 +15,21 @@ export class ShareModalCtrl {
     $scope.init = function() {
       $scope.modeSharePanel = $scope.panel ? true : false;
 
-      $scope.tabs = [{ title: 'Link', src: 'shareLink.html' }];
+      $scope.tabs = [{ title: 'لینک', src: 'shareLink.html' }];
 
       if ($scope.modeSharePanel) {
-        $scope.modalTitle = 'Share Panel';
-        $scope.tabs.push({ title: 'Embed', src: 'shareEmbed.html' });
+        $scope.modalTitle = 'پنل اشتراک گذاری';
+        $scope.tabs.push({ title: 'جاسازی', src: 'shareEmbed.html' });
       } else {
-        $scope.modalTitle = 'Share';
+        $scope.modalTitle = 'اشتراک گذاری';
       }
 
       if (!$scope.dashboard.meta.isSnapshot) {
-        $scope.tabs.push({ title: 'Snapshot', src: 'shareSnapshot.html' });
+        $scope.tabs.push({ title: 'اسنپ شات', src: 'shareSnapshot.html' });
       }
 
       if (!$scope.dashboard.meta.isSnapshot && !$scope.modeSharePanel) {
-        $scope.tabs.push({ title: 'Export', src: 'shareExport.html' });
+        $scope.tabs.push({ title: 'استخراج', src: 'shareExport.html' });
       }
 
       $scope.buildUrl();
