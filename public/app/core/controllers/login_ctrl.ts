@@ -40,7 +40,7 @@ export class LoginCtrl {
     };
 
     $scope.loginModeChanged = function(newValue) {
-      $scope.submitBtnText = newValue ? 'Log in' : 'Sign up';
+      $scope.submitBtnText = newValue ? 'ورود' : 'ثبت نام';
     };
 
     $scope.signUp = function() {

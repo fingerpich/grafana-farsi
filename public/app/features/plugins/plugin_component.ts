@@ -273,7 +273,7 @@ function pluginDirectiveLoader($compile, datasourceSrv, $rootScope, $q, $http, $
           registerPluginComponent(scope, elem, attrs, componentInfo);
         })
         .catch(err => {
-          $rootScope.appEvent('alert-error', ['Plugin Error', err.message || err]);
+          $rootScope.appEvent('alert-error', ['خطای پلاگین', err.message || err]);
           console.log('Plugin component error', err);
         });
     },

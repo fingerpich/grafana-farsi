@@ -36,7 +36,7 @@ export class ResetPasswordCtrl {
       }
 
       if ($scope.formModel.newPassword !== $scope.formModel.confirmPassword) {
-        $scope.appEvent('alert-warning', ['New passwords do not match', '']);
+        $scope.appEvent('alert-warning', ['رمزهای عبور جدید مثل هم نیستند', '']);
         return;
       }
 

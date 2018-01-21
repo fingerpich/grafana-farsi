@@ -1,17 +1,17 @@
 <h3 class="dashboard-settings__header">
-  <a ng-click="ctrl.switchMode('list')">Versions</a>
+  <a ng-click="ctrl.switchMode('list')">نسخه ها</a>
   <span ng-show="ctrl.mode === 'compare'">
-    &gt; Comparing {{ctrl.baseInfo.version}}
+    &gt; مقایسه {{ctrl.baseInfo.version}}
     <i class="fa fa-arrows-h"></i>
     {{ctrl.newInfo.version}}
-    <cite class="muted" ng-if="ctrl.isNewLatest">(Latest)</cite>
+    <cite class="muted" ng-if="ctrl.isNewLatest">(آخرین)</cite>
   </span>
 </h3>
 
 <div ng-if="ctrl.mode === 'list'">
   <div ng-if="ctrl.loading">
     <i class="fa fa-spinner fa-spin"></i>
-    <em>Fetching history list&hellip;</em>
+    <em>در حال دریافت تاریخچه&hellip;</em>
   </div>
 
   <div ng-if="!ctrl.loading">
@@ -20,10 +20,10 @@
         <thead>
           <tr>
             <th class="width-4"></th>
-            <th class="width-4">Version</th>
-            <th class="width-14">Date</th>
-            <th class="width-10">Updated By</th>
-            <th>Notes</th>
+            <th class="width-4">نسخه</th>
+            <th class="width-14">زمان</th>
+            <th class="width-10">بروزشده توسط</th>
+            <th>یادداشت ها</th>
             <th></th>
           </tr>
         </thead>
@@ -42,7 +42,7 @@
                 <i class="fa fa-history"></i>&nbsp;&nbsp;Restore
               </a>
               <a class="btn btn-outline-disabled btn-small" ng-show="revision.version === ctrl.dashboard.version">
-                <i class="fa fa-check"></i>&nbsp;&nbsp;Latest
+                <i class="fa fa-check"></i>&nbsp;&nbsp;آخرین
               </a>
             </td>
           </tr>
@@ -51,7 +51,7 @@
 
       <div ng-if="ctrl.appending">
         <i class="fa fa-spinner fa-spin"></i>
-        <em>Fetching more entries&hellip;</em>
+        <em>دریافت موارد بیشتر&hellip;</em>
       </div>
 
       <div class="gf-form-group">
@@ -61,7 +61,7 @@
                    ng-if="ctrl.revisions.length >= ctrl.limit"
                    ng-click="ctrl.addToLog()"
                    ng-disabled="ctrl.isLastPage()">
-            Show more versions
+            نمایش نسخه های بیشتر
           </button>
           <button type="button"
                   class="btn btn-success"
@@ -69,7 +69,7 @@
                   ng-disabled="!ctrl.canCompare"
                   ng-click="ctrl.getDiff(ctrl.diff)"
                   bs-tooltip="ctrl.canCompare ? '' : 'Select 2 versions to start comparing'" data-placement="bottom">
-            <i class="fa fa-code-fork" ></i>&nbsp;&nbsp;Compare versions
+            <i class="fa fa-code-fork" ></i>&nbsp;&nbsp;مقایسه نسخه ها
           </button>
         </div>
       </div>
@@ -80,7 +80,7 @@
 <div ng-if="ctrl.mode === 'compare'">
   <div ng-if="ctrl.loading">
     <i class="fa fa-spinner fa-spin"></i>
-    <em>Fetching changes&hellip;</em>
+    <em>دریافت تغییرات&hellip;</em>
   </div>
 
   <div ng-if="!ctrl.loading">
@@ -88,17 +88,17 @@
              class="btn btn-danger pull-right"
              ng-click="ctrl.restore(ctrl.baseInfo.version)"
              ng-if="ctrl.isNewLatest">
-      <i class="fa fa-history" ></i>&nbsp;&nbsp;Restore to version {{ctrl.baseInfo.version}}
+      <i class="fa fa-history" ></i>&nbsp;&nbsp;برگشت به نسخه {{ctrl.baseInfo.version}}
     </button>
     <section>
       <p class="small muted">
-      <strong>Version {{ctrl.newInfo.version}}</strong> updated by
+      <strong>نسخه {{ctrl.newInfo.version}}</strong> بروزشده توسط
       <span>{{ctrl.newInfo.createdBy}} </span>
       <span>{{ctrl.newInfo.ageString}}</span>
       <span> - {{ctrl.newInfo.message}}</span>
       </p>
       <p class="small muted">
-      <strong>Version {{ctrl.baseInfo.version}}</strong> updated by
+      <strong>نسخه {{ctrl.baseInfo.version}}</strong> بروزشده توسط
       <span>{{ctrl.baseInfo.createdBy}} </span>
       <span>{{ctrl.baseInfo.ageString}}</span>
       <span> - {{ctrl.baseInfo.message}}</span>
@@ -110,7 +110,7 @@
     </div>
 
     <div class="gf-form-button-row">
-      <button class="btn btn-secondary" ng-click="ctrl.getDiff('json')">View JSON Diff</button>
+      <button class="btn btn-secondary" ng-click="ctrl.getDiff('json')">نمایش تغییرات با JSON</button>
     </div>
 
     <div class="delta-html" ng-show="ctrl.diff === 'json'" compile="ctrl.delta.json"></div>

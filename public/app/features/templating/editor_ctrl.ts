@@ -56,16 +56,13 @@ export class VariableEditorCtrl {
       }
 
       if (!$scope.current.name.match(/^\w+$/)) {
-        $scope.appEvent('alert-warning', [
-          'Validation',
-          'Only word and digit characters are allowed in variable names',
-        ]);
+        $scope.appEvent('alert-warning', ['تایید', 'فقط حروف و عدد ها میتوانند برای نام متغیر استفاده شود']);
         return false;
       }
 
       var sameName = _.find($scope.variables, { name: $scope.current.name });
       if (sameName && sameName !== $scope.current) {
-        $scope.appEvent('alert-warning', ['Validation', 'Variable with the same name already exists']);
+        $scope.appEvent('alert-warning', ['Validation', 'متغیری با همین نام قبلا استفاده شده است']);
         return false;
       }
 
@@ -75,7 +72,7 @@ export class VariableEditorCtrl {
       ) {
         $scope.appEvent('alert-warning', [
           'Validation',
-          'Query cannot contain a reference to itself. Variable: $' + $scope.current.name,
+          'کوئری نمیتواند به خودش ارجاع دهد. متغیر :$' + $scope.current.name,
         ]);
         return false;
       }
@@ -100,7 +97,7 @@ export class VariableEditorCtrl {
         if (err.data && err.data.message) {
           err.message = err.data.message;
         }
-        $scope.appEvent('alert-error', ['Templating', 'Template variables could not be initialized: ' + err.message]);
+        $scope.appEvent('alert-error', ['Templating', ' نمیتواند ایجاد شود متغیر Template : ' + err.message]);
       });
     };
 

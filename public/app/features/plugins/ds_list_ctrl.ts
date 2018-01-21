@@ -28,10 +28,10 @@ export class DataSourcesCtrl {
       .delete('/api/datasources/' + ds.id)
       .then(
         () => {
-          this.$scope.appEvent('alert-success', ['Datasource deleted', '']);
+          this.$scope.appEvent('alert-success', ['منبع داده حذف شده', '']);
         },
         () => {
-          this.$scope.appEvent('alert-error', ['Unable to delete datasource', '']);
+          this.$scope.appEvent('alert-error', ['منبع داده حذف نمی‌شود', '']);
         }
       )
       .then(() => {
@@ -46,9 +46,9 @@ export class DataSourcesCtrl {
 
   removeDataSource(ds) {
     this.$scope.appEvent('confirm-modal', {
-      title: 'Delete',
-      text: 'Are you sure you want to delete datasource ' + ds.name + '?',
-      yesText: 'Delete',
+      title: 'حذف',
+      text: 'آیا از حذف منبع داده ' + ds.name + ' مطمئن هستید؟',
+      yesText: 'حذف',
       icon: 'fa-trash',
       onConfirm: () => {
         this.removeDataSourceConfirmed(ds);

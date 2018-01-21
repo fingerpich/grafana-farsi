@@ -39,10 +39,10 @@ export class DashboardSrv {
       err.isHandled = true;
 
       this.$rootScope.appEvent('confirm-modal', {
-        title: 'Conflict',
-        text: 'Dashboard with the same name exists.',
-        text2: 'Would you still like to save this dashboard?',
-        yesText: 'Save & Overwrite',
+        title: 'خطا',
+        text: 'داشبوردی با همین نام قبلا ذخیره شده است.',
+        text2: 'هنوز هم مایل به ذخیره کردن این داشبورد هستید؟',
+        yesText: 'تغییر داشبورد قبلی',
         icon: 'fa-warning',
         onConfirm: () => {
           this.save(clone, { overwrite: true });
@@ -54,12 +54,12 @@ export class DashboardSrv {
       err.isHandled = true;
 
       this.$rootScope.appEvent('confirm-modal', {
-        title: 'Plugin Dashboard',
+        title: 'داشبورد پلاگین',
         text: err.data.message,
-        text2: 'Your changes will be lost when you update the plugin. Use Save As to create custom version.',
+        text2: 'وقتی پلاگین را بروز کنید تغییرات از بین میروند. از ذخیره نسخه برای ایجاد نسخه دلخواه استفاده کنید.',
         yesText: 'Overwrite',
         icon: 'fa-warning',
-        altActionText: 'Save As',
+        altActionText: 'ذخیره نسخه',
         onAltAction: () => {
           this.showSaveAsModal();
         },
@@ -79,7 +79,7 @@ export class DashboardSrv {
     }
 
     this.$rootScope.appEvent('dashboard-saved', this.dash);
-    this.$rootScope.appEvent('alert-success', ['Dashboard saved']);
+    this.$rootScope.appEvent('alert-success', ['داشبورد ذخیره شد']);
 
     return this.dash;
   }

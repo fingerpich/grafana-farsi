@@ -49,7 +49,7 @@ export class DashboardLoaderSrv {
         .getDashboard(this.$routeParams.type, this.$routeParams.slug)
         .then(result => {
           if (result.meta.isFolder) {
-            this.$rootScope.appEvent('alert-error', ['Dashboard not found']);
+            this.$rootScope.appEvent('alert-error', ['داشبوردی یافت نشد']);
             throw new Error('Dashboard not found');
           }
           return result;
@@ -89,10 +89,7 @@ export class DashboardLoaderSrv {
         },
         err => {
           console.log('Script dashboard error ' + err);
-          this.$rootScope.appEvent('alert-error', [
-            'Script Error',
-            'Please make sure it exists and returns a valid dashboard',
-          ]);
+          this.$rootScope.appEvent('alert-error', ['خطای اسکریپت', 'لطفا از وجود و صحت داشبورد مطمئن شوید.']);
           return this._dashboardLoadFailed('Scripted dashboard');
         }
       );

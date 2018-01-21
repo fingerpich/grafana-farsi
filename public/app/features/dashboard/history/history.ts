@@ -187,7 +187,7 @@ export class HistoryListCtrl {
       .then(response => {
         this.$location.path('dashboard/db/' + response.slug);
         this.$route.reload();
-        this.$rootScope.appEvent('alert-success', ['Dashboard restored', 'Restored from version ' + version]);
+        this.$rootScope.appEvent('alert-success', ['بازگردانی داشبورد', 'بازگردانی داشبورد از نسخه ' + version]);
       })
       .catch(() => {
         this.mode = 'list';

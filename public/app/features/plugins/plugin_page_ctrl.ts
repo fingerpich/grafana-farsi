@@ -27,7 +27,7 @@ export class AppPageCtrl {
     pluginInfoCache[this.pluginId] = app;
 
     if (!this.page) {
-      this.$rootScope.appEvent('alert-error', ['App Page Not Found', '']);
+      this.$rootScope.appEvent('alert-error', ['صفحه اپ پیدا نشد', '']);
 
       this.navModel = this.navModelSrv.getNotFoundNav();
       return;

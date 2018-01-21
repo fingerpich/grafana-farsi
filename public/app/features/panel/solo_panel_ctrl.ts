@@ -32,7 +32,7 @@ export class SoloPanelCtrl {
       $scope.$index = 0;
 
       if (!$scope.panel) {
-        $scope.appEvent('alert-error', ['Panel not found', '']);
+        $scope.appEvent('alert-error', ['پنل یافت نشد', '']);
         return;
       }
     };

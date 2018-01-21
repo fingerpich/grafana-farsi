@@ -62,7 +62,7 @@ export class DatasourceSrv {
         deferred.resolve(instance);
       })
       .catch(function(err) {
-        this.$rootScope.appEvent('alert-error', [dsConfig.name + ' plugin failed', err.toString()]);
+        this.$rootScope.appEvent('alert-error', [dsConfig.name + ' خطای پلاگین', err.toString()]);
       });
 
     return deferred.promise;

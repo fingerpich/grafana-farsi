@@ -141,7 +141,7 @@ class GraphCtrl extends MetricsPanelCtrl {
   }
 
   onInitPanelActions(actions) {
-    actions.push({ text: 'Export CSV', click: 'ctrl.exportCsv()' });
+    actions.push({ text: 'استخراج CSV', click: 'ctrl.exportCsv()' });
     actions.push({ text: 'Toggle legend', click: 'ctrl.toggleLegend()' });
   }
 
@@ -194,8 +194,8 @@ class GraphCtrl extends MetricsPanelCtrl {
       for (let series of this.seriesList) {
         if (series.isOutsideRange) {
           this.dataWarning = {
-            title: 'Data points outside time range',
-            tip: 'Can be caused by timezone mismatch or missing time filter in query',
+            title: 'داده ها خارج از بازه بازه زمانی هستند',
+            tip: 'ممکن است به دلیل تغییر موقعیت زمانی  یا نبود فیلتر زمانی در کوئری این مشکل به وجود آمده باشد.',
           };
           break;
         }

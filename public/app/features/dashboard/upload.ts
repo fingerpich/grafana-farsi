@@ -26,7 +26,7 @@ function uploadDashboardDirective(timer, alertSrv, $location) {
               dash = JSON.parse(e.target.result);
             } catch (err) {
               console.log(err);
-              scope.appEvent('alert-error', ['Import failed', 'JSON -> JS Serialization failed: ' + err.message]);
+              scope.appEvent('alert-error', ['Import failed', 'JSON -> خطا در JS Serialization: ' + err.message]);
               return;
             }
 
