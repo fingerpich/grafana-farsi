@@ -283,7 +283,7 @@ export class PanelCtrl {
 
   addToPanelList() {
     store.set(LS_PANEL_COPY_KEY, JSON.stringify(this.panel.getSaveModel()));
-    appEvents.emit('alert-success', ['Panel temporarily added to panel list']);
+    appEvents.emit('alert-success', ['پنل به صورت موقتی به لیست پنل ها اضافه شد.']);
   }
 
   replacePanel(newPanel, oldPanel) {

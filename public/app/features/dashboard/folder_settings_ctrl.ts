@@ -66,7 +66,7 @@ export class FolderSettingsCtrl {
       yesText: 'حذف',
       onConfirm: () => {
         return this.backendSrv.deleteDashboard(this.meta.slug).then(() => {
-          appEvents.emit('alert-success', ['Folder Deleted', `${this.dashboard.title} has been deleted`]);
+          appEvents.emit('alert-success', ['پوشه حذف شد', `${this.dashboard.title} حذف شده `]);
           this.$location.url('dashboards');
         });
       },

@@ -168,7 +168,7 @@ export class SettingsCtrl {
 
   deleteDashboardConfirmed() {
     this.backendSrv.deleteDashboard(this.dashboard.meta.slug).then(() => {
-      appEvents.emit('alert-success', ['Dashboard Deleted', this.dashboard.title + ' has been deleted']);
+      appEvents.emit('alert-success', ['داشبورد حذف شد', this.dashboard.title + ' حذف شده است.']);
       this.$location.url('/');
     });
   }

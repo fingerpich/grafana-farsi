@@ -86,7 +86,7 @@ export class FolderPickerCtrl {
     }
 
     return this.backendSrv.createDashboardFolder(this.newFolderName).then(result => {
-      appEvents.emit('alert-success', ['Folder Created', 'OK']);
+      appEvents.emit('alert-success', ['پوشه ایجاد شد', 'تایید']);
 
       this.closeCreateFolder();
       this.folder = {

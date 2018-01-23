@@ -34,7 +34,7 @@ function clipboardButton() {
       });
 
       scope.clipboard.on('success', () => {
-        appEvents.emit('alert-success', ['Content copied to clipboard']);
+        appEvents.emit('alert-success', ['محتویات به clipboard منتقل شد.']);
       });
 
       scope.$on('$destroy', function() {

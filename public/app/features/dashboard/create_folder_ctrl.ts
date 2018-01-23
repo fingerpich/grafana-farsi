@@ -18,7 +18,7 @@ export class CreateFolderCtrl {
     }
 
     return this.backendSrv.createDashboardFolder(this.title).then(result => {
-      appEvents.emit('alert-success', ['Folder Created', 'OK']);
+      appEvents.emit('alert-success', ['پوشه ایجاد شد', 'تایید']);
 
       var folderUrl = `dashboards/folder/${result.dashboard.id}/${result.meta.slug}`;
       this.$location.url(folderUrl);

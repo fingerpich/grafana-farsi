@@ -335,11 +335,11 @@ export class AlertTabCtrl {
 
   delete() {
     appEvents.emit('confirm-modal', {
-      title: 'Delete Alert',
-      text: 'Are you sure you want to delete this alert rule?',
-      text2: 'You need to save dashboard for the delete to take effect',
+      title: 'هشدار حذف',
+      text: 'آیا از حذف این هشدار مطمئن هستید؟',
+      text2: 'برای اعمال تغییرات شما باید داشبورد را ذخیره کنید.',
       icon: 'fa-trash',
-      yesText: 'Delete',
+      yesText: 'حذف',
       onConfirm: () => {
         delete this.panel.alert;
         this.alert = null;
@@ -384,10 +384,10 @@ export class AlertTabCtrl {
 
   clearHistory() {
     appEvents.emit('confirm-modal', {
-      title: 'Delete Alert History',
-      text: 'Are you sure you want to remove all history & annotations for this alert?',
+      title: 'حذف پیشینه هشدار',
+      text: 'آیا از حذف پیشینه هشدار و یادداشت ها مطمئن هستید؟',
       icon: 'fa-trash',
-      yesText: 'Yes',
+      yesText: 'بلی',
       onConfirm: () => {
         this.backendSrv
           .post('/api/annotations/mass-delete', {

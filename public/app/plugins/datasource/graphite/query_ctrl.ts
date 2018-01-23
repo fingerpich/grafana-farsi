@@ -94,7 +94,7 @@ export class GraphiteQueryCtrl extends QueryCtrl {
         }
       })
       .catch(err => {
-        appEvents.emit('alert-error', ['Error', err]);
+        appEvents.emit('alert-error', ['خطا', err]);
       });
   }
 

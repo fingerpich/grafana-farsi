@@ -91,7 +91,7 @@ export class QueryTroubleshooterCtrl {
     try {
       mockedData = JSON.parse(this.mockedResponse);
     } catch (err) {
-      appEvents.emit('alert-error', ['Failed to parse mocked response']);
+      appEvents.emit('alert-error', ['اشکال در بازیابی اطلاعات ماک']);
       return;
     }
 
