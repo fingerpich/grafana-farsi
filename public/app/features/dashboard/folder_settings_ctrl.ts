@@ -44,7 +44,7 @@ export class FolderSettingsCtrl {
         }
 
         appEvents.emit('dashboard-saved');
-        appEvents.emit('alert-success', ['Folder saved']);
+        appEvents.emit('alert-success', ['پوشه ذخیره شد']);
       })
       .catch(this.handleSaveFolderError);
   }
@@ -60,10 +60,10 @@ export class FolderSettingsCtrl {
     }
 
     appEvents.emit('confirm-modal', {
-      title: 'Delete',
-      text: `Do you want to delete this folder and all its dashboards?`,
+      title: 'حذف',
+      text: `آیا می‌خواهید این پوشه و تمام داشبورد های آن را حذف کنید؟`,
       icon: 'fa-trash',
-      yesText: 'Delete',
+      yesText: 'حذف',
       onConfirm: () => {
         return this.backendSrv.deleteDashboard(this.meta.slug).then(() => {
           appEvents.emit('alert-success', ['Folder Deleted', `${this.dashboard.title} has been deleted`]);
@@ -78,10 +78,10 @@ export class FolderSettingsCtrl {
       err.isHandled = true;
 
       appEvents.emit('confirm-modal', {
-        title: 'Conflict',
-        text: 'Someone else has updated this folder.',
-        text2: 'Would you still like to save this folder?',
-        yesText: 'Save & Overwrite',
+        title: 'خطا',
+        text: 'شخص دیگری پوشه را تغییر داده است.',
+        text2: 'همچنان میخواهید تغییرات خود را ذخیره کنید؟',
+        yesText: 'ذخیره و بازنویسی',
         icon: 'fa-warning',
         onConfirm: () => {
           this.backendSrv.saveDashboard(this.dashboard, { overwrite: true });
@@ -92,7 +92,7 @@ export class FolderSettingsCtrl {
     if (err.data && err.data.status === 'name-exists') {
       err.isHandled = true;
 
-      appEvents.emit('alert-error', ['A folder or dashboard with this name exists already.']);
+      appEvents.emit('alert-error', ['یک پوشه یا داشبورد با همین نام از قبل وجود دارد.']);
     }
   }
 }
