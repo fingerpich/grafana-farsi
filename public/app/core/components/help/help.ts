@@ -9,33 +9,33 @@ export class HelpCtrl {
   constructor() {
     this.tabIndex = 0;
     this.shortcuts = {
-      Global: [
+      عمومی: [
         { keys: ['g', 'h'], description: 'برو به داشبورد خانه' },
         { keys: ['g', 'p'], description: 'برو به پروفایل' },
         { keys: ['s', 'o'], description: 'بازکردن پنل جستجو' },
-        { keys: ['s', 's'], description: 'Open search with starred filter' },
-        { keys: ['s', 't'], description: 'Open search in tags view' },
+        { keys: ['s', 's'], description: 'باز کردن جستجو با فیلتر ستاره شده ها' },
+        { keys: ['s', 't'], description: 'باز کردن جستجو در محیط تگ ها' },
         { keys: ['esc'], description: 'خروج از حالت تغییر' },
       ],
-      Dashboard: [
+      داشبورد: [
         { keys: ['mod+s'], description: 'ذخیره داشبورد' },
         { keys: ['mod+h'], description: 'پنهان نمودن کنترل های سطری' },
         { keys: ['d', 'r'], description: 'Refresh تمام پنل ها' },
         { keys: ['d', 's'], description: 'تنظیمات داشبورد' },
-        { keys: ['d', 'v'], description: 'Toggle in-active / view mode' },
-        { keys: ['d', 'k'], description: 'Toggle kiosk mode (hides top nav)' },
+        { keys: ['d', 'v'], description: 'تغییر حالت بین in-active و view mode' },
+        { keys: ['d', 'k'], description: 'تغییر حالت kiosk mode بین  hides و top  و nav' },
         { keys: ['d', 'E'], description: 'باز کردن تمام سطرها' },
         { keys: ['d', 'C'], description: 'بستن تمام سطرها' },
-        { keys: ['mod+o'], description: 'Toggle shared graph crosshair' },
+        { keys: ['mod+o'], description: 'تغییر حالت shared graph crosshair' },
       ],
-      'Focused Panel': [
-        { keys: ['e'], description: 'Toggle panel edit view' },
-        { keys: ['v'], description: 'Toggle panel fullscreen view' },
-        { keys: ['p', 's'], description: 'Open Panel Share Modal' },
+      'در پنل باز شده': [
+        { keys: ['e'], description: 'تغییر حالت پنل بین edit و view' },
+        { keys: ['v'], description: 'تغییر حالت پنل بین fullscreen  و view' },
+        { keys: ['p', 's'], description: 'باز کردن پنل اشتراک گذاری' },
         { keys: ['p', 'r'], description: 'حذف پنل' },
       ],
-      'Focused Row': [{ keys: ['r', 'c'], description: 'بستن سطر' }, { keys: ['r', 'r'], description: 'حذف سطر' }],
-      'Time Range': [
+      'در سطر فعال': [{ keys: ['r', 'c'], description: 'بستن سطر' }, { keys: ['r', 'r'], description: 'حذف سطر' }],
+      'در بازه زمانی': [
         { keys: ['t', 'z'], description: 'باز کردن بازه زمانی' },
         {
           keys: ['t', '<i class="fa fa-long-arrow-left"></i>'],

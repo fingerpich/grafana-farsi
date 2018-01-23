@@ -47,7 +47,7 @@
 		<!-- empty list cta, there is always one built in query -->
 		<div ng-if="ctrl.annotations.length === 1" class="p-t-2">
 			<div class="empty-list-cta">
-				<div class="empty-list-cta__title">تاکنون هیچ یادداشتی با کویری سفارشی ایجاد نشده است.</div>
+				<div class="empty-list-cta__title">تاکنون هیچ حاشیه ای با کویری سفارشی ایجاد نشده است.</div>
 				<a ng-click="ctrl.setupNew()" class="empty-list-cta__button btn btn-xlarge btn-success">
 					<i class="gicon gicon-add-annotation"></i>
 					افزودن کویری یادداشت
@@ -55,12 +55,9 @@
 				<div class="grafana-info-box">
 					<h5>یادداشت چیست؟</h5>
 					<p>
-            یادداشت ها به منظور یکی کردن رخداد های موجود در داده ها
-					Annotations provide a way to integrate event data into your graphs. They are visualized as vertical lines and icons
-					on all graph panels. When you hover over an annotation icon you can get event text &amp; tags for the event. You can add annotation events
-					directly from grafana by holding CTRL or CMD + click on graph (or drag region). These will be stored in Grafana's annotation database.
+            حاشیه ها برای یکی کردن رخداد های موجود در گراف استفاده می‌شوند. آنها به صورت خطوطی مجزا بهمراه آیکون ها در گراف نمایش داده می‌شوند و زمانی که که ماوس را روی آیکون آنها میگیریم میتوانیم متن و تگ های آن رویداد را ببینیم. شما می‌توانید با نگه داشتن کلید CTRL یا CMD و کلیک روی گراف حاشیه ها را اضافه کنید.این حاشیه ها در دیتا بیس گرافانا ذخیره می‌شوند.
 					</p>
-					Checkout the <a class="external-link" target="_blank" href="http://docs.grafana.org/reference/annotations/">Annotations documentation</a> for more information.
+					بررسی <a class="external-link" target="_blank" href="http://docs.grafana.org/reference/annotations/">مستندات حاشیه ها</a>
 				</div>
 			</div>
 		</div>
@@ -68,14 +65,14 @@
 
 	<div class="annotations-basic-settings" ng-if="ctrl.mode === 'edit' || ctrl.mode === 'new'">
 		<div class="gf-form-group">
-			<h5 class="section-heading">General</h5>
+			<h5 class="section-heading">عمومی</h5>
 			<div class="gf-form-inline">
 				<div class="gf-form">
-					<span class="gf-form-label width-7">Name</span>
+					<span class="gf-form-label width-7">نام</span>
 					<input type="text" class="gf-form-input width-20" ng-model='ctrl.currentAnnotation.name' placeholder="name"></input>
 				</div>
 				<div class="gf-form">
-					<span class="gf-form-label width-7">Data source</span>
+					<span class="gf-form-label width-7">منبع داده</span>
 					<div class="gf-form-select-wrapper">
 						<select class="gf-form-input" ng-model="ctrl.currentAnnotation.datasource" ng-options="f.name as f.name for f in ctrl.datasources" ng-change="ctrl.datasourceChanged()"></select>
 					</div>
@@ -90,7 +87,7 @@
 				<gf-form-switch class="gf-form" label="Hidden" tooltip="Hides the annotation query toggle from showing at the top of the dashboard" checked="ctrl.currentAnnotation.hide" label-class="width-7">
 				</gf-form-switch>
 				<div class="gf-form">
-					<label class="gf-form-label width-9">Color</label>
+					<label class="gf-form-label width-9">رنگ</label>
 					<span class="gf-form-label">
 						<color-picker color="ctrl.currentAnnotation.iconColor" onChange="ctrl.onColorChange"></color-picker>
 					</span>
@@ -98,7 +95,7 @@
 			</div>
 		</div>
 
-		<h5 class="section-heading">Query</h5>
+		<h5 class="section-heading">کوئری</h5>
 		<rebuild-on-change property="ctrl.currentDatasource">
 			<plugin-component type="annotations-query-ctrl">
 			</plugin-component>
@@ -106,8 +103,8 @@
 
 		<div class="gf-form">
 			<div class="gf-form-button-row p-y-0">
-				<button ng-show="ctrl.mode === 'new'" type="button" class="btn gf-form-button btn-success" ng-click="ctrl.add()">Add</button>
-				<button ng-show="ctrl.mode === 'edit'" type="button" class="btn btn-success pull-left" ng-click="ctrl.update()">Update</button>
+				<button ng-show="ctrl.mode === 'new'" type="button" class="btn gf-form-button btn-success" ng-click="ctrl.add()">افزودن</button>
+				<button ng-show="ctrl.mode === 'edit'" type="button" class="btn btn-success pull-left" ng-click="ctrl.update()">بروزرسانی</button>
 			</div>
 		</div>
 	</div>

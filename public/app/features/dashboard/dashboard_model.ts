@@ -99,7 +99,7 @@ export class DashboardModel {
 
     this.annotations.list.unshift({
       datasource: '-- Grafana --',
-      name: 'Annotations & Alerts',
+      name: 'حاشیه ها و هشدار ها',
       type: 'dashboard',
       iconColor: DEFAULT_ANNOTATION_COLOR,
       enable: true,

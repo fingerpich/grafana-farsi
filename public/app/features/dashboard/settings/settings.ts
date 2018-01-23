@@ -38,22 +38,22 @@ export class SettingsCtrl {
 
     if (this.dashboard.meta.canEdit) {
       this.sections.push({
-        title: 'General',
+        title: 'عمومی',
         id: 'settings',
         icon: 'gicon gicon-preferences',
       });
       this.sections.push({
-        title: 'Annotations',
+        title: 'حاشیه‌ها',
         id: 'annotations',
         icon: 'gicon gicon-annotation',
       });
       this.sections.push({
-        title: 'Variables',
+        title: 'متغیرها',
         id: 'templating',
         icon: 'gicon gicon-variable',
       });
       this.sections.push({
-        title: 'Links',
+        title: 'لینک‌ ها',
         id: 'links',
         icon: 'gicon gicon-link',
       });
@@ -61,7 +61,7 @@ export class SettingsCtrl {
 
     if (this.dashboard.id && this.dashboard.meta.canSave) {
       this.sections.push({
-        title: 'Versions',
+        title: 'نسخه ها',
         id: 'versions',
         icon: 'fa fa-fw fa-history',
       });
@@ -69,14 +69,14 @@ export class SettingsCtrl {
 
     if (this.dashboard.meta.canMakeEditable) {
       this.sections.push({
-        title: 'General',
+        title: 'عمومی',
         icon: 'gicon gicon-preferences',
         id: 'make_editable',
       });
     }
 
     this.sections.push({
-      title: 'View JSON',
+      title: 'نمایش JSON',
       id: 'view_json',
       icon: 'gicon gicon-json',
     });
@@ -104,7 +104,7 @@ export class SettingsCtrl {
     const currentSection = _.find(this.sections, { id: this.viewId });
     if (!currentSection) {
       this.sections.unshift({
-        title: 'Not found',
+        title: 'یافت نشد',
         id: '404',
         icon: 'fa fa-fw fa-warning',
       });
@@ -148,17 +148,17 @@ export class SettingsCtrl {
     });
 
     if (alerts > 0) {
-      confirmText = 'DELETE';
-      text2 = `This dashboard contains ${alerts} alerts. Deleting this dashboard will also delete those alerts`;
+      confirmText = 'حذف';
+      text2 = `این داشبورد شامل  ${alerts} هشدار است. با حذف این داشبورد شما تمام این هشدارها را نیز حذف خواهید نمود.`;
     }
 
     appEvents.emit('confirm-modal', {
-      title: 'Delete',
-      text: 'Do you want to delete this dashboard?',
+      title: 'حذف',
+      text: 'آیا می‌خواهید این داشبورد را حذف نمایید؟',
       text2: text2,
       icon: 'fa-trash',
       confirmText: confirmText,
-      yesText: 'Delete',
+      yesText: 'حذف',
       onConfirm: () => {
         this.dashboard.meta.canSave = false;
         this.deleteDashboardConfirmed();
