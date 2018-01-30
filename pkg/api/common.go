@@ -11,10 +11,10 @@ import (
 
 var (
 	NotFound = func() Response {
-		return ApiError(404, "Not found", nil)
+		return ApiError(404, "یافت نشد", nil)
 	}
 	ServerError = func(err error) Response {
-		return ApiError(500, "Server error", err)
+		return ApiError(500, "خطای سرور", err)
 	}
 )
 

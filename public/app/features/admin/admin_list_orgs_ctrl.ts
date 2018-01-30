@@ -16,11 +16,11 @@ export class AdminListOrgsCtrl {
 
     $scope.deleteOrg = function(org) {
       $scope.appEvent('confirm-modal', {
-        title: 'Delete',
-        text: 'Do you want to delete organization ' + org.name + '?',
-        text2: 'All dashboards for this organization will be removed!',
+        title: 'حذف',
+        text: 'آیا میخواهید سازمان ' + org.name + ' را حذف نمایید؟',
+        text2: 'تمام داشبورد های مربوط به این سازمان حذف خواهند شد!',
         icon: 'fa-trash',
-        yesText: 'Delete',
+        yesText: 'حذف',
         onConfirm: function() {
           backendSrv.delete('/api/orgs/' + org.id).then(function() {
             $scope.getOrgs();

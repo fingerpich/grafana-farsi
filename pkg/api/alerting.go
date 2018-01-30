@@ -29,7 +29,7 @@ func GetAlertStatesForDashboard(c *middleware.Context) Response {
 	dashboardId := c.QueryInt64("dashboardId")
 
 	if dashboardId == 0 {
-		return ApiError(400, "Missing query parameter dashboardId", nil)
+		return ApiError(400, "پارامتر dashboardId ارسال نشده است", nil)
 	}
 
 	query := models.GetAlertStatesForDashboardQuery{
@@ -38,7 +38,7 @@ func GetAlertStatesForDashboard(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to fetch alert states", err)
+		return ApiError(500, "شکست در دریافت حالت هشدار", err)
 	}
 
 	return Json(200, query.Result)
@@ -59,7 +59,7 @@ func GetAlerts(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "List alerts failed", err)
+		return ApiError(500, "لیست هشدار ها به دست نیامد.", err)
 	}
 
 	dashboardIds := make([]int64, 0)
@@ -85,7 +85,7 @@ func GetAlerts(c *middleware.Context) Response {
 
 	if len(alertDTOs) > 0 {
 		if err := bus.Dispatch(&dashboardsQuery); err != nil {
-			return ApiError(500, "List alerts failed", err)
+			return ApiError(500, "لیست هشدار ها به دست نیامد", err)
 		}
 	}
 
@@ -104,7 +104,7 @@ func GetAlerts(c *middleware.Context) Response {
 // POST /api/alerts/test
 func AlertTest(c *middleware.Context, dto dtos.AlertTestCommand) Response {
 	if _, idErr := dto.Dashboard.Get("id").Int64(); idErr != nil {
-		return ApiError(400, "The dashboard needs to be saved at least once before you can test an alert rule", nil)
+		return ApiError(400, "قبل از تست هشدار نیاز است تا حداقل یک بار داشبورد را ذخیره نمایید", nil)
 	}
 
 	backendCmd := alerting.AlertTestCommand{
@@ -117,7 +117,7 @@ func AlertTest(c *middleware.Context, dto dtos.AlertTestCommand) Response {
 		if validationErr, ok := err.(alerting.ValidationError); ok {
 			return ApiError(422, validationErr.Error(), nil)
 		}
-		return ApiError(500, "Failed to test rule", err)
+		return ApiError(500, "شکست در تست نقش", err)
 	}
 
 	res := backendCmd.Result
@@ -149,7 +149,7 @@ func GetAlert(c *middleware.Context) Response {
 	query := models.GetAlertByIdQuery{Id: id}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "List alerts failed", err)
+		return ApiError(500, "لیست هشدار ها به دست نیامد", err)
 	}
 
 	return Json(200, &query.Result)
@@ -160,13 +160,13 @@ func DelAlert(c *middleware.Context) Response {
 	alertId := c.ParamsInt64(":alertId")
 
 	if alertId == 0 {
-		return ApiError(401, "Failed to parse alertid", nil)
+		return ApiError(401, "شکست در بازیابی alertid", nil)
 	}
 
 	cmd := models.DeleteAlertCommand{AlertId: alertId}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to delete alert", err)
+		return ApiError(500, "شکست در حذف هشدار", err)
 	}
 
 	var resp = map[string]interface{}{"alertId": alertId}
@@ -181,7 +181,7 @@ func GetAlertNotifications(c *middleware.Context) Response {
 	query := &models.GetAllAlertNotificationsQuery{OrgId: c.OrgId}
 
 	if err := bus.Dispatch(query); err != nil {
-		return ApiError(500, "Failed to get alert notifications", err)
+		return ApiError(500, "شکست در دریافت اعلان هشدار", err)
 	}
 
 	result := make([]*dtos.AlertNotification, 0)
@@ -207,7 +207,7 @@ func GetAlertNotificationById(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(query); err != nil {
-		return ApiError(500, "Failed to get alert notifications", err)
+		return ApiError(500, "شکست در دریافت اعلان هشدار", err)
 	}
 
 	return Json(200, query.Result)
@@ -217,7 +217,7 @@ func CreateAlertNotification(c *middleware.Context, cmd models.CreateAlertNotifi
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to create alert notification", err)
+		return ApiError(500, "شکست در ایجاد اعلان هشدار", err)
 	}
 
 	return Json(200, cmd.Result)
@@ -227,7 +227,7 @@ func UpdateAlertNotification(c *middleware.Context, cmd models.UpdateAlertNotifi
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to update alert notification", err)
+		return ApiError(500, "شکست در به روزرسانی اعلان هشدار", err)
 	}
 
 	return Json(200, cmd.Result)
@@ -240,10 +240,10 @@ func DeleteAlertNotification(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to delete alert notification", err)
+		return ApiError(500, "شکست در حذف اعلان هشدار", err)
 	}
 
-	return ApiSuccess("Notification deleted")
+	return ApiSuccess("اعلان حذف شد")
 }
 
 //POST /api/alert-notifications/test
@@ -258,10 +258,10 @@ func NotificationTest(c *middleware.Context, dto dtos.NotificationTestCommand) R
 		if err == models.ErrSmtpNotEnabled {
 			return ApiError(412, err.Error(), err)
 		}
-		return ApiError(500, "Failed to send alert notifications", err)
+		return ApiError(500, "شکست در ارسال اعلان هشدار", err)
 	}
 
-	return ApiSuccess("Test notification sent")
+	return ApiSuccess("اعلان تستی ارسال شد")
 }
 
 //POST /api/alerts/:alertId/pause
@@ -300,7 +300,7 @@ func PauseAllAlerts(c *middleware.Context, dto dtos.PauseAllAlertsCommand) Respo
 	}
 
 	if err := bus.Dispatch(&updateCmd); err != nil {
-		return ApiError(500, "Failed to pause alerts", err)
+		return ApiError(500, "شکست در متوقف نمودن هشدار", err)
 	}
 
 	var response models.AlertStateType = models.AlertStatePending

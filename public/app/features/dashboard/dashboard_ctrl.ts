@@ -39,7 +39,7 @@ export class DashboardCtrl implements PanelContainer {
     try {
       this.setupDashboardInternal(data);
     } catch (err) {
-      this.onInitFailed(err, 'Dashboard init failed', true);
+      this.onInitFailed(err, 'ایجاد داشبورد با شکست مواجه شد', true);
     }
   }
 
@@ -56,7 +56,7 @@ export class DashboardCtrl implements PanelContainer {
     this.variableSrv
       .init(dashboard)
       // template values failes are non fatal
-      .catch(this.onInitFailed.bind(this, 'Templating init failed', false))
+      .catch(this.onInitFailed.bind(this, 'ایجاد template با شکست مواجه شد', false))
       // continue
       .finally(() => {
         this.dashboard = dashboard;
@@ -75,7 +75,7 @@ export class DashboardCtrl implements PanelContainer {
 
         this.$scope.appEvent('dashboard-initialized', dashboard);
       })
-      .catch(this.onInitFailed.bind(this, 'Dashboard init failed', true));
+      .catch(this.onInitFailed.bind(this, 'ایجاد داشبورد با شکست مواجه شد', true));
   }
 
   onInitFailed(msg, fatal, err) {
@@ -92,7 +92,7 @@ export class DashboardCtrl implements PanelContainer {
     // protect against  recursive fallbacks
     if (fatal && !this.loadedFallbackDashboard) {
       this.loadedFallbackDashboard = true;
-      this.setupDashboard({ dashboard: { title: 'Dashboard Init failed' } });
+      this.setupDashboard({ dashboard: { title: 'ایجاد داشبورد با شکست مواجه شد' } });
     }
   }
 

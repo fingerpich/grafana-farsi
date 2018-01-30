@@ -27,7 +27,7 @@ export class LoginCtrl {
       $scope.$watch('loginMode', $scope.loginModeChanged);
 
       if (config.loginError) {
-        $scope.appEvent('alert-warning', ['Login Failed', config.loginError]);
+        $scope.appEvent('alert-warning', ['ورود با شکست مواجه شد', config.loginError]);
       }
     };
 

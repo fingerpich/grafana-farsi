@@ -24,10 +24,10 @@ export class DashboardSrv {
       err.isHandled = true;
 
       this.$rootScope.appEvent('confirm-modal', {
-        title: 'Conflict',
-        text: 'Someone else has updated this dashboard.',
-        text2: 'Would you still like to save this dashboard?',
-        yesText: 'Save & Overwrite',
+        title: 'خطا',
+        text: 'شخص دیگری داشبورد را تغییر داده است',
+        text2: 'همچنان می‌خواهید داشبورد را ذخیره نمایید؟',
+        yesText: 'ذخیره و در نظر نگرفتن تغییرات',
         icon: 'fa-warning',
         onConfirm: () => {
           this.save(clone, { overwrite: true });

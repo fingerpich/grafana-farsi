@@ -29,7 +29,7 @@ func GetAnnotations(c *middleware.Context) Response {
 
 	items, err := repo.Find(query)
 	if err != nil {
-		return ApiError(500, "Failed to get annotations", err)
+		return ApiError(500, "شکست در دریافت یادداشت", err)
 	}
 
 	for _, item := range items {
@@ -55,7 +55,7 @@ func PostAnnotation(c *middleware.Context, cmd dtos.PostAnnotationsCmd) Response
 
 	if cmd.Text == "" {
 		err := &CreateAnnotationError{"text field should not be empty"}
-		return ApiError(500, "Failed to save annotation", err)
+		return ApiError(500, "شکست در ذخیره یادداشت", err)
 	}
 
 	item := annotations.Item{
@@ -74,7 +74,7 @@ func PostAnnotation(c *middleware.Context, cmd dtos.PostAnnotationsCmd) Response
 	}
 
 	if err := repo.Save(&item); err != nil {
-		return ApiError(500, "Failed to save annotation", err)
+		return ApiError(500, "شکست در ذخیره یادداشت", err)
 	}
 
 	startID := item.Id
@@ -88,25 +88,25 @@ func PostAnnotation(c *middleware.Context, cmd dtos.PostAnnotationsCmd) Response
 		}
 
 		if err := repo.Update(&item); err != nil {
-			return ApiError(500, "Failed set regionId on annotation", err)
+			return ApiError(500, "شکست در ذخیره مشخصه منطقه یادداشت", err)
 		}
 
 		item.Id = 0
 		item.Epoch = cmd.TimeEnd / 1000
 
 		if err := repo.Save(&item); err != nil {
-			return ApiError(500, "Failed save annotation for region end time", err)
+			return ApiError(500, "شکست در ذخیره یادداشت برای این منطقه و زمان", err)
 		}
 
 		return Json(200, util.DynMap{
-			"message": "Annotation added",
+			"message": "یادداشت اضافه شد",
 			"id":      startID,
 			"endId":   item.Id,
 		})
 	}
 
 	return Json(200, util.DynMap{
-		"message": "Annotation added",
+		"message": "یادداشت اضافه شد",
 		"id":      startID,
 	})
 }
@@ -124,7 +124,7 @@ func PostGraphiteAnnotation(c *middleware.Context, cmd dtos.PostGraphiteAnnotati
 
 	if cmd.What == "" {
 		err := &CreateAnnotationError{"what field should not be empty"}
-		return ApiError(500, "Failed to save Graphite annotation", err)
+		return ApiError(500, "شکست در ذخیره یادداشت Graphite", err)
 	}
 
 	if cmd.When == 0 {
@@ -147,12 +147,12 @@ func PostGraphiteAnnotation(c *middleware.Context, cmd dtos.PostGraphiteAnnotati
 				tagsArray = append(tagsArray, tagStr)
 			} else {
 				err := &CreateAnnotationError{"tag should be a string"}
-				return ApiError(500, "Failed to save Graphite annotation", err)
+				return ApiError(500, "شکست در ذخیره یادداشت Graphite", err)
 			}
 		}
 	default:
 		err := &CreateAnnotationError{"unsupported tags format"}
-		return ApiError(500, "Failed to save Graphite annotation", err)
+		return ApiError(500, "شکست در ذخیره یادداشت Graphite", err)
 	}
 
 	item := annotations.Item{
@@ -164,7 +164,7 @@ func PostGraphiteAnnotation(c *middleware.Context, cmd dtos.PostGraphiteAnnotati
 	}
 
 	if err := repo.Save(&item); err != nil {
-		return ApiError(500, "Failed to save Graphite annotation", err)
+		return ApiError(500, "شکست در ذخیره یادداشت Graphite", err)
 	}
 
 	return Json(200, util.DynMap{
@@ -188,7 +188,7 @@ func UpdateAnnotation(c *middleware.Context, cmd dtos.UpdateAnnotationsCmd) Resp
 	}
 
 	if err := repo.Update(&item); err != nil {
-		return ApiError(500, "Failed to update annotation", err)
+		return ApiError(500, "شکست در بروزرسانی یادداشت", err)
 	}
 
 	if cmd.IsRegion {
@@ -201,7 +201,7 @@ func UpdateAnnotation(c *middleware.Context, cmd dtos.UpdateAnnotationsCmd) Resp
 		itemRight.Id = 0
 
 		if err := repo.Update(&itemRight); err != nil {
-			return ApiError(500, "Failed to update annotation for region end time", err)
+			return ApiError(500, "شکست در بروزرسانی یادداشت برای این منطقه و زمان", err)
 		}
 	}
 
@@ -218,7 +218,7 @@ func DeleteAnnotations(c *middleware.Context, cmd dtos.DeleteAnnotationsCmd) Res
 	})
 
 	if err != nil {
-		return ApiError(500, "Failed to delete annotations", err)
+		return ApiError(500, "شکست در حذف یادداشت", err)
 	}
 
 	return ApiSuccess("Annotations deleted")
@@ -233,10 +233,10 @@ func DeleteAnnotationById(c *middleware.Context) Response {
 	})
 
 	if err != nil {
-		return ApiError(500, "Failed to delete annotation", err)
+		return ApiError(500, "شکست در حذف یادداشت", err)
 	}
 
-	return ApiSuccess("Annotation deleted")
+	return ApiSuccess("یادداشت حذف شد")
 }
 
 func DeleteAnnotationRegion(c *middleware.Context) Response {
@@ -248,8 +248,8 @@ func DeleteAnnotationRegion(c *middleware.Context) Response {
 	})
 
 	if err != nil {
-		return ApiError(500, "Failed to delete annotation region", err)
+		return ApiError(500, "شکست در ذخیره منطقه یادداشت", err)
 	}
 
-	return ApiSuccess("Annotation region deleted")
+	return ApiSuccess("یادداشت منطقه حذف شد")
 }

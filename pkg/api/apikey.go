@@ -12,7 +12,7 @@ func GetApiKeys(c *middleware.Context) Response {
 	query := m.GetApiKeysQuery{OrgId: c.OrgId}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to list api keys", err)
+		return ApiError(500, "شکست در لیست کردن کلید های API", err)
 	}
 
 	result := make([]*m.ApiKeyDTO, len(query.Result))
@@ -34,15 +34,15 @@ func DeleteApiKey(c *middleware.Context) Response {
 
 	err := bus.Dispatch(cmd)
 	if err != nil {
-		return ApiError(500, "Failed to delete API key", err)
+		return ApiError(500, "شکست در حذف کلید API", err)
 	}
 
-	return ApiSuccess("API key deleted")
+	return ApiSuccess("کلید API حذف شد.")
 }
 
 func AddApiKey(c *middleware.Context, cmd m.AddApiKeyCommand) Response {
 	if !cmd.Role.IsValid() {
-		return ApiError(400, "Invalid role specified", nil)
+		return ApiError(400, "نقش مشخص شده مجاز نمی‌باشد", nil)
 	}
 
 	cmd.OrgId = c.OrgId
@@ -51,7 +51,7 @@ func AddApiKey(c *middleware.Context, cmd m.AddApiKeyCommand) Response {
 	cmd.Key = newKeyInfo.HashedKey
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to add API key", err)
+		return ApiError(500, "شکست در اضافه کردن کلید API", err)
 	}
 
 	result := &dtos.NewApiKeyResult{

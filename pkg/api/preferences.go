@@ -59,7 +59,7 @@ func updatePreferencesFor(orgId int64, userId int64, dtoCmd *dtos.UpdatePrefsCmd
 		return ApiError(500, "Failed to save preferences", err)
 	}
 
-	return ApiSuccess("Preferences updated")
+	return ApiSuccess("ترجیحات بروزرسانی شد")
 }
 
 // GET /api/org/preferences
