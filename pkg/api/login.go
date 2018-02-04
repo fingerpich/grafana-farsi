@@ -108,10 +108,10 @@ func LoginPost(c *middleware.Context, cmd dtos.LoginCommand) Response {
 
 	if err := bus.Dispatch(&authQuery); err != nil {
 		if err == login.ErrInvalidCredentials {
-			return ApiError(401, "Invalid username or password", err)
+			return ApiError(401, "نام کاربری یا رمزعبور اشتباه است", err)
 		}
 
-		return ApiError(500, "Error while trying to authenticate user", err)
+		return ApiError(500, "خطا در شناسایی کاربر", err)
 	}
 
 	user := authQuery.User

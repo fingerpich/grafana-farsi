@@ -28,7 +28,7 @@ func QueryMetrics(c *middleware.Context, reqDto dtos.MetricRequest) Response {
 
 	dsQuery := models.GetDataSourceByIdQuery{Id: dsId, OrgId: c.OrgId}
 	if err := bus.Dispatch(&dsQuery); err != nil {
-		return ApiError(500, "failed to fetch data source", err)
+		return ApiError(500, "خطا در دریافت منبع داده", err)
 	}
 
 	request := &tsdb.TsdbQuery{TimeRange: timeRange}
@@ -85,7 +85,7 @@ func GenerateError(c *middleware.Context) Response {
 // GET /api/tsdb/testdata/gensql
 func GenerateSqlTestData(c *middleware.Context) Response {
 	if err := bus.Dispatch(&models.InsertSqlTestDataCommand{}); err != nil {
-		return ApiError(500, "Failed to insert test data", err)
+		return ApiError(500, "خطا در وارد کردن داده های تستی", err)
 	}
 
 	return Json(200, &util.DynMap{"message": "OK"})

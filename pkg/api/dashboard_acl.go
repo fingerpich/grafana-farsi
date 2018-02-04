@@ -21,7 +21,7 @@ func GetDashboardAclList(c *middleware.Context) Response {
 
 	acl, err := guardian.GetAcl()
 	if err != nil {
-		return ApiError(500, "Failed to get dashboard acl", err)
+		return ApiError(500, "خطا در دریافت acl داشبورد", err)
 	}
 
 	return Json(200, acl)
@@ -55,10 +55,10 @@ func UpdateDashboardAcl(c *middleware.Context, apiCmd dtos.UpdateDashboardAclCom
 		if err == m.ErrDashboardAclInfoMissing || err == m.ErrDashboardPermissionDashboardEmpty {
 			return ApiError(409, err.Error(), err)
 		}
-		return ApiError(500, "Failed to create permission", err)
+		return ApiError(500, "خطا در ایجاد مجوز", err)
 	}
 
-	return ApiSuccess("Dashboard acl updated")
+	return ApiSuccess("acl داشبورد به روزرسانی شد")
 }
 
 func DeleteDashboardAcl(c *middleware.Context) Response {
@@ -72,7 +72,7 @@ func DeleteDashboardAcl(c *middleware.Context) Response {
 
 	cmd := m.RemoveDashboardAclCommand{OrgId: c.OrgId, AclId: aclId}
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to delete permission for user", err)
+		return ApiError(500, "خطا در حذف مجوز برای کاربر", err)
 	}
 
 	return Json(200, "")

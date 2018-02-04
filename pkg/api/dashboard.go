@@ -37,9 +37,9 @@ func isDashboardStarredByUser(c *middleware.Context, dashId int64) (bool, error)
 
 func dashboardGuardianResponse(err error) Response {
 	if err != nil {
-		return ApiError(500, "Error while checking dashboard permissions", err)
+		return ApiError(500, "خطا در بررسی دسترسی", err)
 	} else {
-		return ApiError(403, "Access denied to this dashboard", nil)
+		return ApiError(403, "عدم دسترسی به این داشبورد", nil)
 	}
 }
 
@@ -61,7 +61,7 @@ func GetDashboard(c *middleware.Context) Response {
 
 	isStarred, err := isDashboardStarredByUser(c, dash.Id)
 	if err != nil {
-		return ApiError(500, "Error while checking if dashboard was starred by user", err)
+		return ApiError(500, "خطا در بررسی داشبورد های ستاره شده", err)
 	}
 
 	// Finding creator and last updater of the dashboard
@@ -96,7 +96,7 @@ func GetDashboard(c *middleware.Context) Response {
 	if dash.FolderId > 0 {
 		query := m.GetDashboardQuery{Id: dash.FolderId, OrgId: c.OrgId}
 		if err := bus.Dispatch(&query); err != nil {
-			return ApiError(500, "Dashboard folder could not be read", err)
+			return ApiError(500, "پوشه داشبورد خوانده نمی‌شود", err)
 		}
 		meta.FolderTitle = query.Result.Title
 	}
@@ -127,7 +127,7 @@ func getUserLogin(userId int64) string {
 func getDashboardHelper(orgId int64, slug string, id int64) (*m.Dashboard, Response) {
 	query := m.GetDashboardQuery{Slug: slug, Id: id, OrgId: orgId}
 	if err := bus.Dispatch(&query); err != nil {
-		return nil, ApiError(404, "Dashboard not found", err)
+		return nil, ApiError(404, "داشبورد یافت نشد", err)
 	}
 	return query.Result, nil
 }
@@ -145,7 +145,7 @@ func DeleteDashboard(c *middleware.Context) Response {
 
 	cmd := m.DeleteDashboardCommand{OrgId: c.OrgId, Id: dash.Id}
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to delete dashboard", err)
+		return ApiError(500, "خطا در حذف داشبورد", err)
 	}
 
 	var resp = map[string]interface{}{"title": dash.Title}
@@ -175,7 +175,7 @@ func PostDashboard(c *middleware.Context, cmd m.SaveDashboardCommand) Response {
 	if dash.Id == 0 {
 		limitReached, err := middleware.QuotaReached(c, "dashboard")
 		if err != nil {
-			return ApiError(500, "failed to get quota", err)
+			return ApiError(500, "خطا در دریافت Quota", err)
 		}
 		if limitReached {
 			return ApiError(403, "Quota reached", nil)
@@ -197,7 +197,7 @@ func PostDashboard(c *middleware.Context, cmd m.SaveDashboardCommand) Response {
 	}
 
 	if err == m.ErrDashboardContainsInvalidAlertData {
-		return ApiError(500, "Invalid alert data. Cannot save dashboard", err)
+		return ApiError(500, "داده های هشدار اشتباه میباشد و داشبورد ذخیره نمیشود", err)
 	}
 
 	if err != nil {
@@ -218,11 +218,11 @@ func PostDashboard(c *middleware.Context, cmd m.SaveDashboardCommand) Response {
 		if err == m.ErrDashboardNotFound {
 			return Json(404, util.DynMap{"status": "not-found", "message": err.Error()})
 		}
-		return ApiError(500, "Failed to save dashboard", err)
+		return ApiError(500, "خطا در ذخیره داشبورد", err)
 	}
 
 	if err == m.ErrDashboardFailedToUpdateAlertData {
-		return ApiError(500, "Invalid alert data. Cannot save dashboard", err)
+		return ApiError(500, "داده های هشدار معتبر نیستند و داشبورد ذخیره نمیشود", err)
 	}
 
 	c.TimeRequest(metrics.M_Api_Dashboard_Save)
@@ -232,7 +232,7 @@ func PostDashboard(c *middleware.Context, cmd m.SaveDashboardCommand) Response {
 func GetHomeDashboard(c *middleware.Context) Response {
 	prefsQuery := m.GetPreferencesWithDefaultsQuery{OrgId: c.OrgId, UserId: c.UserId}
 	if err := bus.Dispatch(&prefsQuery); err != nil {
-		return ApiError(500, "Failed to get preferences", err)
+		return ApiError(500, "خطا در دریافت ترجیحات", err)
 	}
 
 	if prefsQuery.Result.HomeDashboardId != 0 {
@@ -249,7 +249,7 @@ func GetHomeDashboard(c *middleware.Context) Response {
 	filePath := path.Join(setting.StaticRootPath, "dashboards/home.json")
 	file, err := os.Open(filePath)
 	if err != nil {
-		return ApiError(500, "Failed to load home dashboard", err)
+		return ApiError(500, "خطا در دریافت داشبورد خانه", err)
 	}
 
 	dash := dtos.DashboardFullWithMeta{}
@@ -259,7 +259,7 @@ func GetHomeDashboard(c *middleware.Context) Response {
 
 	jsonParser := json.NewDecoder(file)
 	if err := jsonParser.Decode(&dash.Dashboard); err != nil {
-		return ApiError(500, "Failed to load home dashboard", err)
+		return ApiError(500, "خطا در دریافت داشبورد خانه", err)
 	}
 
 	if c.HasUserRole(m.ROLE_ADMIN) && !c.HasHelpFlag(m.HelpFlagGettingStartedPanelDismissed) {
@@ -304,7 +304,7 @@ func GetDashboardVersions(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(404, fmt.Sprintf("No versions found for dashboardId %d", dashId), err)
+		return ApiError(404, fmt.Sprintf("نسخه ای برای داشبورد  %d یافت نشد", dashId), err)
 	}
 
 	for _, version := range query.Result {
@@ -342,7 +342,7 @@ func GetDashboardVersion(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, fmt.Sprintf("Dashboard version %d not found for dashboardId %d", query.Version, dashId), err)
+		return ApiError(500, fmt.Sprintf("داشبورد با نسخه  %d برای آی دی %d یافت نشد", query.Version, dashId), err)
 	}
 
 	creator := "Anonymous"
@@ -379,9 +379,9 @@ func CalculateDashboardDiff(c *middleware.Context, apiOptions dtos.CalculateDiff
 	result, err := dashdiffs.CalculateDiff(&options)
 	if err != nil {
 		if err == m.ErrDashboardVersionNotFound {
-			return ApiError(404, "Dashboard version not found", err)
+			return ApiError(404, "نسخه داشبورد یافت نشد", err)
 		}
-		return ApiError(500, "Unable to compute diff", err)
+		return ApiError(500, "خطا در پیدا کردن diff", err)
 	}
 
 	if options.DiffType == dashdiffs.DiffDelta {
@@ -405,7 +405,7 @@ func RestoreDashboardVersion(c *middleware.Context, apiCmd dtos.RestoreDashboard
 
 	versionQuery := m.GetDashboardVersionQuery{DashboardId: dash.Id, Version: apiCmd.Version, OrgId: c.OrgId}
 	if err := bus.Dispatch(&versionQuery); err != nil {
-		return ApiError(404, "Dashboard version not found", nil)
+		return ApiError(404, "نسخه داشبورد یافت نشد", nil)
 	}
 
 	version := versionQuery.Result

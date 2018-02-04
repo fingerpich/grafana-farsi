@@ -118,7 +118,7 @@ func SearchDashboardSnapshots(c *middleware.Context) Response {
 
 	err := bus.Dispatch(&searchQuery)
 	if err != nil {
-		return ApiError(500, "Search failed", err)
+		return ApiError(500, "جستجو با خطا مواجه شد", err)
 	}
 
 	dtos := make([]*m.DashboardSnapshotDTO, len(searchQuery.Result))

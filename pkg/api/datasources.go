@@ -15,7 +15,7 @@ func GetDataSources(c *middleware.Context) Response {
 	query := m.GetDataSourcesQuery{OrgId: c.OrgId}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to query datasources", err)
+		return ApiError(500, "خطا در query datasources", err)
 	}
 
 	result := make(dtos.DataSourceList, 0)
@@ -58,9 +58,9 @@ func GetDataSourceById(c *middleware.Context) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrDataSourceNotFound {
-			return ApiError(404, "Data source not found", nil)
+			return ApiError(404, "Data source یافت نشد", nil)
 		}
-		return ApiError(500, "Failed to query datasources", err)
+		return ApiError(500, "خطا در query datasources", err)
 	}
 
 	ds := query.Result
@@ -78,7 +78,7 @@ func DeleteDataSourceById(c *middleware.Context) Response {
 
 	ds, err := getRawDataSourceById(id, c.OrgId)
 	if err != nil {
-		return ApiError(400, "Failed to delete datasource", nil)
+		return ApiError(400, "خطا در حذف datasource", nil)
 	}
 
 	if ds.ReadOnly {
@@ -89,35 +89,35 @@ func DeleteDataSourceById(c *middleware.Context) Response {
 
 	err = bus.Dispatch(cmd)
 	if err != nil {
-		return ApiError(500, "Failed to delete datasource", err)
+		return ApiError(500, "خطا در حذف datasource", err)
 	}
 
-	return ApiSuccess("Data source deleted")
+	return ApiSuccess("Data source حذف شد")
 }
 
 func DeleteDataSourceByName(c *middleware.Context) Response {
 	name := c.Params(":name")
 
 	if name == "" {
-		return ApiError(400, "Missing valid datasource name", nil)
+		return ApiError(400, "نام منبع داده درستی وارد نشده است", nil)
 	}
 
 	getCmd := &m.GetDataSourceByNameQuery{Name: name, OrgId: c.OrgId}
 	if err := bus.Dispatch(getCmd); err != nil {
-		return ApiError(500, "Failed to delete datasource", err)
+		return ApiError(500, "خطا در حذف منبع داده", err)
 	}
 
 	if getCmd.Result.ReadOnly {
-		return ApiError(403, "Cannot delete read-only data source", nil)
+		return ApiError(403, "منبع داده read-only حذف نمی‌شود", nil)
 	}
 
 	cmd := &m.DeleteDataSourceByNameCommand{Name: name, OrgId: c.OrgId}
 	err := bus.Dispatch(cmd)
 	if err != nil {
-		return ApiError(500, "Failed to delete datasource", err)
+		return ApiError(500, "خطا در حذف منبع داده", err)
 	}
 
-	return ApiSuccess("Data source deleted")
+	return ApiSuccess("منبع داده حذف شد")
 }
 
 func AddDataSource(c *middleware.Context, cmd m.AddDataSourceCommand) Response {
@@ -128,7 +128,7 @@ func AddDataSource(c *middleware.Context, cmd m.AddDataSourceCommand) Response {
 			return ApiError(409, err.Error(), err)
 		}
 
-		return ApiError(500, "Failed to add datasource", err)
+		return ApiError(500, "خطا در افزودن منبع داده", err)
 	}
 
 	ds := convertModelToDtos(cmd.Result)
@@ -146,20 +146,20 @@ func UpdateDataSource(c *middleware.Context, cmd m.UpdateDataSourceCommand) Resp
 
 	err := fillWithSecureJsonData(&cmd)
 	if err != nil {
-		return ApiError(500, "Failed to update datasource", err)
+		return ApiError(500, "خطا در بروزرسانی منبع داده", err)
 	}
 
 	err = bus.Dispatch(&cmd)
 	if err != nil {
 		if err == m.ErrDataSourceUpdatingOldVersion {
-			return ApiError(500, "Failed to update datasource. Reload new version and try again", err)
+			return ApiError(500, "خطا در افزودن منبع داده . نسخه جدید را دوباره بارگزاری کنید و دوباره امتحان کنید", err)
 		} else {
-			return ApiError(500, "Failed to update datasource", err)
+			return ApiError(500, "خطا در بروزرسانی منبع داده", err)
 		}
 	}
 	ds := convertModelToDtos(cmd.Result)
 	return Json(200, util.DynMap{
-		"message":    "Datasource updated",
+		"message":    "منبع داده بروزرسانی شد",
 		"id":         cmd.Id,
 		"name":       cmd.Name,
 		"datasource": ds,
@@ -210,7 +210,7 @@ func GetDataSourceByName(c *middleware.Context) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrDataSourceNotFound {
-			return ApiError(404, "Data source not found", nil)
+			return ApiError(404, "منبع داده یافت نشد", nil)
 		}
 		return ApiError(500, "Failed to query datasources", err)
 	}
@@ -226,7 +226,7 @@ func GetDataSourceIdByName(c *middleware.Context) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrDataSourceNotFound {
-			return ApiError(404, "Data source not found", nil)
+			return ApiError(404, "منبع داده یافت نشد", nil)
 		}
 		return ApiError(500, "Failed to query datasources", err)
 	}

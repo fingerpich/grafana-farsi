@@ -25,10 +25,10 @@ func GetOrgByName(c *middleware.Context) Response {
 	query := m.GetOrgByNameQuery{Name: c.Params(":name")}
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrOrgNotFound {
-			return ApiError(404, "Organization not found", err)
+			return ApiError(404, "سازمانی یافت نشد", err)
 		}
 
-		return ApiError(500, "Failed to get organization", err)
+		return ApiError(500, "خطا در دریافت سازمان", err)
 	}
 	org := query.Result
 	result := m.OrgDetailsDTO{
@@ -52,10 +52,10 @@ func getOrgHelper(orgId int64) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrOrgNotFound {
-			return ApiError(404, "Organization not found", err)
+			return ApiError(404, "سازمان یافت نشد", err)
 		}
 
-		return ApiError(500, "Failed to get organization", err)
+		return ApiError(500, "سازمانی یافت نشد", err)
 	}
 
 	org := query.Result
@@ -78,15 +78,15 @@ func getOrgHelper(orgId int64) Response {
 // POST /api/orgs
 func CreateOrg(c *middleware.Context, cmd m.CreateOrgCommand) Response {
 	if !c.IsSignedIn || (!setting.AllowUserOrgCreate && !c.IsGrafanaAdmin) {
-		return ApiError(403, "Access denied", nil)
+		return ApiError(403, "عدم دسترسی", nil)
 	}
 
 	cmd.UserId = c.UserId
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrOrgNameTaken {
-			return ApiError(409, "Organization name taken", err)
+			return ApiError(409, "نام سازمان از قبل استفاده شده است", err)
 		}
-		return ApiError(500, "Failed to create organization", err)
+		return ApiError(500, "خطا در ایجاد سازمان", err)
 	}
 
 	metrics.M_Api_Org_Create.Inc()
@@ -111,9 +111,9 @@ func updateOrgHelper(form dtos.UpdateOrgForm, orgId int64) Response {
 	cmd := m.UpdateOrgCommand{Name: form.Name, OrgId: orgId}
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrOrgNameTaken {
-			return ApiError(400, "Organization name taken", err)
+			return ApiError(400, "نام سازمان از قبل استفاده شده است", err)
 		}
-		return ApiError(500, "Failed to update organization", err)
+		return ApiError(500, "خطا در بروزرسانی سازمان", err)
 	}
 
 	return ApiSuccess("Organization updated")
@@ -143,7 +143,7 @@ func updateOrgAddressHelper(form dtos.UpdateOrgAddressForm, orgId int64) Respons
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to update org address", err)
+		return ApiError(500, "خطا در ایجاد آدرس سازمان", err)
 	}
 
 	return ApiSuccess("Address updated")
@@ -153,11 +153,11 @@ func updateOrgAddressHelper(form dtos.UpdateOrgAddressForm, orgId int64) Respons
 func DeleteOrgById(c *middleware.Context) Response {
 	if err := bus.Dispatch(&m.DeleteOrgCommand{Id: c.ParamsInt64(":orgId")}); err != nil {
 		if err == m.ErrOrgNotFound {
-			return ApiError(404, "Failed to delete organization. ID not found", nil)
+			return ApiError(404, "خطا در حذف سازمان", nil)
 		}
-		return ApiError(500, "Failed to update organization", err)
+		return ApiError(500, "خطا در بروزرسانی سازمان", err)
 	}
-	return ApiSuccess("Organization deleted")
+	return ApiSuccess("سازمان حذف شد")
 }
 
 func SearchOrgs(c *middleware.Context) Response {
@@ -169,7 +169,7 @@ func SearchOrgs(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to search orgs", err)
+		return ApiError(500, "خطا در جستجوی سازمان ها", err)
 	}
 
 	return Json(200, query.Result)

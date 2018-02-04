@@ -87,9 +87,9 @@ func ApiError(status int, message string, err error) *NormalResponse {
 
 	switch status {
 	case 404:
-		data["message"] = "Not Found"
+		data["message"] = "یافت نشد"
 	case 500:
-		data["message"] = "Internal Server Error"
+		data["message"] = "خطای داخلی سرور"
 	}
 
 	if message != "" {
