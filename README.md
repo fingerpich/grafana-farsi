@@ -1,16 +1,13 @@
-[Grafana](https://grafana.com) [![Circle CI](https://circleci.com/gh/grafana/grafana.svg?style=svg)](https://circleci.com/gh/grafana/grafana) [![Go Report Card](https://goreportcard.com/badge/github.com/grafana/grafana)](https://goreportcard.com/report/github.com/grafana/grafana) [![codecov](https://codecov.io/gh/grafana/grafana/branch/master/graph/badge.svg)](https://codecov.io/gh/grafana/grafana)
+[Grafana Farsi](https://github.com/fingerpich/grafana-farsi) [![Circle CI](https://circleci.com/gh/grafana/grafana.svg?style=svg)](https://circleci.com/gh/grafana/grafana) [![Go Report Card](https://goreportcard.com/badge/github.com/grafana/grafana)](https://goreportcard.com/report/github.com/grafana/grafana) [![codecov](https://codecov.io/gh/grafana/grafana/branch/master/graph/badge.svg)](https://codecov.io/gh/grafana/grafana)
 ================
 [Website](https://grafana.com) |
 [Twitter](https://twitter.com/grafana) |
 [Community & Forum](https://community.grafana.com)
 
-Grafana is an open source, feature rich metrics dashboard and graph editor for
+[Grafana](https://Grafana.com) is an open source, feature rich metrics dashboard and graph editor for
 Graphite, Elasticsearch, OpenTSDB, Prometheus and InfluxDB.
 
 ![](http://docs.grafana.org/assets/img/features/dashboard_ex1.png)
-
-## Grafana v5 Alpha Preview
-Grafana master is now v5.0 alpha. This is going to be the biggest and most foundational release Grafana has ever had, coming with a ton of UX improvements, a new dashboard grid engine, dashboard folders, user teams and permissions. Checkout out this [video preview](https://www.youtube.com/watch?v=BC_YRNpqj5k) of Grafana v5.
 
 ## Installation
 Head to [docs.grafana.org](http://docs.grafana.org/installation/) and [download](https://grafana.com/get)
@@ -32,8 +29,8 @@ the latest master builds [here](https://grafana.com/grafana/download)
 
 ### Building the backend
 ```bash
-go get github.com/grafana/grafana
-cd ~/go/src/github.com/grafana/grafana
+go get github.com/fingerpich/grafana-farsi
+cd $GOPATH/src/github.com/fingerpich/grafana-farsi
 go run build.go setup
 go run build.go build
 ```
@@ -97,12 +94,6 @@ Writing & watching frontend tests (we have two test runners)
 - karma + mocha is used for testing angularjs components. We do want to migrate these test to jest over time (if possible).
   - Start watcher: `npm run karma`
   - Karma+Mocha runs all files that end with the name "_specs.ts".
-
-## why we didn't make grafana_rtl.scss
-
-because it has two theme and overwriting css rules makes it harder
-and also we didn't need it and also when updates comes its better to see the conflicts and 
-resolve them by the new changes.
 
 ## Contribute
 
