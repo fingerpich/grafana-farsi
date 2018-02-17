@@ -34,7 +34,7 @@ func UpdateOrgQuota(c *middleware.Context, cmd m.UpdateOrgQuotaCmd) Response {
 	if err := bus.Dispatch(&cmd); err != nil {
 		return ApiError(500, "Failed to update org quotas", err)
 	}
-	return ApiSuccess("Organization quota updated")
+	return ApiSuccess("سهمیه سازمان بروزرسانی شد")
 }
 
 func GetUserQuotas(c *middleware.Context) Response {
@@ -64,5 +64,5 @@ func UpdateUserQuota(c *middleware.Context, cmd m.UpdateUserQuotaCmd) Response {
 	if err := bus.Dispatch(&cmd); err != nil {
 		return ApiError(500, "Failed to update org quotas", err)
 	}
-	return ApiSuccess("Organization quota updated")
+	return ApiSuccess("سهمیه سازمان بروزرسانی شد")
 }

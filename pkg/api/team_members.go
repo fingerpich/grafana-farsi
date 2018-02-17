@@ -45,5 +45,5 @@ func RemoveTeamMember(c *middleware.Context) Response {
 	if err := bus.Dispatch(&m.RemoveTeamMemberCommand{TeamId: c.ParamsInt64(":teamId"), UserId: c.ParamsInt64(":userId")}); err != nil {
 		return ApiError(500, "Failed to remove Member from Team", err)
 	}
-	return ApiSuccess("Team Member removed")
+	return ApiSuccess("اعضای تیم حذف شدند")
 }

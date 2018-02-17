@@ -89,7 +89,7 @@ func UpdateUserActiveOrg(c *middleware.Context) Response {
 		return ApiError(500, "Failed to change active organization", err)
 	}
 
-	return ApiSuccess("Active organization changed")
+	return ApiSuccess("سازمان فعال تغییر یافت")
 }
 
 func handleUpdateUser(cmd m.UpdateUserCommand) Response {
@@ -104,7 +104,7 @@ func handleUpdateUser(cmd m.UpdateUserCommand) Response {
 		return ApiError(500, "Failed to update user", err)
 	}
 
-	return ApiSuccess("User updated")
+	return ApiSuccess("کاربر بروزرسانی شد")
 }
 
 // GET /api/user/orgs
@@ -159,7 +159,7 @@ func UserSetUsingOrg(c *middleware.Context) Response {
 		return ApiError(500, "Failed to change active organization", err)
 	}
 
-	return ApiSuccess("Active organization changed")
+	return ApiSuccess("سازمان فعال تغییر یافت")
 }
 
 // GET /profile/switch-org/:id
@@ -207,7 +207,7 @@ func ChangeUserPassword(c *middleware.Context, cmd m.ChangeUserPasswordCommand) 
 		return ApiError(500, "Failed to change user password", err)
 	}
 
-	return ApiSuccess("User password changed")
+	return ApiSuccess("رمز عبور تغییر یافت")
 }
 
 // GET /api/users

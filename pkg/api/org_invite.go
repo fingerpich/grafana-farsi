@@ -83,10 +83,10 @@ func AddOrgInvite(c *middleware.Context, inviteDto dtos.AddInviteForm) Response 
 			return ApiError(500, "Failed to update invite with email sent info", err)
 		}
 
-		return ApiSuccess(fmt.Sprintf("Sent invite to %s", inviteDto.LoginOrEmail))
+		return ApiSuccess(fmt.Sprintf("دعوتنامه ارسال شد به %s", inviteDto.LoginOrEmail))
 	}
 
-	return ApiSuccess(fmt.Sprintf("Created invite for %s", inviteDto.LoginOrEmail))
+	return ApiSuccess(fmt.Sprintf("ایجاد دعوت نامه برای %s", inviteDto.LoginOrEmail))
 }
 
 func inviteExistingUserToOrg(c *middleware.Context, user *m.User, inviteDto *dtos.AddInviteForm) Response {
@@ -96,7 +96,7 @@ func inviteExistingUserToOrg(c *middleware.Context, user *m.User, inviteDto *dto
 		if err == m.ErrOrgUserAlreadyAdded {
 			return ApiError(412, fmt.Sprintf("User %s is already added to organization", inviteDto.LoginOrEmail), err)
 		}
-		return ApiError(500, "Error while trying to create org user", err)
+		return ApiError(500, "خطا در ایجاد کاربر سازمان", err)
 	} else {
 
 		if inviteDto.SendEmail && util.IsEmail(user.Email) {
@@ -115,7 +115,7 @@ func inviteExistingUserToOrg(c *middleware.Context, user *m.User, inviteDto *dto
 			}
 		}
 
-		return ApiSuccess(fmt.Sprintf("Existing Grafana user %s added to org %s", user.NameOrFallback(), c.OrgName))
+		return ApiSuccess(fmt.Sprintf("کاربر %s به سازمان %s اضافه شد", user.NameOrFallback(), c.OrgName))
 	}
 }
 
@@ -124,7 +124,7 @@ func RevokeInvite(c *middleware.Context) Response {
 		return rsp
 	}
 
-	return ApiSuccess("Invite revoked")
+	return ApiSuccess("دعوت لغو شد")
 }
 
 func GetInviteInfoByCode(c *middleware.Context) Response {
@@ -190,7 +190,7 @@ func CompleteInvite(c *middleware.Context, completeInvite dtos.CompleteInviteFor
 	metrics.M_Api_User_SignUpCompleted.Inc()
 	metrics.M_Api_User_SignUpInvite.Inc()
 
-	return ApiSuccess("User created and logged in")
+	return ApiSuccess("کاربر ایجاد و وارد شد")
 }
 
 func updateTempUserStatus(code string, status m.TempUserStatus) (bool, Response) {

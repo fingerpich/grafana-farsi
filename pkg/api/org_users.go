@@ -41,7 +41,7 @@ func addOrgUserHelper(cmd m.AddOrgUserCommand) Response {
 		return ApiError(500, "Could not add user to organization", err)
 	}
 
-	return ApiSuccess("User added to organization")
+	return ApiSuccess("کاربر به سازمان اضافه شد")
 }
 
 // GET /api/org/users
@@ -94,7 +94,7 @@ func updateOrgUserHelper(cmd m.UpdateOrgUserCommand) Response {
 		return ApiError(500, "Failed update org user", err)
 	}
 
-	return ApiSuccess("Organization user updated")
+	return ApiSuccess("سازمان کاربر به روزرسانی شد")
 }
 
 // DELETE /api/org/users/:userId
@@ -120,5 +120,5 @@ func removeOrgUserHelper(orgId int64, userId int64) Response {
 		return ApiError(500, "Failed to remove user from organization", err)
 	}
 
-	return ApiSuccess("User removed from organization")
+	return ApiSuccess("کاربر از سازمان حذف شد")
 }

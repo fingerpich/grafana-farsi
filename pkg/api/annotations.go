@@ -205,7 +205,7 @@ func UpdateAnnotation(c *middleware.Context, cmd dtos.UpdateAnnotationsCmd) Resp
 		}
 	}
 
-	return ApiSuccess("Annotation updated")
+	return ApiSuccess("یادداشت به روزرسانی شد")
 }
 
 func DeleteAnnotations(c *middleware.Context, cmd dtos.DeleteAnnotationsCmd) Response {
@@ -221,7 +221,7 @@ func DeleteAnnotations(c *middleware.Context, cmd dtos.DeleteAnnotationsCmd) Res
 		return ApiError(500, "شکست در حذف یادداشت", err)
 	}
 
-	return ApiSuccess("Annotations deleted")
+	return ApiSuccess("یادداشت ها حذف شد")
 }
 
 func DeleteAnnotationById(c *middleware.Context) Response {

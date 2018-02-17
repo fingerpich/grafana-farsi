@@ -34,7 +34,7 @@ func UpdateTeam(c *middleware.Context, cmd m.UpdateTeamCommand) Response {
 		return ApiError(500, "Failed to update Team", err)
 	}
 
-	return ApiSuccess("Team updated")
+	return ApiSuccess("تیم به روز رسانی شد")
 }
 
 // DELETE /api/teams/:teamId
@@ -45,7 +45,7 @@ func DeleteTeamById(c *middleware.Context) Response {
 		}
 		return ApiError(500, "Failed to update Team", err)
 	}
-	return ApiSuccess("Team deleted")
+	return ApiSuccess("تیم حذف شد")
 }
 
 // GET /api/teams/search
