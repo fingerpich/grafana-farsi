@@ -21,7 +21,7 @@ func StarDashboard(c *middleware.Context) Response {
 		return ApiError(500, "Failed to star dashboard", err)
 	}
 
-	return ApiSuccess("Dashboard starred!")
+	return ApiSuccess("داشبورد ستاره شد!")
 }
 
 func UnstarDashboard(c *middleware.Context) Response {
@@ -36,5 +36,5 @@ func UnstarDashboard(c *middleware.Context) Response {
 		return ApiError(500, "Failed to unstar dashboard", err)
 	}
 
-	return ApiSuccess("Dashboard unstarred")
+	return ApiSuccess("داشبورد از حالت ستاره خارج شد")
 }

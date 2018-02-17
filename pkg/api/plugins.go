@@ -130,7 +130,7 @@ func UpdatePluginSetting(c *middleware.Context, cmd m.UpdatePluginSettingCmd) Re
 		return ApiError(500, "Failed to update plugin setting", err)
 	}
 
-	return ApiSuccess("Plugin settings updated")
+	return ApiSuccess("تنظیمات پلاگین بروزرسانی شد")
 }
 
 func GetPluginDashboards(c *middleware.Context) Response {

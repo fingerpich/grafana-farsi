@@ -17,7 +17,7 @@ func SetHomeDashboard(c *middleware.Context, cmd m.SavePreferencesCommand) Respo
 		return ApiError(500, "Failed to set home dashboard", err)
 	}
 
-	return ApiSuccess("Home dashboard set")
+	return ApiSuccess("داشبورد خانه تنظیم شد")
 }
 
 // GET /api/user/preferences

@@ -116,7 +116,7 @@ func updateOrgHelper(form dtos.UpdateOrgForm, orgId int64) Response {
 		return ApiError(500, "خطا در بروزرسانی سازمان", err)
 	}
 
-	return ApiSuccess("Organization updated")
+	return ApiSuccess("سازمان به روز رسانی شد")
 }
 
 // PUT /api/org/address
@@ -146,7 +146,7 @@ func updateOrgAddressHelper(form dtos.UpdateOrgAddressForm, orgId int64) Respons
 		return ApiError(500, "خطا در ایجاد آدرس سازمان", err)
 	}
 
-	return ApiSuccess("Address updated")
+	return ApiSuccess("آدرس به روزرسانی شد")
 }
 
 // GET /api/orgs/:orgId

@@ -21,7 +21,7 @@ func SendResetPasswordEmail(c *middleware.Context, form dtos.SendResetPasswordEm
 		return ApiError(500, "Failed to send email", err)
 	}
 
-	return ApiSuccess("Email sent")
+	return ApiSuccess("ایمیل ارسال شد")
 }
 
 func ResetPassword(c *middleware.Context, form dtos.ResetUserPasswordForm) Response {
@@ -46,5 +46,5 @@ func ResetPassword(c *middleware.Context, form dtos.ResetUserPasswordForm) Respo
 		return ApiError(500, "Failed to change user password", err)
 	}
 
-	return ApiSuccess("User password changed")
+	return ApiSuccess("رمز عبور کاربر تغییر یافت")
 }
