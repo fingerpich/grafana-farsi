@@ -14,7 +14,7 @@ func SetHomeDashboard(c *middleware.Context, cmd m.SavePreferencesCommand) Respo
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to set home dashboard", err)
+		return ApiError(500, "خطا در تعیین داشبورد خانه", err)
 	}
 
 	return ApiSuccess("داشبورد خانه تنظیم شد")
@@ -29,7 +29,7 @@ func getPreferencesFor(orgId int64, userId int64) Response {
 	prefsQuery := m.GetPreferencesQuery{UserId: userId, OrgId: orgId}
 
 	if err := bus.Dispatch(&prefsQuery); err != nil {
-		return ApiError(500, "Failed to get preferences", err)
+		return ApiError(500, "خطا در دریافت ترجیحات", err)
 	}
 
 	dto := dtos.Prefs{
@@ -56,7 +56,7 @@ func updatePreferencesFor(orgId int64, userId int64, dtoCmd *dtos.UpdatePrefsCmd
 	}
 
 	if err := bus.Dispatch(&saveCmd); err != nil {
-		return ApiError(500, "Failed to save preferences", err)
+		return ApiError(500, "خطا در ذخیره ترجیحات", err)
 	}
 
 	return ApiSuccess("ترجیحات بروزرسانی شد")

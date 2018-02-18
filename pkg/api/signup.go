@@ -22,12 +22,12 @@ func GetSignUpOptions(c *middleware.Context) Response {
 // POST /api/user/signup
 func SignUp(c *middleware.Context, form dtos.SignUpForm) Response {
 	if !setting.AllowUserSignUp {
-		return ApiError(401, "User signup is disabled", nil)
+		return ApiError(401, "ثبت نام بسته شده است", nil)
 	}
 
 	existing := m.GetUserByLoginQuery{LoginOrEmail: form.Email}
 	if err := bus.Dispatch(&existing); err == nil {
-		return ApiError(422, "User with same email address already exists", nil)
+		return ApiError(422, "قبلا این ایمیل استفاده شده است", nil)
 	}
 
 	cmd := m.CreateTempUserCommand{}
@@ -39,7 +39,7 @@ func SignUp(c *middleware.Context, form dtos.SignUpForm) Response {
 	cmd.RemoteAddr = c.Req.RemoteAddr
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to create signup", err)
+		return ApiError(500, "خطا در ایجاد ثبت نام", err)
 	}
 
 	bus.Publish(&events.SignUpStarted{
@@ -54,7 +54,7 @@ func SignUp(c *middleware.Context, form dtos.SignUpForm) Response {
 
 func SignUpStep2(c *middleware.Context, form dtos.SignUpStep2Form) Response {
 	if !setting.AllowUserSignUp {
-		return ApiError(401, "User signup is disabled", nil)
+		return ApiError(401, "ثبت نام بسته شده است", nil)
 	}
 
 	createUserCmd := m.CreateUserCommand{
@@ -76,12 +76,12 @@ func SignUpStep2(c *middleware.Context, form dtos.SignUpStep2Form) Response {
 	// check if user exists
 	existing := m.GetUserByLoginQuery{LoginOrEmail: form.Email}
 	if err := bus.Dispatch(&existing); err == nil {
-		return ApiError(401, "User with same email address already exists", nil)
+		return ApiError(401, "قبلا این ایمیل استفاده شده است", nil)
 	}
 
 	// dispatch create command
 	if err := bus.Dispatch(&createUserCmd); err != nil {
-		return ApiError(500, "Failed to create user", err)
+		return ApiError(500, "خطا در ایجاد کاربر", err)
 	}
 
 	// publish signup event
@@ -99,7 +99,7 @@ func SignUpStep2(c *middleware.Context, form dtos.SignUpStep2Form) Response {
 	// check for pending invites
 	invitesQuery := m.GetTempUsersQuery{Email: form.Email, Status: m.TmpUserInvitePending}
 	if err := bus.Dispatch(&invitesQuery); err != nil {
-		return ApiError(500, "Failed to query database for invites", err)
+		return ApiError(500, "خطا در واکشی دعوت ها از پایگاه داده", err)
 	}
 
 	apiResponse := util.DynMap{"message": "User sign up completed successfully", "code": "redirect-to-landing-page"}
@@ -121,14 +121,14 @@ func verifyUserSignUpEmail(email string, code string) (bool, Response) {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTempUserNotFound {
-			return false, ApiError(404, "Invalid email verification code", nil)
+			return false, ApiError(404, "کد ارسال شده اشتباه است", nil)
 		}
-		return false, ApiError(500, "Failed to read temp user", err)
+		return false, ApiError(500, "خطا در خواندن temp کاربر", err)
 	}
 
 	tempUser := query.Result
 	if tempUser.Email != email {
-		return false, ApiError(404, "Email verification code does not match email", nil)
+		return false, ApiError(404, "کد ایمیل شده منطبق نیست", nil)
 	}
 
 	return true, nil

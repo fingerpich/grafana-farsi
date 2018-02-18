@@ -20,7 +20,7 @@ func GetPluginList(c *middleware.Context) Response {
 	pluginSettingsMap, err := plugins.GetPluginSettings(c.OrgId)
 
 	if err != nil {
-		return ApiError(500, "Failed to get list of plugins", err)
+		return ApiError(500, "خطا در گرفتن لیست پلاگین ها", err)
 	}
 
 	result := make(dtos.PluginList, 0)
@@ -83,7 +83,7 @@ func GetPluginSettingById(c *middleware.Context) Response {
 	pluginId := c.Params(":pluginId")
 
 	if def, exists := plugins.Plugins[pluginId]; !exists {
-		return ApiError(404, "Plugin not found, no installed plugin with that id", nil)
+		return ApiError(404, "پلاگینی یافت نشد", nil)
 	} else {
 
 		dto := &dtos.PluginSetting{
@@ -104,7 +104,7 @@ func GetPluginSettingById(c *middleware.Context) Response {
 		query := m.GetPluginSettingByIdQuery{PluginId: pluginId, OrgId: c.OrgId}
 		if err := bus.Dispatch(&query); err != nil {
 			if err != m.ErrPluginSettingNotFound {
-				return ApiError(500, "Failed to get login settings", nil)
+				return ApiError(500, "خطا در دریافت تنظیمات پلاگین ها", nil)
 			}
 		} else {
 			dto.Enabled = query.Result.Enabled
@@ -123,11 +123,11 @@ func UpdatePluginSetting(c *middleware.Context, cmd m.UpdatePluginSettingCmd) Re
 	cmd.PluginId = pluginId
 
 	if _, ok := plugins.Apps[cmd.PluginId]; !ok {
-		return ApiError(404, "Plugin not installed.", nil)
+		return ApiError(404, "پلاگین نصب نشد", nil)
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to update plugin setting", err)
+		return ApiError(500, "خطا در بروز رسانی پلاگین", err)
 	}
 
 	return ApiSuccess("تنظیمات پلاگین بروزرسانی شد")
@@ -141,7 +141,7 @@ func GetPluginDashboards(c *middleware.Context) Response {
 			return ApiError(404, notfound.Error(), nil)
 		}
 
-		return ApiError(500, "Failed to get plugin dashboards", err)
+		return ApiError(500, "خطا در دریافت داشبورد های پلاگین", err)
 	} else {
 		return Json(200, list)
 	}
@@ -156,7 +156,7 @@ func GetPluginMarkdown(c *middleware.Context) Response {
 			return ApiError(404, notfound.Error(), nil)
 		}
 
-		return ApiError(500, "Could not get markdown file", err)
+		return ApiError(500, "نمیتواند مارک دون پلاگین را دریافت کند", err)
 	} else {
 		resp := Respond(200, content)
 		resp.Header("Content-Type", "text/plain; charset=utf-8")
@@ -177,7 +177,7 @@ func ImportDashboard(c *middleware.Context, apiCmd dtos.ImportDashboardCommand) 
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to import dashboard", err)
+		return ApiError(500, "خطا در دریافت پلاگین", err)
 	}
 
 	return Json(200, cmd.Result)

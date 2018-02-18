@@ -13,12 +13,12 @@ func SendResetPasswordEmail(c *middleware.Context, form dtos.SendResetPasswordEm
 
 	if err := bus.Dispatch(&userQuery); err != nil {
 		c.Logger.Info("Requested password reset for user that was not found", "user", userQuery.LoginOrEmail)
-		return ApiError(200, "Email sent", err)
+		return ApiError(200, "ایمیل ارسال شد", err)
 	}
 
 	emailCmd := m.SendResetPasswordEmailCommand{User: userQuery.Result}
 	if err := bus.Dispatch(&emailCmd); err != nil {
-		return ApiError(500, "Failed to send email", err)
+		return ApiError(500, "خطا در ارسال ایمیل", err)
 	}
 
 	return ApiSuccess("ایمیل ارسال شد")
@@ -29,13 +29,13 @@ func ResetPassword(c *middleware.Context, form dtos.ResetUserPasswordForm) Respo
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrInvalidEmailCode {
-			return ApiError(400, "Invalid or expired reset password code", nil)
+			return ApiError(400, "کد ریست رمز عبور نامعتبر است", nil)
 		}
-		return ApiError(500, "Unknown error validating email code", err)
+		return ApiError(500, "خطا در اعتبار سنجی کد ایمیل", err)
 	}
 
 	if form.NewPassword != form.ConfirmPassword {
-		return ApiError(400, "Passwords do not match", nil)
+		return ApiError(400, "رمز های عبور منطبق نیستند", nil)
 	}
 
 	cmd := m.ChangeUserPasswordCommand{}
@@ -43,7 +43,7 @@ func ResetPassword(c *middleware.Context, form dtos.ResetUserPasswordForm) Respo
 	cmd.NewPassword = util.EncodePassword(form.NewPassword, query.Result.Salt)
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to change user password", err)
+		return ApiError(500, "خطا در تغییر رمز عبور", err)
 	}
 
 	return ApiSuccess("رمز عبور کاربر تغییر یافت")

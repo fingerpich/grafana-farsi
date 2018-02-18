@@ -26,7 +26,7 @@ func getUserUserProfile(userId int64) Response {
 		if err == m.ErrUserNotFound {
 			return ApiError(404, m.ErrUserNotFound.Error(), nil)
 		}
-		return ApiError(500, "Failed to get user", err)
+		return ApiError(500, "خطا در یافتن کاربر", err)
 	}
 
 	return Json(200, query.Result)
@@ -39,7 +39,7 @@ func GetUserByLoginOrEmail(c *middleware.Context) Response {
 		if err == m.ErrUserNotFound {
 			return ApiError(404, m.ErrUserNotFound.Error(), nil)
 		}
-		return ApiError(500, "Failed to get user", err)
+		return ApiError(500, "خطا در یافتن کاربر", err)
 	}
 	user := query.Result
 	result := m.UserProfileDTO{
@@ -58,10 +58,10 @@ func GetUserByLoginOrEmail(c *middleware.Context) Response {
 func UpdateSignedInUser(c *middleware.Context, cmd m.UpdateUserCommand) Response {
 	if setting.AuthProxyEnabled {
 		if setting.AuthProxyHeaderProperty == "email" && cmd.Email != c.Email {
-			return ApiError(400, "Not allowed to change email when auth proxy is using email property", nil)
+			return ApiError(400, "زمانیکه auth proxy از ایمیل استفاده میکند امکان تغییر ایمیل وجود ندارد", nil)
 		}
 		if setting.AuthProxyHeaderProperty == "username" && cmd.Login != c.Login {
-			return ApiError(400, "Not allowed to change username when auth proxy is using username property", nil)
+			return ApiError(400, "زمانیکه auth proxy از نام کاربری استفاده میکند امکان تغییر نام کاربری وجود ندارد", nil)
 		}
 	}
 	cmd.UserId = c.UserId
@@ -80,13 +80,13 @@ func UpdateUserActiveOrg(c *middleware.Context) Response {
 	orgId := c.ParamsInt64(":orgId")
 
 	if !validateUsingOrg(userId, orgId) {
-		return ApiError(401, "Not a valid organization", nil)
+		return ApiError(401, "سازمان معتبر نیست", nil)
 	}
 
 	cmd := m.SetUsingOrgCommand{UserId: userId, OrgId: orgId}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to change active organization", err)
+		return ApiError(500, "خطا در تغییر سازمان فعال", err)
 	}
 
 	return ApiSuccess("سازمان فعال تغییر یافت")
@@ -96,12 +96,12 @@ func handleUpdateUser(cmd m.UpdateUserCommand) Response {
 	if len(cmd.Login) == 0 {
 		cmd.Login = cmd.Email
 		if len(cmd.Login) == 0 {
-			return ApiError(400, "Validation error, need to specify either username or email", nil)
+			return ApiError(400, "نیاز به ایمیل یا نام کاربری است", nil)
 		}
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to update user", err)
+		return ApiError(500, "خطا در بروزرسانی کاربر", err)
 	}
 
 	return ApiSuccess("کاربر بروزرسانی شد")
@@ -121,7 +121,7 @@ func getUserOrgList(userId int64) Response {
 	query := m.GetUserOrgListQuery{UserId: userId}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to get user organizations", err)
+		return ApiError(500, "خطا در دریافت سازمان کاربر", err)
 	}
 
 	return Json(200, query.Result)
@@ -150,13 +150,13 @@ func UserSetUsingOrg(c *middleware.Context) Response {
 	orgId := c.ParamsInt64(":id")
 
 	if !validateUsingOrg(c.UserId, orgId) {
-		return ApiError(401, "Not a valid organization", nil)
+		return ApiError(401, "سازمان معتبر نیست", nil)
 	}
 
 	cmd := m.SetUsingOrgCommand{UserId: c.UserId, OrgId: orgId}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to change active organization", err)
+		return ApiError(500, "خطا در تغییر سازمان فعال", err)
 	}
 
 	return ApiSuccess("سازمان فعال تغییر یافت")
@@ -181,30 +181,30 @@ func ChangeActiveOrgAndRedirectToHome(c *middleware.Context) {
 
 func ChangeUserPassword(c *middleware.Context, cmd m.ChangeUserPasswordCommand) Response {
 	if setting.LdapEnabled || setting.AuthProxyEnabled {
-		return ApiError(400, "Not allowed to change password when LDAP or Auth Proxy is enabled", nil)
+		return ApiError(400, "زمانیکه LDAP یا Auth Proxy  روشن است امکان تغییر رمزعبور وجود ندارد", nil)
 	}
 
 	userQuery := m.GetUserByIdQuery{Id: c.UserId}
 
 	if err := bus.Dispatch(&userQuery); err != nil {
-		return ApiError(500, "Could not read user from database", err)
+		return ApiError(500, "خطا در بازیابی کاربر از پایگاه داده", err)
 	}
 
 	passwordHashed := util.EncodePassword(cmd.OldPassword, userQuery.Result.Salt)
 	if passwordHashed != userQuery.Result.Password {
-		return ApiError(401, "Invalid old password", nil)
+		return ApiError(401, "رمز عبور قبلی اشتباه است", nil)
 	}
 
 	password := m.Password(cmd.NewPassword)
 	if password.IsWeak() {
-		return ApiError(400, "New password is too short", nil)
+		return ApiError(400, "رمز عبور جدید کوتاه است", nil)
 	}
 
 	cmd.UserId = c.UserId
 	cmd.NewPassword = util.EncodePassword(cmd.NewPassword, userQuery.Result.Salt)
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to change user password", err)
+		return ApiError(500, "خطا در تغییر رمز عبور", err)
 	}
 
 	return ApiSuccess("رمز عبور تغییر یافت")
@@ -214,7 +214,7 @@ func ChangeUserPassword(c *middleware.Context, cmd m.ChangeUserPasswordCommand) 
 func SearchUsers(c *middleware.Context) Response {
 	query, err := searchUser(c)
 	if err != nil {
-		return ApiError(500, "Failed to fetch users", err)
+		return ApiError(500, "خطا در بازیابی کاربران", err)
 	}
 
 	return Json(200, query.Result.Users)
@@ -224,7 +224,7 @@ func SearchUsers(c *middleware.Context) Response {
 func SearchUsersWithPaging(c *middleware.Context) Response {
 	query, err := searchUser(c)
 	if err != nil {
-		return ApiError(500, "Failed to fetch users", err)
+		return ApiError(500, "خطا در بازیابی کاربران", err)
 	}
 
 	return Json(200, query.Result)
@@ -270,7 +270,7 @@ func SetHelpFlag(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to update help flag", err)
+		return ApiError(500, "خطا در بروزرسانی help flag", err)
 	}
 
 	return Json(200, &util.DynMap{"message": "Help flag set", "helpFlags1": cmd.HelpFlags1})
@@ -283,7 +283,7 @@ func ClearHelpFlags(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to update help flag", err)
+		return ApiError(500, "خطا در بروزرسانی help flag", err)
 	}
 
 	return Json(200, &util.DynMap{"message": "Help flag set", "helpFlags1": cmd.HelpFlags1})

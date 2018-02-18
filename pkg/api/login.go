@@ -98,7 +98,7 @@ func LoginApiPing(c *middleware.Context) {
 
 func LoginPost(c *middleware.Context, cmd dtos.LoginCommand) Response {
 	if setting.DisableLoginForm {
-		return ApiError(401, "Login is disabled", nil)
+		return ApiError(401, "ورود بسته شده است", nil)
 	}
 
 	authQuery := login.LoginUserQuery{
