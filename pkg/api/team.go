@@ -13,9 +13,9 @@ func CreateTeam(c *middleware.Context, cmd m.CreateTeamCommand) Response {
 	cmd.OrgId = c.OrgId
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrTeamNameTaken {
-			return ApiError(409, "Team name taken", err)
+			return ApiError(409, "نام تیم قبلا استفاده شده است", err)
 		}
-		return ApiError(500, "Failed to create Team", err)
+		return ApiError(500, "خطا در ایجاد تیم", err)
 	}
 
 	return Json(200, &util.DynMap{
@@ -29,9 +29,9 @@ func UpdateTeam(c *middleware.Context, cmd m.UpdateTeamCommand) Response {
 	cmd.Id = c.ParamsInt64(":teamId")
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrTeamNameTaken {
-			return ApiError(400, "Team name taken", err)
+			return ApiError(400, "نام تیم قبلا استفاده شده است", err)
 		}
-		return ApiError(500, "Failed to update Team", err)
+		return ApiError(500, "خطا در بروز رسانی تیم", err)
 	}
 
 	return ApiSuccess("تیم به روز رسانی شد")
@@ -41,9 +41,9 @@ func UpdateTeam(c *middleware.Context, cmd m.UpdateTeamCommand) Response {
 func DeleteTeamById(c *middleware.Context) Response {
 	if err := bus.Dispatch(&m.DeleteTeamCommand{Id: c.ParamsInt64(":teamId")}); err != nil {
 		if err == m.ErrTeamNotFound {
-			return ApiError(404, "Failed to delete Team. ID not found", nil)
+			return ApiError(404, "خطا در حذف تیم", nil)
 		}
-		return ApiError(500, "Failed to update Team", err)
+		return ApiError(500, "خطا در بروزرسانی تیم", err)
 	}
 	return ApiSuccess("تیم حذف شد")
 }
@@ -68,7 +68,7 @@ func SearchTeams(c *middleware.Context) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to search Teams", err)
+		return ApiError(500, "خطا در یافتن تیم ها", err)
 	}
 
 	for _, team := range query.Result.Teams {
@@ -87,10 +87,10 @@ func GetTeamById(c *middleware.Context) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTeamNotFound {
-			return ApiError(404, "Team not found", err)
+			return ApiError(404, "تیمی یافت نشد", err)
 		}
 
-		return ApiError(500, "Failed to get Team", err)
+		return ApiError(500, "خطا در دریافت تیم", err)
 	}
 
 	return Json(200, &query.Result)

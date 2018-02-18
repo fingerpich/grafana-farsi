@@ -17,7 +17,7 @@ func GetPendingOrgInvites(c *middleware.Context) Response {
 	query := m.GetTempUsersQuery{OrgId: c.OrgId, Status: m.TmpUserInvitePending}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to get invites from db", err)
+		return ApiError(500, "خطا در دریافت دعوت ها از پایگاه داده", err)
 	}
 
 	for _, invite := range query.Result {
@@ -29,7 +29,7 @@ func GetPendingOrgInvites(c *middleware.Context) Response {
 
 func AddOrgInvite(c *middleware.Context, inviteDto dtos.AddInviteForm) Response {
 	if !inviteDto.Role.IsValid() {
-		return ApiError(400, "Invalid role specified", nil)
+		return ApiError(400, "نقش نامعتبر است", nil)
 	}
 
 	// first try get existing user
@@ -40,7 +40,7 @@ func AddOrgInvite(c *middleware.Context, inviteDto dtos.AddInviteForm) Response 
 		}
 
 		if setting.DisableLoginForm {
-			return ApiError(401, "User could not be found", nil)
+			return ApiError(401, "کاربر پیدا نمیشود", nil)
 		}
 	} else {
 		return inviteExistingUserToOrg(c, userQuery.Result, &inviteDto)
@@ -57,7 +57,7 @@ func AddOrgInvite(c *middleware.Context, inviteDto dtos.AddInviteForm) Response 
 	cmd.RemoteAddr = c.Req.RemoteAddr
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to save invite to database", err)
+		return ApiError(500, "خطا در ذخیره دعوت در پایگاه داده", err)
 	}
 
 	// send invite email
@@ -75,12 +75,12 @@ func AddOrgInvite(c *middleware.Context, inviteDto dtos.AddInviteForm) Response 
 		}
 
 		if err := bus.Dispatch(&emailCmd); err != nil {
-			return ApiError(500, "Failed to send email invite", err)
+			return ApiError(500, "خطا در ارسال ایمیل دعوت", err)
 		}
 
 		emailSentCmd := m.UpdateTempUserWithEmailSentCommand{Code: cmd.Result.Code}
 		if err := bus.Dispatch(&emailSentCmd); err != nil {
-			return ApiError(500, "Failed to update invite with email sent info", err)
+			return ApiError(500, "خطا در بروزرسانی دعوت نامه", err)
 		}
 
 		return ApiSuccess(fmt.Sprintf("دعوتنامه ارسال شد به %s", inviteDto.LoginOrEmail))
@@ -111,7 +111,7 @@ func inviteExistingUserToOrg(c *middleware.Context, user *m.User, inviteDto *dto
 			}
 
 			if err := bus.Dispatch(&emailCmd); err != nil {
-				return ApiError(500, "Failed to send email invited_to_org", err)
+				return ApiError(500, "خطا در ارسال ایمیل invited_to_org", err)
 			}
 		}
 
@@ -132,9 +132,9 @@ func GetInviteInfoByCode(c *middleware.Context) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTempUserNotFound {
-			return ApiError(404, "Invite not found", nil)
+			return ApiError(404, "دعوت نامه یافت نشد", nil)
 		}
-		return ApiError(500, "Failed to get invite", err)
+		return ApiError(500, "خطا در دریافت دعوتنامه", err)
 	}
 
 	invite := query.Result
@@ -152,9 +152,9 @@ func CompleteInvite(c *middleware.Context, completeInvite dtos.CompleteInviteFor
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTempUserNotFound {
-			return ApiError(404, "Invite not found", nil)
+			return ApiError(404, "دعوتنامه یافت نشد", nil)
 		}
-		return ApiError(500, "Failed to get invite", err)
+		return ApiError(500, "خطا در دریافت دعوتنامه", err)
 	}
 
 	invite := query.Result
@@ -171,7 +171,7 @@ func CompleteInvite(c *middleware.Context, completeInvite dtos.CompleteInviteFor
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "failed to create user", err)
+		return ApiError(500, "خطا در ایجاد کاربر", err)
 	}
 
 	user := &cmd.Result
@@ -197,7 +197,7 @@ func updateTempUserStatus(code string, status m.TempUserStatus) (bool, Response)
 	// update temp user status
 	updateTmpUserCmd := m.UpdateTempUserStatusCommand{Code: code, Status: status}
 	if err := bus.Dispatch(&updateTmpUserCmd); err != nil {
-		return false, ApiError(500, "Failed to update invite status", err)
+		return false, ApiError(500, "خطا در تغییر وضعیت دعوتنامه", err)
 	}
 
 	return true, nil
@@ -208,7 +208,7 @@ func applyUserInvite(user *m.User, invite *m.TempUserDTO, setActive bool) (bool,
 	addOrgUserCmd := m.AddOrgUserCommand{OrgId: invite.OrgId, UserId: user.Id, Role: invite.Role}
 	if err := bus.Dispatch(&addOrgUserCmd); err != nil {
 		if err != m.ErrOrgUserAlreadyAdded {
-			return false, ApiError(500, "Error while trying to create org user", err)
+			return false, ApiError(500, "خطا در ایجاد کاربر سازمان", err)
 		}
 	}
 
@@ -220,7 +220,7 @@ func applyUserInvite(user *m.User, invite *m.TempUserDTO, setActive bool) (bool,
 	if setActive {
 		// set org to active
 		if err := bus.Dispatch(&m.SetUsingOrgCommand{OrgId: invite.OrgId, UserId: user.Id}); err != nil {
-			return false, ApiError(500, "Failed to set org as active", err)
+			return false, ApiError(500, "خطا در تنظیم سازمان فعال", err)
 		}
 	}
 

@@ -56,7 +56,7 @@ func SearchPlaylists(c *middleware.Context) Response {
 
 	err := bus.Dispatch(&searchQuery)
 	if err != nil {
-		return ApiError(500, "Search failed", err)
+		return ApiError(500, "خطا در جستجو", err)
 	}
 
 	return Json(200, searchQuery.Result)
@@ -67,7 +67,7 @@ func GetPlaylist(c *middleware.Context) Response {
 	cmd := m.GetPlaylistByIdQuery{Id: id}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Playlist not found", err)
+		return ApiError(500, "Playlist یافت نشد", err)
 	}
 
 	playlistDTOs, _ := LoadPlaylistItemDTOs(id)
@@ -121,7 +121,7 @@ func GetPlaylistItems(c *middleware.Context) Response {
 	playlistDTOs, err := LoadPlaylistItemDTOs(id)
 
 	if err != nil {
-		return ApiError(500, "Could not load playlist items", err)
+		return ApiError(500, "عدم دریافت موارد موجود در playlist", err)
 	}
 
 	return Json(200, playlistDTOs)
@@ -132,7 +132,7 @@ func GetPlaylistDashboards(c *middleware.Context) Response {
 
 	playlists, err := LoadPlaylistDashboards(c.OrgId, c.SignedInUser, playlistId)
 	if err != nil {
-		return ApiError(500, "Could not load dashboards", err)
+		return ApiError(500, "عدم دریافت داشبورد ها", err)
 	}
 
 	return Json(200, playlists)
@@ -143,7 +143,7 @@ func DeletePlaylist(c *middleware.Context) Response {
 
 	cmd := m.DeletePlaylistCommand{Id: id, OrgId: c.OrgId}
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to delete playlist", err)
+		return ApiError(500, "خطا در حذف playlist", err)
 	}
 
 	return Json(200, "")
@@ -153,7 +153,7 @@ func CreatePlaylist(c *middleware.Context, cmd m.CreatePlaylistCommand) Response
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to create playlist", err)
+		return ApiError(500, "خطا در ایجاد playlist", err)
 	}
 
 	return Json(200, cmd.Result)
@@ -163,12 +163,12 @@ func UpdatePlaylist(c *middleware.Context, cmd m.UpdatePlaylistCommand) Response
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return ApiError(500, "Failed to save playlist", err)
+		return ApiError(500, "خطا در ذخیره playlist", err)
 	}
 
 	playlistDTOs, err := LoadPlaylistItemDTOs(cmd.Id)
 	if err != nil {
-		return ApiError(500, "Failed to save playlist", err)
+		return ApiError(500, "خطا در ذخیره playlist", err)
 	}
 
 	cmd.Result.Items = playlistDTOs

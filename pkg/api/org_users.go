@@ -21,13 +21,13 @@ func AddOrgUser(c *middleware.Context, cmd m.AddOrgUserCommand) Response {
 
 func addOrgUserHelper(cmd m.AddOrgUserCommand) Response {
 	if !cmd.Role.IsValid() {
-		return ApiError(400, "Invalid role specified", nil)
+		return ApiError(400, "نقش نا معتبری تعیین شده است", nil)
 	}
 
 	userQuery := m.GetUserByLoginQuery{LoginOrEmail: cmd.LoginOrEmail}
 	err := bus.Dispatch(&userQuery)
 	if err != nil {
-		return ApiError(404, "User not found", nil)
+		return ApiError(404, "کاربر یافت نشد", nil)
 	}
 
 	userToAdd := userQuery.Result
@@ -36,9 +36,9 @@ func addOrgUserHelper(cmd m.AddOrgUserCommand) Response {
 
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrOrgUserAlreadyAdded {
-			return ApiError(409, "User is already member of this organization", nil)
+			return ApiError(409, "کاربر قبلا در این سازمان عضو بوده است", nil)
 		}
-		return ApiError(500, "Could not add user to organization", err)
+		return ApiError(500, "نمیتوان کاربر را به سازمان افزود", err)
 	}
 
 	return ApiSuccess("کاربر به سازمان اضافه شد")
@@ -58,7 +58,7 @@ func getOrgUsersHelper(orgId int64) Response {
 	query := m.GetOrgUsersQuery{OrgId: orgId}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return ApiError(500, "Failed to get account user", err)
+		return ApiError(500, "خطا در دریافت حساب کاربری", err)
 	}
 
 	for _, user := range query.Result {
@@ -84,14 +84,14 @@ func UpdateOrgUser(c *middleware.Context, cmd m.UpdateOrgUserCommand) Response {
 
 func updateOrgUserHelper(cmd m.UpdateOrgUserCommand) Response {
 	if !cmd.Role.IsValid() {
-		return ApiError(400, "Invalid role specified", nil)
+		return ApiError(400, "نقش نا معتبری تعیین شده است", nil)
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrLastOrgAdmin {
 			return ApiError(400, "Cannot change role so that there is no organization admin left", nil)
 		}
-		return ApiError(500, "Failed update org user", err)
+		return ApiError(500, "خطا در بروزرسانی کاربر سازمان", err)
 	}
 
 	return ApiSuccess("سازمان کاربر به روزرسانی شد")
@@ -115,9 +115,9 @@ func removeOrgUserHelper(orgId int64, userId int64) Response {
 
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrLastOrgAdmin {
-			return ApiError(400, "Cannot remove last organization admin", nil)
+			return ApiError(400, "آخرین سازمان ادمین حذف نمیشود", nil)
 		}
-		return ApiError(500, "Failed to remove user from organization", err)
+		return ApiError(500, "خطا در حذف سازمان کاربر", err)
 	}
 
 	return ApiSuccess("کاربر از سازمان حذف شد")
