@@ -5,8 +5,8 @@ import (
 	"path"
 	"path/filepath"
 
-	"github.com/grafana/grafana/pkg/services/provisioning/dashboards"
-	"github.com/grafana/grafana/pkg/services/provisioning/datasources"
+	"github.com/fingerpich/grafana-farsi/pkg/services/provisioning/dashboards"
+	"github.com/fingerpich/grafana-farsi/pkg/services/provisioning/datasources"
 	ini "gopkg.in/ini.v1"
 )
 

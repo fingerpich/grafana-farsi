@@ -6,13 +6,13 @@ import (
 
 	"gopkg.in/macaron.v1"
 
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/components/apikeygen"
-	"github.com/grafana/grafana/pkg/log"
-	l "github.com/grafana/grafana/pkg/login"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/setting"
-	"github.com/grafana/grafana/pkg/util"
+	"github.com/fingerpich/grafana-farsi/pkg/bus"
+	"github.com/fingerpich/grafana-farsi/pkg/components/apikeygen"
+	"github.com/fingerpich/grafana-farsi/pkg/log"
+	l "github.com/fingerpich/grafana-farsi/pkg/login"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/setting"
+	"github.com/fingerpich/grafana-farsi/pkg/util"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

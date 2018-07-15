@@ -3,10 +3,10 @@ package api
 import (
 	"strconv"
 
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/metrics"
-	"github.com/grafana/grafana/pkg/middleware"
-	"github.com/grafana/grafana/pkg/services/search"
+	"github.com/fingerpich/grafana-farsi/pkg/bus"
+	"github.com/fingerpich/grafana-farsi/pkg/metrics"
+	"github.com/fingerpich/grafana-farsi/pkg/middleware"
+	"github.com/fingerpich/grafana-farsi/pkg/services/search"
 )
 
 func Search(c *middleware.Context) {

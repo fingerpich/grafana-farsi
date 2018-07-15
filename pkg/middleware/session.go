@@ -9,7 +9,7 @@ import (
 	_ "github.com/go-macaron/session/mysql"
 	_ "github.com/go-macaron/session/postgres"
 	_ "github.com/go-macaron/session/redis"
-	"github.com/grafana/grafana/pkg/log"
+	"github.com/fingerpich/grafana-farsi/pkg/log"
 	"gopkg.in/macaron.v1"
 )
 

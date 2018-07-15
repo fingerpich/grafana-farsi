@@ -7,8 +7,8 @@ import (
 
 	. "github.com/smartystreets/goconvey/convey"
 
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/sqlstore/sqlutil"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/services/sqlstore/sqlutil"
 )
 
 func InitTestDB(t *testing.T) *xorm.Engine {

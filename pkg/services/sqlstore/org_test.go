@@ -5,8 +5,8 @@ import (
 
 	. "github.com/smartystreets/goconvey/convey"
 
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/setting"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/setting"
 )
 
 func TestAccountDataAccess(t *testing.T) {

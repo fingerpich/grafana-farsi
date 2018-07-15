@@ -4,11 +4,11 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/grafana/grafana/pkg/api/dtos"
-	"github.com/grafana/grafana/pkg/bus"
-	_ "github.com/grafana/grafana/pkg/log"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/search"
+	"github.com/fingerpich/grafana-farsi/pkg/api/dtos"
+	"github.com/fingerpich/grafana-farsi/pkg/bus"
+	_ "github.com/fingerpich/grafana-farsi/pkg/log"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/services/search"
 )
 
 func populateDashboardsById(dashboardByIds []int64, dashboardIdOrder map[int64]int) (dtos.PlaylistDashboardsSlice, error) {

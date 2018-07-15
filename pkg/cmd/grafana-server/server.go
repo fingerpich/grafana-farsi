@@ -11,24 +11,24 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/grafana/grafana/pkg/services/provisioning"
+	"github.com/fingerpich/grafana-farsi/pkg/services/provisioning"
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/grafana/grafana/pkg/api"
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/login"
-	"github.com/grafana/grafana/pkg/metrics"
-	"github.com/grafana/grafana/pkg/plugins"
-	"github.com/grafana/grafana/pkg/services/alerting"
-	"github.com/grafana/grafana/pkg/services/cleanup"
-	"github.com/grafana/grafana/pkg/services/notifications"
-	"github.com/grafana/grafana/pkg/services/search"
-	"github.com/grafana/grafana/pkg/services/sqlstore"
-	"github.com/grafana/grafana/pkg/setting"
+	"github.com/fingerpich/grafana-farsi/pkg/api"
+	"github.com/fingerpich/grafana-farsi/pkg/log"
+	"github.com/fingerpich/grafana-farsi/pkg/login"
+	"github.com/fingerpich/grafana-farsi/pkg/metrics"
+	"github.com/fingerpich/grafana-farsi/pkg/plugins"
+	"github.com/fingerpich/grafana-farsi/pkg/services/alerting"
+	"github.com/fingerpich/grafana-farsi/pkg/services/cleanup"
+	"github.com/fingerpich/grafana-farsi/pkg/services/notifications"
+	"github.com/fingerpich/grafana-farsi/pkg/services/search"
+	"github.com/fingerpich/grafana-farsi/pkg/services/sqlstore"
+	"github.com/fingerpich/grafana-farsi/pkg/setting"
 
-	"github.com/grafana/grafana/pkg/social"
-	"github.com/grafana/grafana/pkg/tracing"
+	"github.com/fingerpich/grafana-farsi/pkg/social"
+	"github.com/fingerpich/grafana-farsi/pkg/tracing"
 )
 
 func NewGrafanaServer() *GrafanaServerImpl {

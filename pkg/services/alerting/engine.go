@@ -10,7 +10,7 @@ import (
 	tlog "github.com/opentracing/opentracing-go/log"
 
 	"github.com/benbjohnson/clock"
-	"github.com/grafana/grafana/pkg/log"
+	"github.com/fingerpich/grafana-farsi/pkg/log"
 	"golang.org/x/sync/errgroup"
 )
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/grafana/grafana/pkg/log"
+	"github.com/fingerpich/grafana-farsi/pkg/log"
 )
 
 type DashboardProvisioner struct {

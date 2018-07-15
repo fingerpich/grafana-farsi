@@ -6,10 +6,10 @@ import (
 	"github.com/go-xorm/xorm"
 	. "github.com/smartystreets/goconvey/convey"
 
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/search"
-	"github.com/grafana/grafana/pkg/setting"
+	"github.com/fingerpich/grafana-farsi/pkg/components/simplejson"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/services/search"
+	"github.com/fingerpich/grafana-farsi/pkg/setting"
 )
 
 func TestDashboardDataAccess(t *testing.T) {

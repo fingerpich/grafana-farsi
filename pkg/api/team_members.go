@@ -1,11 +1,11 @@
 package api
 
 import (
-	"github.com/grafana/grafana/pkg/api/dtos"
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/middleware"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/util"
+	"github.com/fingerpich/grafana-farsi/pkg/api/dtos"
+	"github.com/fingerpich/grafana-farsi/pkg/bus"
+	"github.com/fingerpich/grafana-farsi/pkg/middleware"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/util"
 )
 
 // GET /api/teams/:teamId/members

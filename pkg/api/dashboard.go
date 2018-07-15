@@ -6,20 +6,20 @@ import (
 	"os"
 	"path"
 
-	"github.com/grafana/grafana/pkg/services/dashboards"
+	"github.com/fingerpich/grafana-farsi/pkg/services/dashboards"
 
-	"github.com/grafana/grafana/pkg/api/dtos"
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/components/dashdiffs"
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/metrics"
-	"github.com/grafana/grafana/pkg/middleware"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/plugins"
-	"github.com/grafana/grafana/pkg/services/guardian"
-	"github.com/grafana/grafana/pkg/setting"
-	"github.com/grafana/grafana/pkg/util"
+	"github.com/fingerpich/grafana-farsi/pkg/api/dtos"
+	"github.com/fingerpich/grafana-farsi/pkg/bus"
+	"github.com/fingerpich/grafana-farsi/pkg/components/dashdiffs"
+	"github.com/fingerpich/grafana-farsi/pkg/components/simplejson"
+	"github.com/fingerpich/grafana-farsi/pkg/log"
+	"github.com/fingerpich/grafana-farsi/pkg/metrics"
+	"github.com/fingerpich/grafana-farsi/pkg/middleware"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/plugins"
+	"github.com/fingerpich/grafana-farsi/pkg/services/guardian"
+	"github.com/fingerpich/grafana-farsi/pkg/setting"
+	"github.com/fingerpich/grafana-farsi/pkg/util"
 )
 
 func isDashboardStarredByUser(c *middleware.Context, dashId int64) (bool, error) {

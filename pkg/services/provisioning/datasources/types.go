@@ -1,7 +1,7 @@
 package datasources
 
-import "github.com/grafana/grafana/pkg/models"
-import "github.com/grafana/grafana/pkg/components/simplejson"
+import "github.com/fingerpich/grafana-farsi/pkg/models"
+import "github.com/fingerpich/grafana-farsi/pkg/components/simplejson"
 
 type DatasourcesAsConfig struct {
 	Datasources       []*DataSourceFromConfig   `json:"datasources" yaml:"datasources"`

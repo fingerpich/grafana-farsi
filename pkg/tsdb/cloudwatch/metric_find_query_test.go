@@ -8,8 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatch"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/aws/aws-sdk-go/service/ec2/ec2iface"
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/fingerpich/grafana-farsi/pkg/components/simplejson"
+	"github.com/fingerpich/grafana-farsi/pkg/tsdb"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

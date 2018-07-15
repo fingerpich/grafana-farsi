@@ -5,8 +5,8 @@ import (
 
 	. "github.com/smartystreets/goconvey/convey"
 
-	"github.com/grafana/grafana/pkg/components/null"
-	"github.com/grafana/grafana/pkg/components/simplejson"
+	"github.com/fingerpich/grafana-farsi/pkg/components/null"
+	"github.com/fingerpich/grafana-farsi/pkg/components/simplejson"
 )
 
 func evalutorScenario(json string, reducedValue float64, datapoints ...float64) bool {

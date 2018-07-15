@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	. "github.com/grafana/grafana/pkg/services/sqlstore/migrator"
+	. "github.com/fingerpich/grafana-farsi/pkg/services/sqlstore/migrator"
 )
 
 func addAnnotationMig(mg *Migrator) {

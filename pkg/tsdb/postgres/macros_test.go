@@ -3,7 +3,7 @@ package postgres
 import (
 	"testing"
 
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/fingerpich/grafana-farsi/pkg/tsdb"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

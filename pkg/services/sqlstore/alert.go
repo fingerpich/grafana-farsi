@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grafana/grafana/pkg/bus"
-	m "github.com/grafana/grafana/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/bus"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
 )
 
 func init() {

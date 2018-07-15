@@ -1,7 +1,7 @@
 package dtos
 
 import (
-	m "github.com/grafana/grafana/pkg/models"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
 )
 
 type UpdateDashboardAclCommand struct {

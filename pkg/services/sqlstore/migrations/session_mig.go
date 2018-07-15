@@ -1,6 +1,6 @@
 package migrations
 
-import . "github.com/grafana/grafana/pkg/services/sqlstore/migrator"
+import . "github.com/fingerpich/grafana-farsi/pkg/services/sqlstore/migrator"
 
 func addSessionMigration(mg *Migrator) {
 	var sessionV1 = Table{

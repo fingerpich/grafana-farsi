@@ -14,9 +14,9 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/logger"
-	m "github.com/grafana/grafana/pkg/cmd/grafana-cli/models"
-	s "github.com/grafana/grafana/pkg/cmd/grafana-cli/services"
+	"github.com/fingerpich/grafana-farsi/pkg/cmd/grafana-cli/logger"
+	m "github.com/fingerpich/grafana-farsi/pkg/cmd/grafana-cli/models"
+	s "github.com/fingerpich/grafana-farsi/pkg/cmd/grafana-cli/services"
 )
 
 func validateInput(c CommandLine, pluginFolder string) error {

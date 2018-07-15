@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/grafana/grafana/pkg/components/renderer"
-	"github.com/grafana/grafana/pkg/middleware"
-	"github.com/grafana/grafana/pkg/util"
+	"github.com/fingerpich/grafana-farsi/pkg/components/renderer"
+	"github.com/fingerpich/grafana-farsi/pkg/middleware"
+	"github.com/fingerpich/grafana-farsi/pkg/util"
 )
 
 func RenderToPng(c *middleware.Context) {

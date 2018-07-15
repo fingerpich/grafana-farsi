@@ -5,8 +5,8 @@ import (
 
 	ini "gopkg.in/ini.v1"
 
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/metrics/graphitebridge"
+	"github.com/fingerpich/grafana-farsi/pkg/log"
+	"github.com/fingerpich/grafana-farsi/pkg/metrics/graphitebridge"
 )
 
 var metricsLogger log.Logger = log.New("metrics")

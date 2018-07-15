@@ -16,7 +16,7 @@ import (
 	"github.com/inconshreveable/log15"
 	isatty "github.com/mattn/go-isatty"
 
-	"github.com/grafana/grafana/pkg/util"
+	"github.com/fingerpich/grafana-farsi/pkg/util"
 )
 
 var Root log15.Logger

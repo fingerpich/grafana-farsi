@@ -3,7 +3,7 @@ package tsdb
 import (
 	"context"
 
-	"github.com/grafana/grafana/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/models"
 )
 
 type FakeExecutor struct {

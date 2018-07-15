@@ -486,7 +486,7 @@
 		},
 		{
 			"checksumSHA1": "y/A5iuvwjytQE2CqVuphQRXR2nI=",
-			"origin": "github.com/grafana/grafana/vendor/github.com/mattn/go-isatty",
+			"origin": "github.com/fingerpich/grafana-farsi/vendor/github.com/mattn/go-isatty",
 			"path": "github.com/mattn/go-isatty",
 			"revision": "a5cdd64afdee435007ee3e9f6ed4684af949d568",
 			"revisionTime": "2017-09-25T05:49:04Z"

@@ -43,7 +43,7 @@ All our example plugins have build scripted configured.
 
 ## Keep your plugin up to date
 
-New versions of Grafana can sometimes cause plugins to break. Checkout our [PLUGIN_DEV.md](https://github.com/grafana/grafana/blob/master/PLUGIN_DEV.md) doc for changes in
+New versions of Grafana can sometimes cause plugins to break. Checkout our [PLUGIN_DEV.md](https://github.com/fingerpich/grafana-farsi/blob/master/PLUGIN_DEV.md) doc for changes in
 Grafana that can impact your plugin.
 
 ## Metadata
@@ -59,8 +59,8 @@ and [apps]({{< relref "apps.md" >}}) plugins in the documentation.
 
 The Grafana SDK is quite small so far and can be found here:
 
-- [SDK file in Grafana](https://github.com/grafana/grafana/blob/master/public/app/plugins/sdk.ts)
-- [SDK Readme](https://github.com/grafana/grafana/blob/master/public/app/plugins/plugin_api.md)
+- [SDK file in Grafana](https://github.com/fingerpich/grafana-farsi/blob/master/public/app/plugins/sdk.ts)
+- [SDK Readme](https://github.com/fingerpich/grafana-farsi/blob/master/public/app/plugins/plugin_api.md)
 
 The SDK contains three different plugin classes: PanelCtrl, MetricsPanelCtrl and QueryCtrl. For plugins of the panel type, the module.js file should export one of these. There are some extra classes for [data sources]({{< relref "datasources.md" >}}).
 
@@ -123,7 +123,7 @@ We currently have three different examples that you can fork/download to get sta
  - [simple-json-datasource](https://github.com/grafana/simple-json-datasource) (small datasource plugin for querying json data from backends)
  - [example-app](https://github.com/grafana/example-app)
  - [clock-panel](https://github.com/grafana/clock-panel)
- - [singlestat-panel](https://github.com/grafana/grafana/blob/master/public/app/plugins/panel/singlestat/module.ts)
+ - [singlestat-panel](https://github.com/fingerpich/grafana-farsi/blob/master/public/app/plugins/panel/singlestat/module.ts)
  - [piechart-panel](https://github.com/grafana/piechart-panel)
 
 ## Other Articles

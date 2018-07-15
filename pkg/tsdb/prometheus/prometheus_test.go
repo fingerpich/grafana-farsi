@@ -4,10 +4,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/tsdb"
 
-	"github.com/grafana/grafana/pkg/components/simplejson"
+	"github.com/fingerpich/grafana-farsi/pkg/components/simplejson"
 	p "github.com/prometheus/common/model"
 	. "github.com/smartystreets/goconvey/convey"
 )

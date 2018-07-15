@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/Unknwon/com"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/setting"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/setting"
 )
 
 const timeLimitCodeLength = 12 + 6 + 40

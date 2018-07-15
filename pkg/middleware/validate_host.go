@@ -3,7 +3,7 @@ package middleware
 import (
 	"strings"
 
-	"github.com/grafana/grafana/pkg/setting"
+	"github.com/fingerpich/grafana-farsi/pkg/setting"
 	"gopkg.in/macaron.v1"
 )
 

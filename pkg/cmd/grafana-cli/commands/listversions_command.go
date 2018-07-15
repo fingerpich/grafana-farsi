@@ -3,8 +3,8 @@ package commands
 import (
 	"errors"
 
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/logger"
-	s "github.com/grafana/grafana/pkg/cmd/grafana-cli/services"
+	"github.com/fingerpich/grafana-farsi/pkg/cmd/grafana-cli/logger"
+	s "github.com/fingerpich/grafana-farsi/pkg/cmd/grafana-cli/services"
 )
 
 func validateVersionInput(c CommandLine) error {

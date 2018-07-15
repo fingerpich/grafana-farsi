@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/grafana/grafana/pkg/components/null"
+	"github.com/fingerpich/grafana-farsi/pkg/components/null"
 )
 
 type TimePoint [2]null.Float

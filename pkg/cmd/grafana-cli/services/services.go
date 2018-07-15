@@ -12,8 +12,8 @@ import (
 	"path"
 	"time"
 
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/logger"
-	m "github.com/grafana/grafana/pkg/cmd/grafana-cli/models"
+	"github.com/fingerpich/grafana-farsi/pkg/cmd/grafana-cli/logger"
+	m "github.com/fingerpich/grafana-farsi/pkg/cmd/grafana-cli/models"
 )
 
 var (

@@ -3,8 +3,8 @@ package middleware
 import (
 	"sync"
 
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/util"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/util"
 )
 
 var renderKeysLock sync.Mutex

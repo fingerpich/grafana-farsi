@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/alerting"
+	m "github.com/fingerpich/grafana-farsi/pkg/models"
+	"github.com/fingerpich/grafana-farsi/pkg/services/alerting"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

@@ -1,7 +1,7 @@
 package dashboards
 
 import (
-	"github.com/grafana/grafana/pkg/services/dashboards"
+	"github.com/fingerpich/grafana-farsi/pkg/services/dashboards"
 	gocache "github.com/patrickmn/go-cache"
 	"time"
 )
